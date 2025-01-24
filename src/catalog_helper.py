@@ -5,7 +5,7 @@ def edit_csv_entry():
     df = pd.read_csv('data/catalog_database.csv')
     
     id = input("What is the ID of the entry to edit: ")
-    row_index = df[df['Id'] ==  (id)].index
+    row_index = df[df['Id'] ==  int(id)].index
     if not row_index.empty:
         new_name = input("What should the name be: ")
         new_description = input("What should the description be: ")
