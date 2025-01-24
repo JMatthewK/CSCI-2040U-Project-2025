@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 
 def edit_csv_entry():
     df = pd.read_csv('data/catalog_database.csv')
@@ -7,7 +8,7 @@ def edit_csv_entry():
     print(id)
             
             
-edit_csv_entry()import csv
+edit_csv_entry()
 
 
 #called when need to print whole database
