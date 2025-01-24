@@ -18,3 +18,10 @@ def printcsv():
     for lines in database:
       print(lines)
 
+def add():
+        x =  input("id to add:")
+        y = input ("name to add:")
+        z = input ("description to add:")
+        data = {'ID':[x], "Name" :[y], "Description":[z]}
+        data = pd.DataFrame(data)
+        data.to_csv('data/catalog_database.csv', mode='a', index=False, header=False)
