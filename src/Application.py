@@ -1,21 +1,26 @@
-import catalog_helper
+from catalog_helper import *
 import argparse
+import pandas as pd
+# parser = argparse.ArgumentParser()
+# parser.add_argument("filename", nargs='1', metavar='file', type='str', help="File to be read")
+# args = parser.parse_args()
+running = True
+while(running):
+    print("What would you like to do?")
+    print("1. Add to Catalog")
+    print("2. Edit Item")
+    print("3. View Description of Item")
+    user_input = input("")
 
-def main ():
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("filename", nargs='1', metavar='file', type='str', help="File to be read")
-    # args = parser.parse_args()
-    
-    catalog_helper.printcsv()
-    catalog_helper.edit_csv_entry()
-    input = 0
-    while(true):
-        if(input == 6):
-            break
-        else:
-            print("1. View ID description")
-            print("2. Add to file")
-            print("3. Edit file")
-            
+    if(user_input == "1"):
+        add()
+    elif(user_input == "2"):
+        edit_csv_entry()
+    elif(user_input == "3"): 
+        view_description()
+    elif(user_input == -1):
+        running = False;
+    else:
+        print("invalid option")
 
     
