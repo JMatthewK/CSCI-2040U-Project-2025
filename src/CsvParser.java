@@ -1,17 +1,17 @@
-import java.io.*
+import java.io.*;
 import java.util.*;
 
 // Class to help parse through the csv data file
 public class CsvParser {
     public List<ClothingItem> parseCsv(String file) throws IOException{
-        List<ClothingItem> clothingItems = new ArrayList<>();4
-        BufferedReader br = new BufferedReader(new FileReader);
+        List<ClothingItem> clothingItems = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
 
         // Skip the header row with the category names
         br.readLine();
 
-        while((line = br.readLine()) ! = null){
+        while((line = br.readLine()) != null){
             // Comma delimiter to read the CSV file attribute by attribute
             String[] attributes = line.split(",");
 
@@ -31,7 +31,7 @@ public class CsvParser {
         // Close bufferedReader
         br.close();
         // Return arrayList of clothingItems
-        return clothingItems
+        return clothingItems;
     }
 
 }

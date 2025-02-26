@@ -11,7 +11,7 @@ public class ClothingItem{
     private String fit;
 
     // Constructor
-    public ClothingItem(String id, String name, String brand, String color, String category, int price, String material, String style, String fit){
+    public ClothingItem(String id, String name, String brand, String color, String category, double price, String material, String style, String fit){
         this.id = id;
         this.name = name;
         this.brand = brand;
