@@ -1,0 +1,501 @@
+ID,Product Name,Brand,Color,Category,Price (CAD),Material,Style,Fit,Link
+1,nike strike,Nike,black,shirt,55,polyester ,sport,slim,https://www.nike.com/ca/t/strike-dri-fit-short-sleeve-football-top-DFnTwg/FN2399-010
+2,nike primary,Nike,black,shirt,68,polyester ,sport,standard,https://www.nike.com/ca/t/primary-dri-fit-short-sleeve-versatile-top-2wrctV/DV9831-010
+3,NikeCourtAdvantage,Nike,white,shirt,75,polester,sport,slim,https://www.nike.com/ca/t/nikecourt-advantage-dri-fit-short-sleeve-tennis-top-GFNbRR/FV0261-101
+4,nike flex rep,Nike,blue,shorts,95,polyester,sport,standard,https://www.nike.com/ca/t/flex-rep-4-dri-fit-18cm-unlined-fitness-shorts-gRTLh8/FN3004-412
+5,nike challenger,Nike,blue,shorts,64,polyester,sport,standard,https://www.nike.com/ca/t/challenger-dri-fit-18cm-2-in-1-running-shorts-4tdT8K/DV9357-437?nikegos=true
+6,nike phenom,Nike,black,pants,110,polyester,sport,slim,https://www.nike.com/ca/t/phenom-dri-fit-running-tights-8j9K8z/CZ8823-010
+7,nike aeroswift,Nike,black,shorts,110,polyester ,sport,slim,https://www.nike.com/ca/t/aeroswift-dri-fit-adv-running-1-2-length-leggings-6n3wnX/FN3369-011
+8,air jordan,Nike,white,pants,150,cotton,casual,loose,https://www.nike.com/ca/t/air-jordan-trousers-c34zrH/HF9291-029
+9,nike strike,Nike,black,pants,120,polyester,loungewear,loose,https://www.nike.com/ca/t/strike-water-repellent-football-pants-JQr9m0/HJ3804-010
+10,france training,Nike,white,pants,85,polyester,sport,loose,https://www.nike.com/ca/t/france-training-jordan-basketball-fleece-trousers-hXbxxd/FQ0431-063
+11,paris saint-germain,Nike,black,pants,100,cotton,casual,oversized,https://www.nike.com/ca/t/paris-saint-germain-fleece-pants-l2rl7g/CZ0818-010
+12,nike swoosh,Nike,green,pants,95,polyester,casual,loose,https://www.nike.com/ca/w/mens-joggers-sweatpants-aepf0znik1
+13,jordan flight fleece,Nike,grey,pants,110,cotton,loungewear,loose,https://www.nike.com/ca/t/jordan-flight-fleece-trousers-Xm0lPm/FV7251-091
+14,nike pro recovery,Nike,black,pants,140,nylon,sport,slim,https://www.nike.com/ca/t/pro-recovery-dri-fit-adv-fitness-tights-8Cklzm/FZ1641-010
+15,nocta,Nike,blue,pants,150,polyester,loungewear,slim,https://www.nike.com/ca/t/nocta-dri-fit-tights-MzjNHH/DV3657-479
+16,nike tech,Nike,black,pants,150,nylon,casual,standard,https://www.nike.com/ca/t/tech-woven-trousers-THcDND
+17,nike tour repel,Nike,white,pants,120,polyester,formal,slim,https://www.nike.com/ca/t/tour-repel-chino-slim-golf-trousers-1qntJb/FD5622-104
+18,nike club,Nike,pink,shorts,68,cotton,casual,standard,https://www.nike.com/ca/t/club-french-terry-flow-shorts-0cgZj2/FN3520-663
+19,nike fast,Nike,black,shorts,55,polyester,sport,slim,https://www.nike.com/ca/t/fast-dri-fit-brief-lined-running-1-2-length-tights-JxznpD/FN3371-010
+20,nike stride,Nike,black,shorts,85,polyester,sport,slim,https://www.nike.com/ca/t/stride-dri-fit-13cm-hybrid-running-shorts-C023lg/DM4757-010
+21,nike club,Nike,blue,shorts,64,polyester,casual,standard,https://www.nike.com/ca/t/club-woven-flow-shorts-QQNZ21/FN3307-480
+22,nike dri-fit,Nike,black,shorts,85,polyester,casual,standard,https://www.nike.com/ca/t/dri-fit-golf-shorts-44891d/CU9740-010
+23,nike trail second sunrise,Nike,black,shorts,95,polyester,sport,slim,https://www.nike.com/ca/t/trail-second-sunrise-dri-fit-13cm-brief-lined-running-shorts-tftw4x/DV9311-010
+24,nike sportswear tech fleece,Nike,red,shorts,115,cotton,casual,oversized,https://www.nike.com/ca/t/sportswear-tech-fleece-shorts-vVmppP/FB8171-276
+25,jordan essentials,Nike,blue,shorts,75,polyester,loungewear,slim,https://www.nike.com/ca/t/jordan-essentials-poolside-shorts-xkzTtq/FN4635-423
+26,nike sportsweat club,Nike,white,shorts,68,cotton,loungewear,oversized,https://www.nike.com/ca/t/sportswear-club-cargo-shorts-lWc28c/CZ9956-063
+27,nike sportsweat club fleece,Nike,black,sweaters,85,cottton,loungewear,standard,https://www.nike.com/ca/t/sportswear-club-fleece-hoodie-qzVJfR/BV2645-010
+28,jordan sport jam,Nike,green,sweaters,150,polyester,loungewear,standard,https://www.nike.com/ca/t/jordan-sport-jam-warm-up-jacket-nNJLsx/HF9885-358
+29,paris saint-germain hoop fleece,Nike,red,sweaters,150,cotton,casual,standard,https://www.nike.com/ca/t/paris-saint-germain-hoop-fleece-dri-fit-hoodie-GZ60RD/HQ2198-659
+30,jordan essentials chicago,Nike,brown,sweaters,160,cotton,formal,standard,https://www.nike.com/ca/t/jordan-essentials-chicago-jacket-PmWdnr/HF9317-257
+31,nikelab,Nike,black,sweaters,250,cotton,loungewear,slim,https://www.nike.com/ca/t/nikelab-made-in-italy-hoodie-DNTBGpbL/914430-475
+32,nike sportswear club fleece,Nike,white,sweaters,80,cotton,loungewear,standard,https://www.nike.com/ca/t/sportswear-club-fleece-pullover-hoodie-32Tm3L/BV2654-063
+33,jordan flight mvp,Nike,black,sweaters,160,nylon,casual,slim,https://www.nike.com/ca/t/jordan-flight-mvp-jacket-vMzbDf/FD7423-010
+34,windrunner,Nike,blue,sweaters,195,polyester,casual,standard,https://www.nike.com/ca/t/paris-saint-germain-tech-fleece-windrunner-football-hoodie-FxRH4m/FZ7224-410
+35,nike tour repel,Nike,green,sweaters,120,polyester,causual,standard,https://www.nike.com/ca/t/tour-repel-golf-jacket-nJGD99/FQ0461-325
+36,nike miler,Nike,black,sweaters,110,polyester,sport,standard,https://www.nike.com/ca/t/miler-repel-running-jacket-0tT428/DD4746-010
+37,jordan jacket,Nike,black,sweaters,120,polyester,casual,standard,https://www.nike.com/ca/t/jordan-essentials-jacket-krWjXN/FV7299-010
+38,nike icon,Nike,black,sweaters,95,polyester,sport,standard,https://www.nike.com/ca/t/icon-woven-basketball-jacket-6Df7M3/FZ0248-010
+39,nike sportswear,Nike,black,sweaters,175,polyester,sport,standard,https://www.nike.com/ca/t/sportswear-solo-swoosh-woven-tracksuit-jacket-pXxCn6/FB8622-010
+40,nike academy,Nike,white,shirt,69,polyester,sport,standard,https://www.nike.com/ca/t/academy-dri-fit-football-drill-top-vzlTfZ/HJ3783-025
+41,nike strike plus,Nike,black,shirt,68,polyester,sport,slim,https://www.nike.com/ca/t/strike-dri-fit-football-top-qt2cB6/HJ3807-010
+42,jordan flight essentials,Nike,black,shirt,64,cotton,casual,standard,https://www.nike.com/ca/t/jordan-flight-essentials-85-t-shirt-tH3NhH/FZ1912-010
+43,nike sportswear,Nike,black,shirt,55,cotton,casual,standard,https://www.nike.com/ca/t/sportswear-max90-t-shirt-xvRrPR/IB6664-010
+44,nike long sleeve,Nike,blue,shirt,115,polyester,sport,slim,https://www.nike.com/ca/t/long-sleeve-running-top-6sGtD3/HF7452-422
+45,nike tour solid,Nike,black,shirt,100,polyester,formal,standard,https://www.nike.com/ca/t/tour-dri-fit-solid-golf-polo-CKq3rK/FZ7481-010
+46,nike dri-fit victory,Nike,black,shirt,75,polyester,formal,standard,https://www.nike.com/ca/t/dri-fit-victory-golf-polo-VBs0PD/DH0822-010
+47,club oversized long sleeved,Nike,white,shirt,120,cotton,formal,loose,https://www.nike.com/ca/t/club-oversized-long-sleeved-oxford-shirt-44TGW4/HM9590-234
+48,nike pacer,Nike,black,shirt,75,polyester,sport,slim,https://www.nike.com/ca/t/pacer-dri-fit-1-2-zip-running-top-ShKc64/FQ2494-010
+49,nike trail solar chase,Nike,black,shirt,80,polyester,sport,standard,https://www.nike.com/ca/t/trail-solar-chase-dri-fit-short-sleeve-running-top-b5vbgf/DV9305-010
+50,nike primary swoosh,Nike,grey,shirt,75,polyester,casual,standard,https://www.nike.com/ca/t/primary-swoosh-dri-fit-short-sleeve-versatile-top-cdMt3R/FV9770-053
+51,Fine wool knit top with intarsia,GUCCI,Forest Green,Shirt,1800,Wool,Casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_2400x2400/1735929920/824126_XKER2_3051_001_100_0000_Light-Fine-wool-knit-top-with-intarsia.jpg
+52,Fine silk knit polo top with intarsia,GUCCI,Pink,shirt,2850,Silk,sport,standard,https://media.gucci.com/style/DarkGray_Center_0_0_2400x2400/1737482434/816783_XKEPD_6900_001_100_0000_Light-Fine-silk-knit-polo-top-with-intarsia.jpg
+53,Printed oversize cotton poplin shirt,GUCCI,Brown,shirt,4450,Cotton,Casual,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735929111/821630_Z7AMZ_2047_001_100_0000_Light-Printed-oversize-cotton-poplin-shirt.jpg
+54,Printed cotton jersey T-shirt,GUCCI,Orange,shirt,950,Cotton,Casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1739553331/796395_XJG7W_7548_001_100_0000_Light-Printed-cotton-jersey-T-shirt.jpg
+55,Printed cotton jersey T-shirt,GUCCI,Pink,shirt,1100,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735928152/798115_XJG7Y_5139_001_100_0000_Light-Printed-cotton-jersey-T-shirt.jpg
+56,Printed medium cotton jersey T-shirt,GUCCI,black,shirt,950,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1730313044/796395_XJG4T_4758_001_100_0000_Light-Printed-medium-cotton-jersey-T-shirt.jpg
+57,Oversize GG cotton shirt,GUCCI,Red,shirt,3550,cotton,formal,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1736273748/811732_ZASO2_6052_001_100_0000_Light-Oversize-GG-cotton-shirt.jpg
+58,GG cotton piquet polo shirt ,GUCCI,beige,shirt,1700,cotton,sport,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1715967027/753572_XJFUG_9037_001_100_0000_Light-GG-cotton-piquet-polo-shirt.jpg
+59,Printed silk bowling shirt,GUCCI,blue,shirt,2050,silk,sport,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1739519104/824165_Z7AN3_2002_001_100_0000_Light-Printed-silk-bowling-shirt.jpg
+60,Printed silk shirt,GUCCI,green,shirt,2050,silk,sport,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1730827858/794907_ZASG3_4946_001_100_0000_Light-Printed-silk-shirt.jpg
+61,Printed silk shirt,GUCCI,red,shirt,3000,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733247152/817873_ZASKS_6015_001_100_0000_Light-Printed-silk-shirt.jpg
+62,GG crêpe silk wool double-breasted coat,GUCCI,beige,overshirt,13055,wool,casual,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1736274637/828105_Z8BZX_2071_001_100_0000_Light-GG-crpe-silk-wool-double-breasted-coat.jpg
+63,Embossed wool twill zip jacket,GUCCI,dark brown,overshirt,4700,Wool,Casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737738948/823645_ZASGR_2129_001_100_0000_Light-Embossed-wool-twill-zip-jacket.jpg
+64,Printed cotton sweatshirt,GUCCI,Black,overshirt,1700,Cotton,Casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735928117/784413_XJG74_1152_001_100_0000_Light-Printed-cotton-sweatshirt.jpg
+65,Printed cotton jersey sweatshirt,GUCCI,White,overshirt,2000,Cotton,Casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1734111924/825129_XJG72_9074_001_100_0000_Light-Printed-cotton-jersey-sweatshirt.jpg
+66,Wool bomber jacket,GUCCI,black,overshirt,4710,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737650723/822333_ZAR6K_1505_001_100_0000_Light-Wool-bomber-jacket.jpg
+67,GG canvas bomber jacket,GUCCI,beige,overshirt,5800,polyamide,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1698774326/761698_ZAPIF_2190_001_100_0000_Light-GG-canvas-bomber-jacket.jpg
+68,Embossed wool jacket,GUCCI,dark brown,overshirt,4300,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735928202/813982_Z7AL1_2129_001_100_0000_Light-Embossed-wool-jacket.jpg
+69,Silk cotton sweater with intarsia,GUCCI,grey,overshirt,2100,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732890695/819421_XKD2A_1423_001_100_0000_Light-Silk-cotton-sweater-with-intarsia.jpg
+70,Single-breasted wool coat,GUCCI,light grey,overshirt,5800,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735929053/820781_Z7AMX_1105_001_100_0000_Light-Single-breasted-wool-coat.jpg
+71, Wool sweater with Gucci intarsia ,GUCCI,dark blue,overshirt,1650,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_2400x2400/1711388799/795834_XKD7K_4594_001_100_0000_Light-Wool-sweater-with-Gucci-intarsia.jpg
+72,Wool sweater with GG intarsia,GUCCI,navy,overshirt,2150,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1730312128/770509_XKDSJ_4735_001_100_0000_Light-Wool-sweater-with-GG-intarsia.jpg
+73,Wool jacquard sweater with GG Shadow,GUCCI,dark grey,overshirt,2250,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1715651187/794503_XKEAP_1150_001_100_0000_Light-Wool-jacquard-sweater-with-GG-Shadow.jpg
+74,Fine wool knit cardigan with intarsia,GUCCI,Forest Green,overshirt,2450,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735929141/822599_XKEP1_3051_001_100_0000_Light-Fine-wool-knit-cardigan-with-intarsia.jpg
+75,Double-breasted cotton jacket,GUCCI,blue,overshirt,5100,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1734991222/818203_Z7AJZ_4264_001_100_0000_Light-Double-breasted-cotton-jacket.jpg
+76,Oversize low waist wool pant,GUCCI,grey,pants,2625,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737650738/824881_Z7AO2_1505_001_100_0000_Light-Oversize-low-waist-wool-pant.jpg
+77,Wool mini shorts,GUCCI,grey,shorts,2020,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737738997/826901_Z7AO2_1505_001_100_0000_Light-Wool-mini-shorts.jpg
+78, GG satin pants ,GUCCI,Dark blue,pants,2850,viscose,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732890640/804069_Z7ADN_4330_001_100_0000_Light-GG-satin-pants.jpg
+79,GG canvas pants with Horsebit,GUCCI,brown,pants,2650,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1734370318/820466_Z8BZK_2580_001_100_0000_Light-GG-canvas-pants-with-Horsebit.jpg
+80,Floral crêpe jacquard pant,GUCCI,white,pants,2300,polyester,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732042013/820621_Z7AHW_1173_001_100_0000_Light-Floral-crpe-jacquard-pant.jpg
+81,Embossed canvas wool pants,GUCCI,light grey,pants,1900,polyester,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737459064/818508_Z7AK4_1045_001_100_0000_Light-Embossed-canvas-wool-pants.jpg
+82,Floral lamé brocade shorts,GUCCI,blue,shorts,2450,metallised fiber,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733506244/809260_Z7AEO_4869_001_100_0000_Light-Floral-lam-brocade-shorts.jpg
+83,Original GG canvas mini skirt,GUCCI,red,skirt,1700,cotton,casual,slim,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1731691823/789887_ZAF4S_6207_001_100_0000_Light-Original-GG-canvas-mini-skirt.jpg
+84, Printed cotton mid-length skirt ,GUCCI,orange,skirt,2020,cotton,casual,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1738863956/832901_ZAS9N_7033_001_100_0000_Light-Printed-cotton-mid-length-skirt.jpg
+85,Mid-length denim skirt,GUCCI,dark blue,skirt,1600,cotton,casual,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732890647/807334_XDC5F_4100_001_100_0000_Light-Mid-length-denim-skirt.jpg
+86,Mid-length acetate blend sable skirt,GUCCI,lilac,skirt,2650,acetate,casual,oversized,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1734370329/820537_ZAF5Z_5021_001_100_0000_Light-Mid-length-acetate-blend-sable-skirt.jpg
+87,Cotton canvas skirt with embroidery,GUCCI,light pink,skirt,2350,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733768221/813770_ZASBD_5589_001_100_0000_Light-Cotton-canvas-skirt-with-embroidery.jpg
+88,Wool bouclé mini skirt,GUCCI,white,skirt,1700,wool,casual,slim,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1730967303/812962_ZARWV_9003_001_100_0000_Light-Wool-boucl-mini-skirt.jpg
+89,Embroidered wool and silk skirt,GUCCI,grey,skirt,2450,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733940033/811889_ZAQW0_1179_001_100_0000_Light-Embroidered-wool-and-silk-skirt.jpg
+90,Printed silk wrap skirt,GUCCI,white,skirt,2850,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733248026/821742_Z7AM9_5046_001_100_0000_Light-Printed-silk-wrap-skirt.jpg
+91,Embossed wool twill pants,GUCCI,dark brown,pants,2100,wool,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735929068/820913_Z7AL1_2129_001_100_0000_Light-Embossed-wool-twill-pants.jpg
+92,Wool shorts,GUCCI,light grey,shorts,1600,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735927306/819269_Z7AMX_1105_001_100_0000_Light-Wool-shorts.jpg
+93,Cotton-silk GG faille short shorts,GUCCI,black,shorts,2250,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1738603841/824267_ZASIW_1000_001_100_0000_Light-Cotton-silk-GG-faille-short-shorts.jpg
+94,Cotton poplin shorts,GUCCI,beige,shorts,1500,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735929956/824267_ZAR6Y_2319_001_100_0000_Light-Cotton-poplin-shorts.jpg
+95,Printed silk twill shorts,GUCCI,black,shorts,1750,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1735927231/798619_ZASVQ_1173_001_100_0000_Light-Printed-silk-twill-shorts.jpg
+96,Cotton fabric blend pant,GUCCI,black,pants,2350,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1737482499/824321_ZASGT_4504_001_100_0000_Light-Cotton-fabric-blend-pant.jpg
+97,Cotton canvas pants,GUCCI,brown,pants,2250,cotton,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732041143/810931_Z7AFE_2600_001_100_0000_Light-Cotton-canvas-pants.jpg
+98,Printed silk twill shorts,GUCCI,beige,shorts,1750,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732041137/810782_ZASHM_4270_001_100_0000_Light-Printed-silk-twill-shorts.jpg
+99,Printed silk shorts,GUCCI,white,shorts,2300,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733939133/810782_ZASJH_9059_001_100_0000_Light-Printed-silk-shorts.jpg
+100,Nylon pant,GUCCI,light blue,pants,3450,polyester,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1720544421/794697_ZAQ18_4032_001_100_0000_Light-Nylon-pant.jpg
+101,Regular-Fit Twill Overshirt,h&m,black,overshirt,49.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1265606001.html
+102,Loose Fit Printed Sweatshirt,h&m,black,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261664001.html
+103,Regular-Fit Twill Overshirt,h&m,white,overshirt,49.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1265606002.html
+104,Regular Fit Twill Cargo Pants,h&m,beige,pants,74.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1259389003.html
+105,Loose Fit Printed T-shirt,h&m,black,shirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1227157019.html
+106,Oversized Fit Hooded Jacket,h&m,dark beige,overshirt,39.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1240531008.html
+107,Slim Fit Cargo Joggers,h&m,black,pants,49.99,cotton,sport,slim,https://www2.hm.com/en_ca/productpage.1261665001.html
+108,Loose Fit Half-Zip Sweatshirt,h&m,cream,overshirt,49.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261699001.html
+109,Loose Fit Printed Sweatshirt,h&m,white,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261664003.html
+110,Loose Fit Printed T-shirt,h&m,beige,shirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1227157020.html
+111,Regular Fit Twill Cargo Pants,h&m,dark beige,pants,74.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1259389002.html
+112,Loose Fit Hoodie,h&m,black,overshirt,29.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970819001.html
+113,Regular Fit Sweatpants,h&m,black,pants,24.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.0970817001.html
+114,Loose Fit Sweatshirt,h&m,black,overshirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970818001.html
+115,Loose Fit Hoodie,h&m,light gray,overshirt,29.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970819007.html
+116,Super Baggy Jeans,h&m,black,pants,64.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1260177001.html
+117,Regular-Fit Linen-Blend Pants,h&m,cream,pants,49.99,linen,casual,standard,https://www2.hm.com/en_ca/productpage.1253401001.html
+118,Loose Fit Printed T-shirt,h&m,black,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0967955095.html
+119,Loose Fit Printed T-shirt,h&m,light blue,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0967955108.html
+120,Regular Fit T-shirt,h&m,light beige,shirt,9.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.0685816178.html
+121,Loose Fit T-shirt,h&m,white,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0608945001.html
+122,Slim Fit Ribbed Tank Top,h&m,white,shirt,9.99,cotton,casual,slim,https://www2.hm.com/en_ca/productpage.1227155001.html
+123,Loose Fit T-shirt,h&m,black,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0608945008.html
+124,Baggy Jeans,h&m,pale denim blue,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448001.html
+125,Oversized Fit T-shirt,h&m,white,shirt,14.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1074658002.html
+126,Loose-Fit Printed T-Shirt,h&m,white,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1268967001.html
+127,Slim-Fit Rib-Knit Polo Shirt,h&m,navy blue,shirt,44.99,viscose,formal,slim,https://www2.hm.com/en_ca/productpage.1285783002.html
+128,Baggy Jeans,h&m,black,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235413002.html
+129,Regular-Fit Hole-Knit Polo Shirt,h&m,light blue,shirt,44.99,viscose,formal,standard,https://www2.hm.com/en_ca/productpage.1259901002.html
+130,Regular-Fit Short-Sleeved Linen-Blend Shirt,h&m,light beige,shirt,34.99,linen,formal,standard,https://www2.hm.com/en_ca/productpage.1256946001.html
+131,Loose Fit Printed hoodie,h&m,beige,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261663002.html
+132,Slim-Fit Jacket,h&m,black,overshirt,109,polyester,formal,slim,https://www2.hm.com/en_ca/productpage.1250484001.html
+133,Straight Regular Jeans,h&m,light denim blue,pants,44.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1008549030.html
+134,Regular-Fit Short-Sleeved Linen-Blend Shirt,h&m,black,shirt,34.99,linen,casual,standard,https://www2.hm.com/en_ca/productpage.1256946003.html
+135,Slim Jeans,h&m,black,pants,34.99,cotton,formal,slim,https://www2.hm.com/en_ca/productpage.1024256001.html
+136,Loose Fit Sweatshirt,h&m,cream,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1117747049.html
+137,Swim shorts,h&m,black,shorts,24.99,polyester,casual,standard,https://www2.hm.com/en_ca/productpage.1266014003.html
+138,Loose Cargo Jeans,h&m,light denim blue,pants,59.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1263547002.html
+139,Baggy Jeans,h&m,dark denim gray,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448011.html
+140,Slim Fit Pants,h&m,black,pants,44.99,polyester,formal,slim,https://www2.hm.com/en_ca/productpage.1074406001.html
+141,Loose Fit T-shirt,h&m,white,shirt,24.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0972640075.html
+142,Baggy Jeans,h&m,denim gray,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448003.html
+143,Slim Fit Polo Shirt,h&m,sage green,shirt,34.99,viscose,formal,slim,https://www2.hm.com/en_ca/productpage.1245997010.html
+144,Oversized Fit Hooded Jacket,h&m,black,overshirt,39.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1240531002.html
+145,Slim Fit Cotton Chinos,h&m,black,pants,34.99,cotton,formal,slim,https://www2.hm.com/en_ca/productpage.1234995001.html
+146,Loose Fit Printed Hoodie,h&m,black,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1240529006.html
+147,Seersucker Swim Shorts,h&m,light blue,shorts,34.99,polyester,casual,standard,https://www2.hm.com/en_ca/productpage.1266008002.html
+148,Regular-Fit Pointelle-Knit Polo Shirt,h&m,cream,shirt,49.99,cotton,formal,standard,https://www2.hm.com/en_ca/productpage.1264932001.html
+149,Slim Fit Easy-iron Shirt,h&m,white,shirt,24.99,polyester,casual,slim,https://www2.hm.com/en_ca/productpage.1242812001.html
+150,Regular Fit Oxford shirt,h&m,sage green,shirt,29.99,cotton,formal,standard,https://www2.hm.com/en_ca/productpage.1257417008.html
+151,Twill Overshirt,UNIQLO,Beige,SHIRT,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E476008-000?colorCode=COL32&sizeCode=SMA002
+152,Dry-Ex Polo Shirt,UNIQLO,Grey,SHIRT,39.9,Polyester,Sport,Standard,https://www.uniqlo.com/ca/en/products/E477221-000?colorCode=COL03&sizeCode=SMA002
+153,Striped T-Shirt,UNIQLO,Navy,SHIRT,29.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E476228-000?colorCode=COL69&sizeCode=SMA004
+154,Extra Stretch Active Track Jacket,UNIQLO,Black,SWEATER,59.9,Nylon,Sport,Standard,https://www.uniqlo.com/ca/en/products/E476144-000?colorCode=COL09&sizeCode=SMA003
+155,Sweatshirt,UNIQLO,White,SWEATER,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E475377-000?colorCode=COL01&sizeCode=SMA003
+156,Sweat Full-zip Hoodie,UNIQLO,Blue,SWEATER,59.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E475380-000?colorCode=COL62&sizeCode=SMA003
+157,Washable Milano Ribbed Crew Neck Sweater,UNIQLO,Grey,SWEATER,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E453754-000?colorCode=COL03&sizeCode=SMA003
+158,Dry-Ex UV Protection Half-Zip T-shirt,UNIQLO,Black,SWEATER,39.9,Polyester,Sport,Standard,https://www.uniqlo.com/ca/en/products/E478676-000?colorCode=COL01&sizeCode=SMA003
+159,AIRism Crew Neck T-Shirt,UNIQLO,White,SHIRT,19.9,Polyester,Loungewear,Loose,https://www.uniqlo.com/ca/en/products/E474237-000?colorCode=COL00&sizeCode=SMA003
+160,Oversized Striped Rugger Polo shirt,UNIQLO,Blue,SHIRT,49.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E477796-000?colorCode=COL64&sizeCode=SMA004
+161,Flannel Shirt Long Sleeve,UNIQLO,Green,SHIRT,19.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E470188-002?colorCode=COL53&sizeCode=SMA002
+162,NY Pop Art UT ,UNIQLO,Grey,SHIRT,29.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E473110-000?colorCode=COL07&sizeCode=SMA002
+163,Sweat Pullover Hoodie,UNIQLO,Brown,SWEATER,39.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E444967-000
+164,Modal Open Collar Short Sleeve Shirt,UNIQLO,Green,SHIRT,49.9,Modal,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E464938-000?colorCode=COL00&sizeCode=SMA002
+165,,UNIQLO,,,,,,,
+166,,UNIQLO,,,,,,,
+167,,UNIQLO,,,,,,,
+168,,UNIQLO,,,,,,,
+169,,UNIQLO,,,,,,,
+170,,UNIQLO,,,,,,,
+171,,UNIQLO,,,,,,,
+172,,UNIQLO,,,,,,,
+173,,UNIQLO,,,,,,,
+174,,UNIQLO,,,,,,,
+175,,UNIQLO,,,,,,,
+176,,UNIQLO,,,,,,,
+177,,UNIQLO,,,,,,,
+178,,UNIQLO,,,,,,,
+179,,UNIQLO,,,,,,,
+180,,UNIQLO,,,,,,,
+181,,UNIQLO,,,,,,,
+182,,UNIQLO,,,,,,,
+183,,UNIQLO,,,,,,,
+184,,UNIQLO,,,,,,,
+185,,UNIQLO,,,,,,,
+186,,UNIQLO,,,,,,,
+187,,UNIQLO,,,,,,,
+188,,UNIQLO,,,,,,,
+189,,UNIQLO,,,,,,,
+190,,UNIQLO,,,,,,,
+191,,UNIQLO,,,,,,,
+192,,UNIQLO,,,,,,,
+193,,UNIQLO,,,,,,,
+194,,UNIQLO,,,,,,,
+195,,UNIQLO,,,,,,,
+196,,UNIQLO,,,,,,,
+197,,UNIQLO,,,,,,,
+198,,UNIQLO,,,,,,,
+199,,UNIQLO,,,,,,,
+200,,UNIQLO,,,,,,,
+201,MENS CLASSIC STRAIGHT LEG PANT,SKIMS,Black,Pants,$146,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-straight-leg-pant-washed-onyx
+202,MENS CLASSIC STRAIGHT LEG PANT,SKIMS,Grey,Pants,$146,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-straight-leg-pant-light-heather-grey
+203,MENS RELAXED HOODIE,SKIMS,Black,Sweaters,$146,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-hoodie-washed-onyx
+204,MENS RELAXED HOODIE,SKIMS,Grey,Sweaters,$146,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-hoodie-light-heather-grey
+205,MENS RELAXED ZIP UP HOODIE,SKIMS,Black,Sweaters,$156,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-zip-up-hoodie-washed-onyx
+206,MENS RELAXED ZIP UP HOODIE,SKIMS,Grey,Sweaters,$156,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-zip-up-hoodie-light-heather-grey
+207,MENS CLASSIC HOODIE,SKIMS,Black,Sweaters,$140,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-hoodie-washed-onyx
+208,MENS CLASSIC HOODIE,SKIMS,Grey,Sweaters,$140,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-hoodie-light-heather-grey
+209,MENS TAPERED JOGGER,SKIMS,Black,Pants,$140,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-tapered-jogger-washed-onyx
+210,MENS TAPERED JOGGER,SKIMS,Grey,Pants,$140,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-tapered-jogger-light-heather-grey
+211,MENS RELAXED SHORT,SKIMS,Black,Shorts,$106,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-short-washed-onyx
+212,MENS RELAXED SHORT,SKIMS,Grey,Shorts,$106,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-short-light-heather-grey
+213,MENS CLASSIC CREWNECK,SKIMS,Black,Sweaters,$130,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-crewneck-washed-onyx
+214,MENS CLASSIC CREWNECK,SKIMS,Grey,Sweaters,$130,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-crewneck-light-heather-grey
+215,MENS CLASSIC T-SHIRT,SKIMS,Black,Shirts,$74,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-t-shirt-onyx
+216,MENS CLASSIC T-SHIRT,SKIMS,White,Shirts,$74,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-t-shirt-chalk
+217,MENS CLASSIC LONG SLEEVE T-SHIRT,SKIMS,Black,Shirts,$80,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-long-sleeve-t-shirt-onyx
+218,MENS CLASSIC LONG SLEEVE T-SHIRT,SKIMS,White,Shirts,$80,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-long-sleeve-t-shirt-chalk
+219,MENS RELAXED QUARTER ZIP PULLOVER,SKIMS,Black,Sweaters,$120,Cotton/Modal,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-quarter-zip-pullover-obsidian
+220,MENS RELAXED QUARTER ZIP PULLOVER,SKIMS,Grey,Sweaters,$120,Cotton/Modal,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-quarter-zip-pullover-ash
+221,MENS RELAXED T-SHIRT,SKIMS,Black,Shirts,$90,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/heavyweight-cotton-mens-relaxed-t-shirt-obsidian
+222,MENS RELAXED T-SHIRT,SKIMS,White,Shirts,$90,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/heavyweight-cotton-mens-relaxed-t-shirt-chalk
+223,MENS CLASSIC SHORT,SKIMS,Black,Shorts,$114,Polyester,Loungewear,Standard,https://skims.com/en-ca/products/outdoor-jersey-mens-classic-short-onyx
+224,MENS RELAXED SHORT,SKIMS,Black,Shorts,$106,Cotton/Rayon,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-short-obsidian
+225,MENS RELAXED SHORT,SKIMS,Grey,Shorts,$106,Cotton/Rayon,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-short-ash
+226,CLASSIC STRAIGHT LEG PANT,SKIMS,Pink,Pants,$124,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/cotton-fleece-classic-straight-leg-pant-barely-pink
+227,CLASSIC STRAIGHT LEG PANT,SKIMS,White,Pants,$124,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/cotton-fleece-classic-straight-leg-pant-marble-graphic
+228,MIDI SKIRT,SKIMS,Brown,Skirts,$100,Modal,Casual,???,https://skims.com/en-ca/products/smooth-layers-midi-skirt-truffle
+229,CARGO PANT,SKIMS,Blue,Pants,$156,Cotton,Casual,Oversized,https://skims.com/en-ca/products/boyfriend-fleece-cargo-pant-zen-blue
+230,LEGGING,SKIMS,Black,Pants,$134,Polyamide,Casual,Standard,https://skims.com/en-ca/products/skims-body-legging-onyx
+231,FOLDOVER PANT,SKIMS,Red,Pants,$114,Modal,Loungewear,???,https://skims.com/en-ca/products/soft-lounge-foldover-pant-cherry
+232,OVERSIZED PANT,SKIMS,White,Pants,$162,Polyester,Loungewear,Oversized,https://skims.com/en-ca/products/fleece-lounge-oversized-pant-ecru
+233,,SKIMS,,,,,,,
+234,,SKIMS,,,,,,,
+235,,SKIMS,,,,,,,
+236,,SKIMS,,,,,,,
+237,,SKIMS,,,,,,,
+238,,SKIMS,,,,,,,
+239,,SKIMS,,,,,,,
+240,,SKIMS,,,,,,,
+241,,SKIMS,,,,,,,
+242,,SKIMS,,,,,,,
+243,,SKIMS,,,,,,,
+244,,SKIMS,,,,,,,
+245,,SKIMS,,,,,,,
+246,,SKIMS,,,,,,,
+247,,SKIMS,,,,,,,
+248,,SKIMS,,,,,,,
+249,,SKIMS,,,,,,,
+250,,SKIMS,,,,,,,
+251,,SKIMS,,,,,,,
+252,,SKIMS,,,,,,,
+253,,SKIMS,,,,,,,
+254,,SKIMS,,,,,,,
+255,,SKIMS,,,,,,,
+256,,SKIMS,,,,,,,
+257,,,,,,,,,
+258,,,,,,,,,
+259,,,,,,,,,
+260,,,,,,,,,
+261,,,,,,,,,
+262,,,,,,,,,
+263,,,,,,,,,
+264,,,,,,,,,
+265,,,,,,,,,
+266,,,,,,,,,
+267,,,,,,,,,
+268,,,,,,,,,
+269,,,,,,,,,
+270,,,,,,,,,
+271,,,,,,,,,
+272,,,,,,,,,
+273,,,,,,,,,
+274,,,,,,,,,
+275,,,,,,,,,
+276,,,,,,,,,
+277,,,,,,,,,
+278,,,,,,,,,
+279,,,,,,,,,
+280,,,,,,,,,
+281,,,,,,,,,
+282,,,,,,,,,
+283,,,,,,,,,
+284,,,,,,,,,
+285,,,,,,,,,
+286,,,,,,,,,
+287,,,,,,,,,
+288,,,,,,,,,
+289,,,,,,,,,
+290,,,,,,,,,
+291,,,,,,,,,
+292,,,,,,,,,
+293,,,,,,,,,
+294,,,,,,,,,
+295,,,,,,,,,
+296,,,,,,,,,
+297,,,,,,,,,
+298,,,,,,,,,
+299,,,,,,,,,
+300,,,,,,,,,
+301,,,,,,,,,
+302,,,,,,,,,
+303,,,,,,,,,
+304,,,,,,,,,
+305,,,,,,,,,
+306,,,,,,,,,
+307,,,,,,,,,
+308,,,,,,,,,
+309,,,,,,,,,
+310,,,,,,,,,
+311,,,,,,,,,
+312,,,,,,,,,
+313,,,,,,,,,
+314,,,,,,,,,
+315,,,,,,,,,
+316,,,,,,,,,
+317,,,,,,,,,
+318,,,,,,,,,
+319,,,,,,,,,
+320,,,,,,,,,
+321,,,,,,,,,
+322,,,,,,,,,
+323,,,,,,,,,
+324,,,,,,,,,
+325,,,,,,,,,
+326,,,,,,,,,
+327,,,,,,,,,
+328,,,,,,,,,
+329,,,,,,,,,
+330,,,,,,,,,
+331,,,,,,,,,
+332,,,,,,,,,
+333,,,,,,,,,
+334,,,,,,,,,
+335,,,,,,,,,
+336,,,,,,,,,
+337,,,,,,,,,
+338,,,,,,,,,
+339,,,,,,,,,
+340,,,,,,,,,
+341,,,,,,,,,
+342,,,,,,,,,
+343,,,,,,,,,
+344,,,,,,,,,
+345,,,,,,,,,
+346,,,,,,,,,
+347,,,,,,,,,
+348,,,,,,,,,
+349,,,,,,,,,
+350,,,,,,,,,
+351,,,,,,,,,
+352,,,,,,,,,
+353,,,,,,,,,
+354,,,,,,,,,
+355,,,,,,,,,
+356,,,,,,,,,
+357,,,,,,,,,
+358,,,,,,,,,
+359,,,,,,,,,
+360,,,,,,,,,
+361,,,,,,,,,
+362,,,,,,,,,
+363,,,,,,,,,
+364,,,,,,,,,
+365,,,,,,,,,
+366,,,,,,,,,
+367,,,,,,,,,
+368,,,,,,,,,
+369,,,,,,,,,
+370,,,,,,,,,
+371,,,,,,,,,
+372,,,,,,,,,
+373,,,,,,,,,
+374,,,,,,,,,
+375,,,,,,,,,
+376,,,,,,,,,
+377,,,,,,,,,
+378,,,,,,,,,
+379,,,,,,,,,
+380,,,,,,,,,
+381,,,,,,,,,
+382,,,,,,,,,
+383,,,,,,,,,
+384,,,,,,,,,
+385,,,,,,,,,
+386,,,,,,,,,
+387,,,,,,,,,
+388,,,,,,,,,
+389,,,,,,,,,
+390,,,,,,,,,
+391,,,,,,,,,
+392,,,,,,,,,
+393,,,,,,,,,
+394,,,,,,,,,
+395,,,,,,,,,
+396,,,,,,,,,
+397,,,,,,,,,
+398,,,,,,,,,
+399,,,,,,,,,
+400,,,,,,,,,
+401,,,,,,,,,
+402,,,,,,,,,
+403,,,,,,,,,
+404,,,,,,,,,
+405,,,,,,,,,
+406,,,,,,,,,
+407,,,,,,,,,
+408,,,,,,,,,
+409,,,,,,,,,
+410,,,,,,,,,
+411,,,,,,,,,
+412,,,,,,,,,
+413,,,,,,,,,
+414,,,,,,,,,
+415,,,,,,,,,
+416,,,,,,,,,
+417,,,,,,,,,
+418,,,,,,,,,
+419,,,,,,,,,
+420,,,,,,,,,
+421,,,,,,,,,
+422,,,,,,,,,
+423,,,,,,,,,
+424,,,,,,,,,
+425,,,,,,,,,
+426,,,,,,,,,
+427,,,,,,,,,
+428,,,,,,,,,
+429,,,,,,,,,
+430,,,,,,,,,
+431,,,,,,,,,
+432,,,,,,,,,
+433,,,,,,,,,
+434,,,,,,,,,
+435,,,,,,,,,
+436,,,,,,,,,
+437,,,,,,,,,
+438,,,,,,,,,
+439,,,,,,,,,
+440,,,,,,,,,
+441,,,,,,,,,
+442,,,,,,,,,
+443,,,,,,,,,
+444,,,,,,,,,
+445,,,,,,,,,
+446,,,,,,,,,
+447,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+500,,,,,,,,,
