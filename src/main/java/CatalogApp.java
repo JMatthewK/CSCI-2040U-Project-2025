@@ -9,13 +9,13 @@ public class CatalogApp {
         List<ClothingItem> clothingItemList;
 
         // Use the csvparser object with the catalogCSV in our data folder
-        // Try an catch incase it doesn't work
+        // Try a catch incase it doesn't work
         try{
             clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
         } catch (java.lang.Exception e) {
             throw new IOException("error parsing file", e);
         }
-        // Print out all of the data in this catalog
+        // Print out all the data in this catalog
         System.out.println("Catalog Data");
         System.out.println("ID, Name, Brand, Color, Category, Price, Material, Style, Fit");
         for (ClothingItem item : clothingItemList){
