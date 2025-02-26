@@ -17,6 +17,7 @@ public class CatalogApp {
         }
         // Print out all of the data in this catalog
         System.out.println("Catalog Data");
+        System.out.println("ID, Name, Brand, Color, Category, Price, Material, Style, Fit");
         for (ClothingItem item : clothingItemList){
             System.out.println();
             System.out.print(item.getId() + " ");
