@@ -15,6 +15,7 @@ public class CatalogApp {
         } catch (java.lang.Exception e) {
             throw new IOException("error parsing file", e);
         }
+
         // Print out all the data in this catalog
         System.out.println("Catalog Data");
         System.out.println("ID, Name, Brand, Color, Category, Price, Material, Style, Fit");
