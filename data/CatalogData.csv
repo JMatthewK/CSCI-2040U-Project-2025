@@ -99,3 +99,403 @@ ID,Product Name,Brand,Color,Category,Price (CAD),Material,Style,Fit,Link
 98,Printed silk twill shorts,GUCCI,beige,shorts,1750,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1732041137/810782_ZASHM_4270_001_100_0000_Light-Printed-silk-twill-shorts.jpg
 99,Printed silk shorts,GUCCI,white,shorts,2300,silk,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1733939133/810782_ZASJH_9059_001_100_0000_Light-Printed-silk-shorts.jpg
 100,Nylon pant,GUCCI,light blue,pants,3450,polyester,casual,standard,https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1720544421/794697_ZAQ18_4032_001_100_0000_Light-Nylon-pant.jpg
+101,Regular-Fit Twill Overshirt,h&m,black,overshirt,49.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1265606001.html
+102,Loose Fit Printed Sweatshirt,h&m,black,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261664001.html
+103,Regular-Fit Twill Overshirt,h&m,white,overshirt,49.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1265606002.html
+104,Regular Fit Twill Cargo Pants,h&m,beige,pants,74.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1259389003.html
+105,Loose Fit Printed T-shirt,h&m,black,shirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1227157019.html
+106,Oversized Fit Hooded Jacket,h&m,dark beige,overshirt,39.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1240531008.html
+107,Slim Fit Cargo Joggers,h&m,black,pants,49.99,cotton,sport,slim,https://www2.hm.com/en_ca/productpage.1261665001.html
+108,Loose Fit Half-Zip Sweatshirt,h&m,cream,overshirt,49.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261699001.html
+109,Loose Fit Printed Sweatshirt,h&m,white,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261664003.html
+110,Loose Fit Printed T-shirt,h&m,beige,shirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1227157020.html
+111,Regular Fit Twill Cargo Pants,h&m,dark beige,pants,74.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1259389002.html
+112,Loose Fit Hoodie,h&m,black,overshirt,29.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970819001.html
+113,Regular Fit Sweatpants,h&m,black,pants,24.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.0970817001.html
+114,Loose Fit Sweatshirt,h&m,black,overshirt,17.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970818001.html
+115,Loose Fit Hoodie,h&m,light gray,overshirt,29.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0970819007.html
+116,Super Baggy Jeans,h&m,black,pants,64.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1260177001.html
+117,Regular-Fit Linen-Blend Pants,h&m,cream,pants,49.99,linen,casual,standard,https://www2.hm.com/en_ca/productpage.1253401001.html
+118,Loose Fit Printed T-shirt,h&m,black,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0967955095.html
+119,Loose Fit Printed T-shirt,h&m,light blue,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0967955108.html
+120,Regular Fit T-shirt,h&m,light beige,shirt,9.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.0685816178.html
+121,Loose Fit T-shirt,h&m,white,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0608945001.html
+122,Slim Fit Ribbed Tank Top,h&m,white,shirt,9.99,cotton,casual,slim,https://www2.hm.com/en_ca/productpage.1227155001.html
+123,Loose Fit T-shirt,h&m,black,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0608945008.html
+124,Baggy Jeans,h&m,pale denim blue,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448001.html
+125,Oversized Fit T-shirt,h&m,white,shirt,14.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1074658002.html
+126,Loose-Fit Printed T-Shirt,h&m,white,shirt,14.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1268967001.html
+127,Slim-Fit Rib-Knit Polo Shirt,h&m,navy blue,shirt,44.99,viscose,formal,slim,https://www2.hm.com/en_ca/productpage.1285783002.html
+128,Baggy Jeans,h&m,black,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235413002.html
+129,Regular-Fit Hole-Knit Polo Shirt,h&m,light blue,shirt,44.99,viscose,formal,standard,https://www2.hm.com/en_ca/productpage.1259901002.html
+130,Regular-Fit Short-Sleeved Linen-Blend Shirt,h&m,light beige,shirt,34.99,linen,formal,standard,https://www2.hm.com/en_ca/productpage.1256946001.html
+131,Loose Fit Printed hoodie,h&m,beige,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1261663002.html
+132,Slim-Fit Jacket,h&m,black,overshirt,109,polyester,formal,slim,https://www2.hm.com/en_ca/productpage.1250484001.html
+133,Straight Regular Jeans,h&m,light denim blue,pants,44.99,cotton,casual,standard,https://www2.hm.com/en_ca/productpage.1008549030.html
+134,Regular-Fit Short-Sleeved Linen-Blend Shirt,h&m,black,shirt,34.99,linen,casual,standard,https://www2.hm.com/en_ca/productpage.1256946003.html
+135,Slim Jeans,h&m,black,pants,34.99,cotton,formal,slim,https://www2.hm.com/en_ca/productpage.1024256001.html
+136,Loose Fit Sweatshirt,h&m,cream,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1117747049.html
+137,Swim shorts,h&m,black,shorts,24.99,polyester,casual,standard,https://www2.hm.com/en_ca/productpage.1266014003.html
+138,Loose Cargo Jeans,h&m,light denim blue,pants,59.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1263547002.html
+139,Baggy Jeans,h&m,dark denim gray,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448011.html
+140,Slim Fit Pants,h&m,black,pants,44.99,polyester,formal,slim,https://www2.hm.com/en_ca/productpage.1074406001.html
+141,Loose Fit T-shirt,h&m,white,shirt,24.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.0972640075.html
+142,Baggy Jeans,h&m,denim gray,pants,59.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1235448003.html
+143,Slim Fit Polo Shirt,h&m,sage green,shirt,34.99,viscose,formal,slim,https://www2.hm.com/en_ca/productpage.1245997010.html
+144,Oversized Fit Hooded Jacket,h&m,black,overshirt,39.99,cotton,casual,oversized,https://www2.hm.com/en_ca/productpage.1240531002.html
+145,Slim Fit Cotton Chinos,h&m,black,pants,34.99,cotton,formal,slim,https://www2.hm.com/en_ca/productpage.1234995001.html
+146,Loose Fit Printed Hoodie,h&m,black,overshirt,44.99,cotton,casual,loose,https://www2.hm.com/en_ca/productpage.1240529006.html
+147,Seersucker Swim Shorts,h&m,light blue,shorts,34.99,polyester,casual,standard,https://www2.hm.com/en_ca/productpage.1266008002.html
+148,Regular-Fit Pointelle-Knit Polo Shirt,h&m,cream,shirt,49.99,cotton,formal,standard,https://www2.hm.com/en_ca/productpage.1264932001.html
+149,Slim Fit Easy-iron Shirt,h&m,white,shirt,24.99,polyester,casual,slim,https://www2.hm.com/en_ca/productpage.1242812001.html
+150,Regular Fit Oxford shirt,h&m,sage green,shirt,29.99,cotton,formal,standard,https://www2.hm.com/en_ca/productpage.1257417008.html
+151,Twill Overshirt,UNIQLO,Beige,Shirt,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E476008-000?colorCode=COL32&sizeCode=SMA002
+152,Dry-Ex Polo Shirt,UNIQLO,Grey,Shirt,39.9,Polyester,Sport,Standard,https://www.uniqlo.com/ca/en/products/E477221-000?colorCode=COL03&sizeCode=SMA002
+153,Striped T-Shirt,UNIQLO,Navy,Shirt,29.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E476228-000?colorCode=COL69&sizeCode=SMA004
+154,Extra Stretch Active Track Jacket,UNIQLO,Black,Sweater,59.9,Nylon,Sport,Standard,https://www.uniqlo.com/ca/en/products/E476144-000?colorCode=COL09&sizeCode=SMA003
+155,Sweatshirt,UNIQLO,White,Sweater,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E475377-000?colorCode=COL01&sizeCode=SMA003
+156,Sweat Full-zip Hoodie,UNIQLO,Blue,Sweater,59.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E475380-000?colorCode=COL62&sizeCode=SMA003
+157,Washable Milano Ribbed Crew Neck Sweater,UNIQLO,Grey,Sweater,49.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E453754-000?colorCode=COL03&sizeCode=SMA003
+158,Dry-Ex UV Protection Half-Zip T-shirt,UNIQLO,Black,Sweater,39.9,Polyester,Sport,Standard,https://www.uniqlo.com/ca/en/products/E478676-000?colorCode=COL01&sizeCode=SMA003
+159,AIRism Crew Neck T-Shirt,UNIQLO,White,Shirt,19.9,Polyester,Loungewear,Loose,https://www.uniqlo.com/ca/en/products/E474237-000?colorCode=COL00&sizeCode=SMA003
+160,Oversized Striped Rugger Polo shirt,UNIQLO,Blue,Shirt,49.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E477796-000?colorCode=COL64&sizeCode=SMA004
+161,Flannel Shirt Long Sleeve,UNIQLO,Green,Shirt,19.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E470188-002?colorCode=COL53&sizeCode=SMA002
+162,NY Pop Art UT ,UNIQLO,Grey,Shirt,29.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E473110-000?colorCode=COL07&sizeCode=SMA002
+163,Sweat Pullover Hoodie,UNIQLO,Brown,Sweater,39.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E444967-000
+164,Modal Open Collar Short Sleeve Shirt,UNIQLO,Green,Shirt,49.9,Modal,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E464938-000?colorCode=COL00&sizeCode=SMA002
+165,Half-Zip Sweatshirt,UNIQLO,Black,Sweater,59.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E475381-000?colorCode=COL09&sizeCode=SMA003
+166,Broadcloth Oversized Shirt Long,UNIQLO,Blue,Shirt,59.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E471799-000?colorCode=COL68&sizeCode=SMA004
+167,Dry Pique Short Sleeve Polo Shirt,UNIQLO,Red,Shirt,39.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E455388-000?colorCode=COL17&sizeCode=SMA002
+168,Broadcloth Oversized Shirt short,UNIQLO,Blue,Shirt,49.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E477648-000?colorCode=COL62&sizeCode=SMA002
+169,Windproof Vest,UNIQLO,Blue,Sweater,59.9,Nylon,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E476521-000?colorCode=COL67&sizeCode=SMA003
+170,Single Color Short Blouson,UNIQLO,Grey,Sweater,49.9,Polyester,Casual,Slim,https://www.uniqlo.com/ca/en/products/E470059-002?colorCode=COL07&sizeCode=SMA002
+171,Extra Stretch Active Track Pants,UNIQLO,Black,Pants,49.9,Nylon,Sport,Casual,https://www.uniqlo.com/ca/en/products/E475385-000?colorCode=COL09&sizeCode=SMA003
+172,Stretch Easy Ankle Pants,UNIQLO,Blue,Pants,39.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E476052-000?colorCode=COL67&sizeCode=SMA003
+173,Cargo Jogger Pants,UNIQLO,Brown,Pants,29.9,Cotton,Casual,Slim,https://www.uniqlo.com/ca/en/products/E462318-000?colorCode=COL32&sizeCode=SMA003
+174,Linen Blend Relaxed Pants,UNIQLO,Brown,Pants,59.9,Linen,Casual,Standard,https://www.uniqlo.com/ca/en/products/E463857-000?colorCode=COL32&sizeCode=SMA003
+175,Cargo Pants,UNIQLO,Green,Pants,59.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E463957-000?colorCode=COL56&sizeCode=SMA002
+176,Wide Tapered Jeans,UNIQLO,Blue,Pants,59.9,Cotton,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E475595-000?colorCode=COL65&sizeCode=SMA003
+177,AirSense Pleated Pants,UNIQLO,Blue,Pants,59.9,Polyester,Formal,Oversized,https://www.uniqlo.com/ca/en/products/E475602-000?colorCode=COL69&sizeCode=SMA003
+178,Smart Ankle Pants,UNIQLO,Grey,Pants,29.9,Polyester,Formal,Standard,https://www.uniqlo.com/ca/en/products/E463934-000?colorCode=COL05&sizeCode=SMA003
+179,Easy Work Pants,UNIQLO,Brown,Pants,59.9,Polyester,Formal,Oversized,https://www.uniqlo.com/ca/en/products/E475601-000?colorCode=COL34&sizeCode=SMA003
+180,Sweat Wide Pants,UNIQLO,Brown,Pants,49.9,Polyester,Casual,Oversized,https://www.uniqlo.com/ca/en/products/E471809-000?colorCode=COL03&sizeCode=SMA004
+181,Dry Stretch Easy Shorts,UNIQLO,Green,Shorts,34.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E454780-000?colorCode=COL09&sizeCode=SMA007
+182,Chino Shorts,UNIQLO,White,Shorts,49.9,Cotton,Casual,Loose,https://www.uniqlo.com/ca/en/products/E470619-000?colorCode=COL01&sizeCode=SMA003
+183,Geared Shorts,UNIQLO,Green,Shorts,49.9,Nylon,Casual,Loose,https://www.uniqlo.com/ca/en/products/E463870-000?colorCode=COL57&sizeCode=SMA002
+184,Denim Work Shorts,UNIQLO,Blue,Shorts,49.9,Cotton,Casual,Loose,https://www.uniqlo.com/ca/en/products/E477165-000?colorCode=COL64&sizeCode=SMA002
+185,Sweat Wide Shorts,UNIQLO,Grey,Shorts,39.9,Polyester,Sport,Loose,https://www.uniqlo.com/ca/en/products/E476225-000?colorCode=COL03&sizeCode=SMA002
+186,Sweatpants,UNIQLO,Grey,Pants,49.9,Cotton,Casual,Loose,https://www.uniqlo.com/ca/en/products/E477875-000?colorCode=COL09&sizeCode=SMA003
+187,Active Leggings,UNIQLO,Green,Pants,49.9,Nylon,Sport,Slim,https://www.uniqlo.com/ca/en/products/E477301-000?colorCode=COL57&sizeCode=SMA002
+188,AIRism Soft Ribbed Flare Leggings,UNIQLO,Blue,Pants,39.9,Polyester,Sport,Slim,https://www.uniqlo.com/ca/en/products/E476115-000?colorCode=COL61&sizeCode=SMA002
+189,Extra Stretch Leggings Pants,UNIQLO,Blue,Pants,12.9,Cotton,Casual,Slim,https://www.uniqlo.com/ca/en/products/E464149-000?colorCode=COL68&sizeCode=SMA001
+190,Seersucker Volume Skirt,UNIQLO,White,Skirt,59.9,Cotton,Casual,Loose,https://www.uniqlo.com/ca/en/products/E475858-000?colorCode=COL01&sizeCode=SMA001
+191,Volume Gather Skirt,UNIQLO,Green,Skirt,59.9,Polyester,Casual,Loose,https://www.uniqlo.com/ca/en/products/E474958-000?colorCode=COL56&sizeCode=SMA002
+192,Satin Skirt,UNIQLO,Black,Skirt,59.9,Polyester,Formal,Standard,https://www.uniqlo.com/ca/en/products/E469830-000?colorCode=COL09&sizeCode=SMA007
+193,Gather Long Slit Skirt,UNIQLO,Orange,Skirt,69.9,Polyester,Casual,Standard,https://www.uniqlo.com/ca/en/products/E476312-000?colorCode=COL25&sizeCode=SMA002
+194,Mesh Gather Long Slit Skirt,UNIQLO,Black,Skirt,79.9,Polyester,Casual,Standard,https://www.uniqlo.com/ca/en/products/E476313-000?colorCode=COL09&sizeCode=SMA002
+195,Belted Narrow Skirt,UNIQLO,White,Skirt,69.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E476311-000?colorCode=COL01&sizeCode=INS024
+196,Cotton Blend Cocoon Skirt,UNIQLO,Brown,Skirt,59.9,Cotton,Casual,Standard,https://www.uniqlo.com/ca/en/products/E474956-000?colorCode=COL32&sizeCode=SMA001
+197,AIRism Soft Skort,UNIQLO,Brown,Skirt,39.9,Polyester,Sport,Slim,https://www.uniqlo.com/ca/en/products/E477281-000?colorCode=COL36&sizeCode=SMA001
+198,Knitted Mini Skirt,UNIQLO,White,Skirt,29.9,Cotton,Formal,Standard,https://www.uniqlo.com/ca/en/products/E476255-000?colorCode=COL00&sizeCode=SMA002
+199,Washable Ribbed Knit Polo Sweater,UNIQLO,Brown,Sweater,39.9,Rayon,Loungewear,Slim,https://www.uniqlo.com/ca/en/products/E477978-000?colorCode=COL33&sizeCode=SMA002
+200,Washable Knit Ribbed Pants,UNIQLO,Brown,Pants,29.9,Rayon,Loungewear,Slim,https://www.uniqlo.com/ca/en/products/E470173-000?colorCode=COL33&sizeCode=SMA002
+201,MENS CLASSIC STRAIGHT LEG PANT,SKIMS,Black,Pants,146.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-straight-leg-pant-washed-onyx
+202,MENS CLASSIC STRAIGHT LEG PANT,SKIMS,Grey,Pants,146.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-straight-leg-pant-light-heather-grey
+203,MENS RELAXED HOODIE,SKIMS,Black,Sweaters,146.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-hoodie-washed-onyx
+204,MENS RELAXED HOODIE,SKIMS,Grey,Sweaters,146.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-hoodie-light-heather-grey
+205,MENS RELAXED ZIP UP HOODIE,SKIMS,Black,Sweaters,156.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-zip-up-hoodie-washed-onyx
+206,MENS RELAXED ZIP UP HOODIE,SKIMS,Grey,Sweaters,156.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-zip-up-hoodie-light-heather-grey
+207,MENS CLASSIC HOODIE,SKIMS,Black,Sweaters,140.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-hoodie-washed-onyx
+208,MENS CLASSIC HOODIE,SKIMS,Grey,Sweaters,140.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-hoodie-light-heather-grey
+209,MENS TAPERED JOGGER,SKIMS,Black,Pants,140.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-tapered-jogger-washed-onyx
+210,MENS TAPERED JOGGER,SKIMS,Grey,Pants,140.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-tapered-jogger-light-heather-grey
+211,MENS RELAXED SHORT,SKIMS,Black,Shorts,106.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-short-washed-onyx
+212,MENS RELAXED SHORT,SKIMS,Grey,Shorts,106.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/fleece-lounge-mens-relaxed-short-light-heather-grey
+213,MENS CLASSIC CREWNECK,SKIMS,Black,Sweaters,130.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-crewneck-washed-onyx
+214,MENS CLASSIC CREWNECK,SKIMS,Grey,Sweaters,130.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/fleece-lounge-mens-classic-crewneck-light-heather-grey
+215,MENS CLASSIC T-SHIRT,SKIMS,Black,Shirts,74.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-t-shirt-onyx
+216,MENS CLASSIC T-SHIRT,SKIMS,White,Shirts,74.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-t-shirt-chalk
+217,MENS CLASSIC LONG SLEEVE T-SHIRT,SKIMS,Black,Shirts,80.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-long-sleeve-t-shirt-onyx
+218,MENS CLASSIC LONG SLEEVE T-SHIRT,SKIMS,White,Shirts,80.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/skims-cotton-mens-classic-long-sleeve-t-shirt-chalk
+219,MENS RELAXED QUARTER ZIP PULLOVER,SKIMS,Black,Sweaters,120.00,Cotton/Modal,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-quarter-zip-pullover-obsidian
+220,MENS RELAXED QUARTER ZIP PULLOVER,SKIMS,Grey,Sweaters,120.00,Cotton/Modal,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-quarter-zip-pullover-ash
+221,MENS RELAXED T-SHIRT,SKIMS,Black,Shirts,90.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/heavyweight-cotton-mens-relaxed-t-shirt-obsidian
+222,MENS RELAXED T-SHIRT,SKIMS,White,Shirts,90.00,Cotton,Loungewear,Loose,https://skims.com/en-ca/products/heavyweight-cotton-mens-relaxed-t-shirt-chalk
+223,MENS CLASSIC SHORT,SKIMS,Black,Shorts,114.00,Polyester,Loungewear,Standard,https://skims.com/en-ca/products/outdoor-jersey-mens-classic-short-onyx
+224,MENS RELAXED SHORT,SKIMS,Black,Shorts,106.00,Cotton/Rayon,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-short-obsidian
+225,MENS RELAXED SHORT,SKIMS,Grey,Shorts,106.00,Cotton/Rayon,Loungewear,Loose,https://skims.com/en-ca/products/jersey-lounge-mens-relaxed-short-ash
+226,CLASSIC STRAIGHT LEG PANT,SKIMS,Pink,Pants,124.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/cotton-fleece-classic-straight-leg-pant-barely-pink
+227,CLASSIC STRAIGHT LEG PANT,SKIMS,White,Pants,124.00,Cotton,Loungewear,Standard,https://skims.com/en-ca/products/cotton-fleece-classic-straight-leg-pant-marble-graphic
+228,MIDI SKIRT,SKIMS,Brown,Skirts,100.00,Modal,Casual,???,https://skims.com/en-ca/products/smooth-layers-midi-skirt-truffle
+229,CARGO PANT,SKIMS,Blue,Pants,156.00,Cotton,Casual,Oversized,https://skims.com/en-ca/products/boyfriend-fleece-cargo-pant-zen-blue
+230,LEGGING,SKIMS,Black,Pants,134.00,Polyamide,Casual,Standard,https://skims.com/en-ca/products/skims-body-legging-onyx
+231,FOLDOVER PANT,SKIMS,Red,Pants,114.00,Modal,Loungewear,???,https://skims.com/en-ca/products/soft-lounge-foldover-pant-cherry
+232,OVERSIZED PANT,SKIMS,White,Pants,162.00,Polyester,Loungewear,Oversized,https://skims.com/en-ca/products/fleece-lounge-oversized-pant-ecru
+233,,SKIMS,,,,,,,
+234,,SKIMS,,,,,,,
+235,,SKIMS,,,,,,,
+236,,SKIMS,,,,,,,
+237,,SKIMS,,,,,,,
+238,,SKIMS,,,,,,,
+239,,SKIMS,,,,,,,
+240,,SKIMS,,,,,,,
+241,,SKIMS,,,,,,,
+242,,SKIMS,,,,,,,
+243,,SKIMS,,,,,,,
+244,,SKIMS,,,,,,,
+245,,SKIMS,,,,,,,
+246,,SKIMS,,,,,,,
+247,,SKIMS,,,,,,,
+248,,SKIMS,,,,,,,
+249,,SKIMS,,,,,,,
+250,,SKIMS,,,,,,,
+251,,SKIMS,,,,,,,
+252,,SKIMS,,,,,,,
+253,,SKIMS,,,,,,,
+254,,SKIMS,,,,,,,
+255,,SKIMS,,,,,,,
+256,,SKIMS,,,,,,,
+257,,,,,,,,,
+258,,,,,,,,,
+259,,,,,,,,,
+260,,,,,,,,,
+261,,,,,,,,,
+262,,,,,,,,,
+263,,,,,,,,,
+264,,,,,,,,,
+265,,,,,,,,,
+266,,,,,,,,,
+267,,,,,,,,,
+268,,,,,,,,,
+269,,,,,,,,,
+270,,,,,,,,,
+271,,,,,,,,,
+272,,,,,,,,,
+273,,,,,,,,,
+274,,,,,,,,,
+275,,,,,,,,,
+276,,,,,,,,,
+277,,,,,,,,,
+278,,,,,,,,,
+279,,,,,,,,,
+280,,,,,,,,,
+281,,,,,,,,,
+282,,,,,,,,,
+283,,,,,,,,,
+284,,,,,,,,,
+285,,,,,,,,,
+286,,,,,,,,,
+287,,,,,,,,,
+288,,,,,,,,,
+289,,,,,,,,,
+290,,,,,,,,,
+291,,,,,,,,,
+292,,,,,,,,,
+293,,,,,,,,,
+294,,,,,,,,,
+295,,,,,,,,,
+296,,,,,,,,,
+297,,,,,,,,,
+298,,,,,,,,,
+299,,,,,,,,,
+300,,,,,,,,,
+301,,,,,,,,,
+302,,,,,,,,,
+303,,,,,,,,,
+304,,,,,,,,,
+305,,,,,,,,,
+306,,,,,,,,,
+307,,,,,,,,,
+308,,,,,,,,,
+309,,,,,,,,,
+310,,,,,,,,,
+311,,,,,,,,,
+312,,,,,,,,,
+313,,,,,,,,,
+314,,,,,,,,,
+315,,,,,,,,,
+316,,,,,,,,,
+317,,,,,,,,,
+318,,,,,,,,,
+319,,,,,,,,,
+320,,,,,,,,,
+321,,,,,,,,,
+322,,,,,,,,,
+323,,,,,,,,,
+324,,,,,,,,,
+325,,,,,,,,,
+326,,,,,,,,,
+327,,,,,,,,,
+328,,,,,,,,,
+329,,,,,,,,,
+330,,,,,,,,,
+331,,,,,,,,,
+332,,,,,,,,,
+333,,,,,,,,,
+334,,,,,,,,,
+335,,,,,,,,,
+336,,,,,,,,,
+337,,,,,,,,,
+338,,,,,,,,,
+339,,,,,,,,,
+340,,,,,,,,,
+341,,,,,,,,,
+342,,,,,,,,,
+343,,,,,,,,,
+344,,,,,,,,,
+345,,,,,,,,,
+346,,,,,,,,,
+347,,,,,,,,,
+348,,,,,,,,,
+349,,,,,,,,,
+350,,,,,,,,,
+351,,,,,,,,,
+352,,,,,,,,,
+353,,,,,,,,,
+354,,,,,,,,,
+355,,,,,,,,,
+356,,,,,,,,,
+357,,,,,,,,,
+358,,,,,,,,,
+359,,,,,,,,,
+360,,,,,,,,,
+361,,,,,,,,,
+362,,,,,,,,,
+363,,,,,,,,,
+364,,,,,,,,,
+365,,,,,,,,,
+366,,,,,,,,,
+367,,,,,,,,,
+368,,,,,,,,,
+369,,,,,,,,,
+370,,,,,,,,,
+371,,,,,,,,,
+372,,,,,,,,,
+373,,,,,,,,,
+374,,,,,,,,,
+375,,,,,,,,,
+376,,,,,,,,,
+377,,,,,,,,,
+378,,,,,,,,,
+379,,,,,,,,,
+380,,,,,,,,,
+381,,,,,,,,,
+382,,,,,,,,,
+383,,,,,,,,,
+384,,,,,,,,,
+385,,,,,,,,,
+386,,,,,,,,,
+387,,,,,,,,,
+388,,,,,,,,,
+389,,,,,,,,,
+390,,,,,,,,,
+391,,,,,,,,,
+392,,,,,,,,,
+393,,,,,,,,,
+394,,,,,,,,,
+395,,,,,,,,,
+396,,,,,,,,,
+397,,,,,,,,,
+398,,,,,,,,,
+399,,,,,,,,,
+400,,,,,,,,,
+401,,,,,,,,,
+402,,,,,,,,,
+403,,,,,,,,,
+404,,,,,,,,,
+405,,,,,,,,,
+406,,,,,,,,,
+407,,,,,,,,,
+408,,,,,,,,,
+409,,,,,,,,,
+410,,,,,,,,,
+411,,,,,,,,,
+412,,,,,,,,,
+413,,,,,,,,,
+414,,,,,,,,,
+415,,,,,,,,,
+416,,,,,,,,,
+417,,,,,,,,,
+418,,,,,,,,,
+419,,,,,,,,,
+420,,,,,,,,,
+421,,,,,,,,,
+422,,,,,,,,,
+423,,,,,,,,,
+424,,,,,,,,,
+425,,,,,,,,,
+426,,,,,,,,,
+427,,,,,,,,,
+428,,,,,,,,,
+429,,,,,,,,,
+430,,,,,,,,,
+431,,,,,,,,,
+432,,,,,,,,,
+433,,,,,,,,,
+434,,,,,,,,,
+435,,,,,,,,,
+436,,,,,,,,,
+437,,,,,,,,,
+438,,,,,,,,,
+439,,,,,,,,,
+440,,,,,,,,,
+441,,,,,,,,,
+442,,,,,,,,,
+443,,,,,,,,,
+444,,,,,,,,,
+445,,,,,,,,,
+446,,,,,,,,,
+447,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+500,,,,,,,,,
