@@ -15,7 +15,7 @@ public class CsvParser {
             // Comma delimiter to read the CSV file attribute by attribute
             String[] attributes = line.split(",");
 
-            String id = attributes[0];
+            int id = Integer.parseInt(attributes[0]);
             String name = attributes[1];
             String brand = attributes[2];
             String color = attributes[3];

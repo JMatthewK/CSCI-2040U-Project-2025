@@ -1,6 +1,6 @@
 public class ClothingItem{
     // Initialize each attribute
-    private String id;
+    private int id;
     private String name;
     private String brand;
     private String color;
@@ -11,7 +11,7 @@ public class ClothingItem{
     private String fit;
 
     // Constructor
-    public ClothingItem(String id, String name, String brand, String color, String category, double price, String material, String style, String fit){
+    public ClothingItem(int id, String name, String brand, String color, String category, double price, String material, String style, String fit){
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -24,7 +24,7 @@ public class ClothingItem{
     }
 
     // Getters, no setters yet
-    public String getId(){return id;}
+    public int getId(){return id;}
     public String getName(){return name;}
     public String getBrand(){return brand;}
     public String getColor(){return color;}
