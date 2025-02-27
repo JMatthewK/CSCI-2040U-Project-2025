@@ -9,10 +9,11 @@ Matthew Kassapian, Russell Manalo, Adrian Fudge, Mavrick Egan, Isabella Smith
 
 Fashion and clothing has a big presence in culture, social media and in the market meaning that it will possess a large amount of users. Some key characteristics of our domain include:
 1. Brands: A curated selection of both well-known and emerging clothing brands.
-2. Colours: A versatile palette, from classic neutrals to bold, trendy hues.Costs: A range of price points, from affordable everyday wear to premium designer pieces.
-3. Materials: High-quality fabrics like cotton, polyester, linen, and sustainable options for comfort and durability.
-4. Styles: Sporty, casual, formal, loungewear, and relaxed fits to suit every occasion and lifestyle.
-5. Types of Clothing: A wide variety of garments, including shirts, sweaters, shorts, pants, dresses, jackets, and more.
+2. Colours: A versatile palette, from classic neutrals to bold, trendy hues.
+3. Costs: A range of price points, from affordable everyday wear to premium designer pieces.
+4. Materials: High-quality fabrics like cotton, polyester, linen, and sustainable options for comfort and durability.
+5. Styles: Sporty, casual, formal, loungewear, and relaxed fits to suit every occasion and lifestyle.
+6. Types of Clothing: A wide variety of garments, including shirts, sweaters, shorts, pants, dresses, jackets, and more.
 
 ### High-level goals:
 1. High-Quality Product: The product functions and exceeds all requirements.
