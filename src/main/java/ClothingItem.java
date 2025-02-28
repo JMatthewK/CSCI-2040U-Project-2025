@@ -9,6 +9,7 @@ public class ClothingItem{
     private String material;
     private String style;
     private String fit;
+    private boolean hidden;
 
     // Constructor
     public ClothingItem(int id, String name, String brand, String color, String category, double price, String material, String style, String fit){
@@ -21,6 +22,7 @@ public class ClothingItem{
         this.material = material;
         this.style = style;
         this.fit = fit;
+        this.hidden = false;
     }
 
     // Getters, no setters yet
@@ -33,4 +35,13 @@ public class ClothingItem{
     public String getMaterial(){return material;}
     public String getStyle(){return style;}
     public String getFit(){return fit;}
+    public boolean getIfRemoved(){
+        return this.hidden;
+    }
+    public void hide() {
+        this.hidden = true;
+    }
+    public void unhide() {
+        this.hidden = false;
+    }
 }
