@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.io.File;
+
 public class ClothingItem{
     // Initialize each attribute
     private int id;
@@ -9,6 +12,7 @@ public class ClothingItem{
     private String material;
     private String style;
     private String fit;
+    private ImageIcon image;
     private boolean hidden;
 
     // Constructor
@@ -23,6 +27,21 @@ public class ClothingItem{
         this.style = style;
         this.fit = fit;
         this.hidden = false;
+        this.image = loadImage(id);
+    }
+
+    private ImageIcon loadImage(int id){
+        String imagePath = "data/img/" + id + ".png";
+        File imageFile = new File(imagePath);
+
+        if(imageFile.exists()){
+            System.out.println("Image File exists");
+            return new ImageIcon(imagePath);
+        }
+        else{
+            System.out.println("Image file: " + imagePath + " does not exist");
+            return new ImageIcon("data/img/placeholder.png");
+        }
     }
 
     // Getters, no setters yet
@@ -35,6 +54,7 @@ public class ClothingItem{
     public String getMaterial(){return material;}
     public String getStyle(){return style;}
     public String getFit(){return fit;}
+    public ImageIcon getImage(){return image;}
     public boolean getIfRemoved(){
         return this.hidden;
     }
