@@ -1,49 +1,236 @@
 import javax.swing.*;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class CatalogViewer {
-    //clothings
-    private List<ClothingItem> clothingItemList;
-    //panels for ui
-    private JPanel imagePanel;
+    //parse csv at beginning instead of parsing it multiple times (takes longer to load)
+    CsvParser csvParser = new CsvParser();
+    private List<ClothingItem> clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
     private JFrame frame;
-
-    //current filters
+    private JPanel imagePanel;
     private Set<String> selectedColors = new HashSet<>();
     private Set<String> selectedCategories = new HashSet<>();
     private Set<String> selectedMaterials = new HashSet<>();
     private Set<String> selectedStyles = new HashSet<>();
     private Set<String> selectedFits = new HashSet<>();
 
-    public CatalogViewer(List<ClothingItem> clothingItemList) {
-        this.clothingItemList = clothingItemList;
-    }
-
-    public void startGUI() {
+    public CatalogViewer() throws IOException {
         frame = new JFrame("CTLG");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
+        frame.setSize(800, 600);
         frame.setLocationRelativeTo(null);
+    }
+    public CatalogViewer(List<ClothingItem> clothingItemList) throws IOException {
+        this.clothingItemList = clothingItemList;
+    }
+    // main menu
+    public void startMainMenu() {
+        // Create a main menu panel
+        JPanel mainMenuPanel = new JPanel();
+        mainMenuPanel.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+        // Label for title
+        JLabel titleLabel = new JLabel("CLTG.", JLabel.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
+        mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
+        //Menu is a simple button panel for now
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(3, 1)); // 2 buttons, 1 column
+
+        // add item button
+        JButton addItemButton = new JButton("Add New Item");
+        addItemButton.addActionListener(e -> {
+            frame.getContentPane().removeAll();
+            addItem();
+        });
+        //display catalog button
+        JButton openCatalogButton = new JButton("View Catalogue");
+        openCatalogButton.addActionListener(e -> {
+            frame.getContentPane().removeAll();
+            startGUI(clothingItemList);
+        });
+
+        // exit the application button
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(e -> System.exit(0));
+
+        buttonPanel.add(openCatalogButton);
+        buttonPanel.add(addItemButton);
+        buttonPanel.add(exitButton);
+
+        // add the button panel to the main menu
+        mainMenuPanel.add(buttonPanel, BorderLayout.CENTER);
+        frame.getContentPane().add(mainMenuPanel);
+        frame.setVisible(true);
+    }
+    //Add item screen
+    public void addItem() {
+        JPanel addPanel = new JPanel(new GridLayout(10, 2));
+
+        JTextField name = new JTextField(20);
+        JTextField brand = new JTextField(20);
+        JTextField color = new JTextField(20);
+        //JCombobox used for limited selections
+        String[] categories = {"Shirt", "Sweater", "Pants", "Skirts"};
+        JComboBox<String> categoriesList = new JComboBox<>(categories);
+
+        NumberFormat currencyFormat = NumberFormat.getNumberInstance();
+        currencyFormat.setGroupingUsed(true);
+        JFormattedTextField price = new JFormattedTextField(new NumberFormatter(currencyFormat));
+        price.setColumns(10);
+
+        JTextField material = new JTextField(20);
+        String[] styles = {"Casual", "Formal", "Loungewear", "Sport"};
+        JComboBox<String> styleList = new JComboBox<>(styles);
+
+        String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
+        JComboBox<String> fitList = new JComboBox<>(fits);
+        //Upload image using jfilechooser
+        JButton uploadImageButton = new JButton("Upload Image");
+        JLabel imagePathLabel = new JLabel("No Image Selected");
+        final File[] selectedFile = {null};
+        uploadImageButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                selectedFile[0] = fileChooser.getSelectedFile();
+                imagePathLabel.setText(selectedFile[0].getName());
+            }
+        });
+        //Add button converts all entries into strings (double for price), and adds it to clothingitem list
+        JButton addButton = new JButton("Add Item");
+        addButton.addActionListener(e -> {
+            double itemPrice;
+            try {
+                itemPrice = Double.parseDouble(price.getText().replaceAll(",", ""));
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Invalid price format!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            ClothingItem clothing = new ClothingItem(
+                    clothingItemList.size() + 1,
+                    name.getText(),
+                    brand.getText(),
+                    color.getText(),
+                    categoriesList.getSelectedItem().toString(),
+                    itemPrice,
+                    material.getText(),
+                    styleList.getSelectedItem().toString(),
+                    fitList.getSelectedItem().toString()
+            );
+            //save image to data/img
+            clothingItemList.add(clothing);
+            int newId = clothingItemList.size();
+            String imagePath = "data/img/" + newId + ".png";
+            //save image immediately (initially would save after closing application)
+            try {
+                File destination = new File(imagePath);
+                Files.copy(selectedFile[0].toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                destination.setReadable(true, false);
+                destination.setWritable(true, false);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            //display new catalog with added item
+            startGUI(clothingItemList);
+        });
+        addPanel.add(new JLabel("Name:"));
+        addPanel.add(name);
+        addPanel.add(new JLabel("Brand:"));
+        addPanel.add(brand);
+        addPanel.add(new JLabel("Color:"));
+        addPanel.add(color);
+        addPanel.add(new JLabel("Category:"));
+        addPanel.add(categoriesList);
+        addPanel.add(new JLabel("Price:"));
+        addPanel.add(price);
+        addPanel.add(new JLabel("Material:"));
+        addPanel.add(material);
+        addPanel.add(new JLabel("Style:"));
+        addPanel.add(styleList);
+        addPanel.add(new JLabel("Fit:"));
+        addPanel.add(fitList);
+        addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
+        addPanel.add(addButton);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(addPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
+    //Delete item
+    private void deleteItemById() {
+        String inputId = JOptionPane.showInputDialog(frame,
+                "Enter the ID of the item to delete:");
+
+        if (inputId != null && !inputId.isEmpty()) {
+            int itemId = Integer.parseInt(inputId); // Convert input to integer
+            ClothingItem itemToDelete = findItemById(itemId);
+
+            if (itemToDelete != null) {
+                // Confirm deletion
+                int confirm = JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to delete " + itemToDelete.getName() + "?",
+                        "Confirm Delete", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    clothingItemList.remove(itemToDelete); // Remove from the list
+
+                    // delete the associated image file
+                    File imageFile = new File("data/img/" + itemToDelete.getId() + ".jpg");
+                    if (imageFile.exists()) {
+                        imageFile.delete();
+                    }
+
+                    updateImagePanel(clothingItemList); // Refresh the UI
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame,
+                        "Item with ID " + itemId + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    //Quick helper method
+    private ClothingItem findItemById(int id) {
+        for (ClothingItem item : clothingItemList) {
+            if (item.getId() == id) {
+                return item; // Return the matching item
+            }
+        }
+        return null; // Return null if not found
+    }
+
+    // method to display the catalog in the same window
+    public void startGUI(List<ClothingItem> clothingItemList) {
+        JPanel catalogPanel = new JPanel();
+        catalogPanel.setLayout(new BorderLayout());
 
         JPanel filterPanel = createFilterPanel();
-        panel.add(filterPanel, BorderLayout.NORTH);
+        catalogPanel.add(filterPanel, BorderLayout.NORTH);
 
         imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
         updateImagePanel(clothingItemList);
         JScrollPane scrollPane = new JScrollPane(imagePanel);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        catalogPanel.add(scrollPane, BorderLayout.CENTER);
+        JButton deleteButton = new JButton("Delete Item by ID");
+        deleteButton.addActionListener(e -> deleteItemById());
+        frame.add(deleteButton, BorderLayout.SOUTH); // Add to the frame or wherever you prefer
 
-        frame.add(panel);
+
+        frame.add(catalogPanel);
         frame.setVisible(true);
     }
 
@@ -210,3 +397,5 @@ public class CatalogViewer {
         dialog.setVisible(true);
     }
 }
+
+
