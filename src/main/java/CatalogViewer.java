@@ -22,6 +22,8 @@ public class CatalogViewer {
     private Set<String> selectedStyles = new HashSet<>();
     private Set<String> selectedFits = new HashSet<>();
 
+    //block list
+    private Set<String> noShowList = new HashSet<>();
     public CatalogViewer(List<ClothingItem> clothingItemList) {
         this.clothingItemList = clothingItemList;
     }
@@ -169,6 +171,8 @@ public class CatalogViewer {
         imagePanel.removeAll();
         //for every clothing item in the current list
         for (ClothingItem item : items) {
+            //if is in the no show list dont show
+            if (noShowList.contains(item.getName())) continue;
             //get the image
             ImageIcon icon = item.getImage();
             Image img = icon.getImage();
@@ -206,6 +210,15 @@ public class CatalogViewer {
         detailsPanel.add(new JLabel("Price: $" + item.getPrice()));
         detailsPanel.add(new JLabel("Contains Material: " + item.getMaterial()));
         detailsPanel.add(new JLabel("Fit: " + item.getFit()));
+        //delete button
+        JButton deleteButton = new JButton("Hide Item");
+        deleteButton.addActionListener(e -> {
+            noShowList.add(item.getName());
+            dialog.dispose();
+            applyFilters();
+        });
+        detailsPanel.add(deleteButton);
+
         dialog.add(detailsPanel);
         dialog.setVisible(true);
     }
