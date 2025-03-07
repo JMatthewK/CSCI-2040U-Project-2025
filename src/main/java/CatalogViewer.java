@@ -175,6 +175,9 @@ public class CatalogViewer {
             if (noShowList.contains(item.getName())) continue;
             //get the image
             ImageIcon icon = item.getImage();
+
+            if (!isValidImage(icon)) continue;
+
             Image img = icon.getImage();
             //scale it correctly
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
@@ -221,5 +224,13 @@ public class CatalogViewer {
 
         dialog.add(detailsPanel);
         dialog.setVisible(true);
+    }
+
+    //check if image exist
+    private boolean isValidImage(ImageIcon icon) {
+        Image img = icon.getImage();
+        int width = img.getWidth(null);
+        int height = img.getHeight(null);
+        return width > 1 && height > 1;
     }
 }
