@@ -43,14 +43,14 @@ cd https://github.com/JMatthewK/CSCI-2040U-Project-2025
 ```
 ### 2.Compile and run
 ```bash
-Javac CatalogApp,java
+Javac CatalogApp.java
 ```
 Run the program
 ```bash
 java CatalogApp
 ```
 ### 3. Usage
-Once launched the ui will dispaly available clothing items,
+Once launched the ui will display available clothing items,
 #### Add an item
 CLick on the add item button
 fill out details
