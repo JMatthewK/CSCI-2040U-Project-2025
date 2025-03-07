@@ -30,3 +30,32 @@ Front-End Lead: Matthew Kassapian
 Back-End Lead: Mavrick Egan
 Software Quality: Russell Manalo
 Developers: All
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+To get the source code, run the following command:
+
+```bash
+git clone <https://github.com/JMatthewK/CSCI-2040U-Project-2025>
+cd <https://github.com/JMatthewK/CSCI-2040U-Project-2025>
+```
+### 2.Compile and run
+```bash
+Javac CatalogApp,java
+```
+Run the program
+```bash
+java CatalogApp
+```
+### 3. Usage
+Once launched the ui will dispaly available clothing items,
+#### Add an item
+CLick on the add item button
+fill out details
+upload an image
+click submit to add the tiem
+#### filter items
+use the buttons to filter items by category 
+the display will update based on selection
