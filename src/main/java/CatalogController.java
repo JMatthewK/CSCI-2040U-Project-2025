@@ -19,8 +19,8 @@ public class CatalogController {
             throw new IOException("error parsing file", e);
         }
 
-        CatalogViewer catalogViewer = new CatalogViewer(clothingItemList);
-        catalogViewer.startGUI();
+        CatalogViewer catalogViewer = new CatalogViewer();
+        catalogViewer.startMainMenu();
     }
 
 }
