@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class CatalogViewer {
     //parse csv at beginning instead of parsing it multiple times (takes longer to load)
@@ -46,7 +50,7 @@ public class CatalogViewer {
         mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
         //Menu is a simple button panel for now
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(3, 1)); // 2 buttons, 1 column
+        buttonPanel.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
 
         // add item button
         JButton addItemButton = new JButton("Add New Item");
@@ -54,6 +58,14 @@ public class CatalogViewer {
             frame.getContentPane().removeAll();
             addItem();
         });
+
+        // login button
+        JButton loginButton = new JButton("login");
+        loginButton.addActionListener(e -> {
+            frame.getContentPane().removeAll();
+            login();
+        });
+        
         //display catalog button
         JButton openCatalogButton = new JButton("View Catalogue");
         openCatalogButton.addActionListener(e -> {
@@ -66,6 +78,7 @@ public class CatalogViewer {
         exitButton.addActionListener(e -> System.exit(0));
 
         buttonPanel.add(openCatalogButton);
+        buttonPanel.add(loginButton);
         buttonPanel.add(addItemButton);
         buttonPanel.add(exitButton);
 
@@ -74,6 +87,112 @@ public class CatalogViewer {
         frame.getContentPane().add(mainMenuPanel);
         frame.setVisible(true);
     }
+
+    //Login screen
+    public void login() {
+        // Login window
+        JFrame frame = new JFrame("Login System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300,200);
+        frame.setLayout(new GridLayout(3, 2, 10, 10));
+
+        // GUI Components
+        JLabel userLabel = new JLabel("Username:");
+        JTextField userField = new JTextField(15);
+
+        JLabel passLabel = new JLabel("Password:");
+        JPasswordField passField = new JPasswordField(15);
+
+        JButton loginButton = new JButton("Login");
+        JLabel resultLabel = new JLabel("");
+
+        // User creds (hashed)
+        String adminUsername = "admin";
+        String adminPassword = hashPassword("adminpass");
+        System.out.println(adminPassword);
+
+        String userUsername = "user";
+        String userPassword = hashPassword("userpass");
+        System.out.println(userPassword);
+
+        // Button repsonse and override for action of button
+        loginButton.addActionListener(new ActionListener() {
+            // User input
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = userField.getText();
+                String password = new String(passField.getPassword());
+                String input = hashPassword(password);
+
+                // Comparing creds
+                if (username.equals(adminUsername) && input.equals(adminPassword)) {
+                    resultLabel.setText("Admin access granted!");
+                    resultLabel.setForeground(Color.BLUE);
+                    frame.setVisible(false);
+                    frame.dispose();
+                    startGUI(clothingItemList);
+                    // openAdminCatalog();
+                } else if (username.equals(userUsername) && input.equals(userPassword)) {
+                    resultLabel.setText("User access granted!");
+                    resultLabel.setForeground(Color.GREEN);
+                    frame.setVisible(false);
+                    frame.dispose();
+                    startGUI(clothingItemList);
+                    // openUserCatalog();
+                } else {
+                    resultLabel.setText("Invalid credentials.");
+                    resultLabel.setForeground(Color.RED);
+                }
+            }
+        });
+
+        // Adding the components to the frame and display
+        frame.add(userLabel);
+        frame.add(userField);
+        frame.add(passLabel);
+        frame.add(passField);
+        frame.add(loginButton);
+        frame.add(resultLabel);
+
+        frame.setVisible(true);
+
+    }
+
+    // Super cool security system I learned
+    public static String hashPassword(String password) {
+        // Exception handling if SHA-256 algo isn't accessable
+        try {
+            // Gets and instance of the SHA-256 hashing algo
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            // hashes password into unique byte array
+            byte[] hash = md.digest(password.getBytes());
+
+            // converting hash to readable hexString
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+
+        } catch(NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // TODO: add catalogs for user and admin to seperately login to
+
+    private static void openAdminCatalog() {
+        JOptionPane.showMessageDialog(null, "Welcome, Admin! You have full access.");
+    }
+
+    private static void openUserCatalog() {
+        JOptionPane.showMessageDialog(null, "Welcome, User! You have limited access.");
+    }
+    
     //Add item screen
     public void addItem() {
         JPanel addPanel = new JPanel(new GridLayout(10, 2));
