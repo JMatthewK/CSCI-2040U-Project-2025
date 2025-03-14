@@ -41,6 +41,7 @@ public class CatalogViewer {
     // main menu
     public void startMainMenu() {
         // Create a main menu panel
+        frame.getContentPane().removeAll();
         JPanel mainMenuPanel = new JPanel();
         mainMenuPanel.setLayout(new BorderLayout());
 
@@ -192,9 +193,21 @@ public class CatalogViewer {
     private static void openUserCatalog() {
         JOptionPane.showMessageDialog(null, "Welcome, User! You have limited access.");
     }
-    
+    private void deleteItem(ClothingItem item) {
+        clothingItemList.remove(item); // Remove from the list
+
+        // Delete the image file
+        File imageFile = new File("data/img/" + item.getId() + ".png");
+        if (imageFile.exists()) {
+            imageFile.delete();
+        }
+
+        // Refresh the UI
+        updateImagePanel(clothingItemList);
+    }
     //Add item screen
     public void addItem() {
+        frame.getContentPane().removeAll();
         JPanel addPanel = new JPanel(new GridLayout(10, 2));
 
         JTextField name = new JTextField(20);
@@ -334,6 +347,7 @@ public class CatalogViewer {
 
     // method to display the catalog in the same window
     public void startGUI(List<ClothingItem> clothingItemList) {
+        frame.getContentPane().removeAll();
         JPanel catalogPanel = new JPanel();
         catalogPanel.setLayout(new BorderLayout());
 
@@ -344,13 +358,24 @@ public class CatalogViewer {
         updateImagePanel(clothingItemList);
         JScrollPane scrollPane = new JScrollPane(imagePanel);
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel bottomPanel = new JPanel(new FlowLayout());
+
         JButton deleteButton = new JButton("Delete Item by ID");
         deleteButton.addActionListener(e -> deleteItemById());
-        frame.add(deleteButton, BorderLayout.SOUTH); // Add to the frame or wherever you prefer
 
+        JButton backButton = new JButton("Back to Main Menu");
+        backButton.addActionListener(e -> startMainMenu()); // Back Button
 
-        frame.add(catalogPanel);
-        frame.setVisible(true);
+        bottomPanel.add(deleteButton);
+        bottomPanel.add(backButton); // Added Back Button
+
+        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(catalogPanel);
+        frame.revalidate();
+        frame.repaint();
     }
 
     //add every filter button to panel
@@ -471,32 +496,46 @@ public class CatalogViewer {
 
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
-        //remove all current images
         imagePanel.removeAll();
-        //for every clothing item in the current list
+
         for (ClothingItem item : items) {
-            //get the image
             ImageIcon icon = item.getImage();
             Image img = icon.getImage();
-            //scale it correctly
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaledImg);
 
             JLabel imageLabel = new JLabel(icon);
-            //when item is hovered show the name and ability to click for more
-            imageLabel.setToolTipText(item.getName() + " Click for more info");
-            //when image is clicked show the information
+            imageLabel.setToolTipText(item.getName() + " - Click for more info");
+
             imageLabel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    showItemDetails(item);
+                    if (SwingUtilities.isLeftMouseButton(e)) {
+                        // Left-click: Show item details
+                        showItemDetails(item);
+                    } else if (SwingUtilities.isRightMouseButton(e)) {
+                        // Right-click: Ask for delete confirmation
+                        int confirm = JOptionPane.showConfirmDialog(
+                                frame,
+                                "Are you sure you want to delete " + item.getName() + "?",
+                                "Confirm Delete",
+                                JOptionPane.YES_NO_OPTION
+                        );
+
+                        if (confirm == JOptionPane.YES_OPTION) {
+                            deleteItem(item);
+                        }
+                    }
                 }
             });
+
             imagePanel.add(imageLabel);
         }
+
         imagePanel.revalidate();
         imagePanel.repaint();
     }
+
 
     //shows the information about the image they clicked on
     private void showItemDetails(ClothingItem item) {
