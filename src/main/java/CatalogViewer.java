@@ -16,14 +16,14 @@ import java.util.Set;
 public class CatalogViewer {
     //parse csv at beginning instead of parsing it multiple times (takes longer to load)
     CsvParser csvParser = new CsvParser();
-    private List<ClothingItem> clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
+    public List<ClothingItem> clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
     private JFrame frame;
     private JPanel imagePanel;
-    private Set<String> selectedColors = new HashSet<>();
-    private Set<String> selectedCategories = new HashSet<>();
-    private Set<String> selectedMaterials = new HashSet<>();
-    private Set<String> selectedStyles = new HashSet<>();
-    private Set<String> selectedFits = new HashSet<>();
+    public Set<String> selectedColors = new HashSet<>();
+    public Set<String> selectedCategories = new HashSet<>();
+    public Set<String> selectedMaterials = new HashSet<>();
+    public Set<String> selectedStyles = new HashSet<>();
+    public Set<String> selectedFits = new HashSet<>();
 
     public CatalogViewer() throws IOException {
         frame = new JFrame("CTLG");
@@ -172,7 +172,7 @@ public class CatalogViewer {
         frame.repaint();
     }
     //Delete item
-    private void deleteItemById() {
+    public void deleteItemById() {
         String inputId = JOptionPane.showInputDialog(frame,
                 "Enter the ID of the item to delete:");
 
@@ -204,7 +204,7 @@ public class CatalogViewer {
         }
     }
     //Quick helper method
-    private ClothingItem findItemById(int id) {
+    public ClothingItem findItemById(int id) {
         for (ClothingItem item : clothingItemList) {
             if (item.getId() == id) {
                 return item; // Return the matching item
@@ -235,7 +235,7 @@ public class CatalogViewer {
     }
 
     //add every filter button to panel
-    private JPanel createFilterPanel() {
+    public JPanel createFilterPanel() {
         JPanel filterPanel = new JPanel(new GridLayout(5, 1));
 
         String[] colors = {"Blue", "Grey", "Brown", "Green", "Beige", "Pink", "Red", "Orange", "Purple"};
@@ -276,7 +276,7 @@ public class CatalogViewer {
         return panel;
     }
     //when the button is pressed change the filter
-    private void updateSelectedFilters(String filterType, String filterValue) {
+    public void updateSelectedFilters(String filterType, String filterValue) {
         //for the type of filter add or remove the value
         switch (filterType) {
             case "Color":
@@ -318,7 +318,7 @@ public class CatalogViewer {
         applyFilters();
     }
 
-    private void applyFilters() {
+    public void applyFilters() {
         //new list for current filters
         List<ClothingItem> filteredItems = new ArrayList<>();
 
