@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 
 public class ClothingItem{
@@ -42,6 +43,12 @@ public class ClothingItem{
             System.out.println("Image file: " + imagePath + " does not exist");
             return new ImageIcon("data/img/placeholder.png");
         }
+    }
+
+    // Method to check if image exists for the item
+    public boolean hasImage() {
+        // Check if the ImageIcon's image is fully loaded by checking if it's not null and has a valid width/height
+        return image.getImage() != null;
     }
 
     // Getters, no setters yet
