@@ -36,7 +36,7 @@ public class ClothingItem{
         File imageFile = new File(imagePath);
 
         if(imageFile.exists()){
-            System.out.println("Image File exists");
+            // System.out.println("Image File exists");
             return new ImageIcon(imagePath);
         }
         else{
