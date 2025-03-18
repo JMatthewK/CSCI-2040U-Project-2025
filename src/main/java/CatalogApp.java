@@ -12,7 +12,7 @@ public class CatalogApp {
         // Make a list of clothingItems to use
         List<ClothingItem> clothingItemList;
 
-        // Use the csvparser object with the catalogCSV in our data folder
+        // Use the placeholders csvparser object with the catalogCSV in our data folder
         // Try a catch incase it doesn't work
         try{
             clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
