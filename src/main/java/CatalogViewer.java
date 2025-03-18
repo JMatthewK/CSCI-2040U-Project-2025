@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -32,6 +33,11 @@ public class CatalogViewer {
     private Set<String> selectedFits = new HashSet<>();
 
     public CatalogViewer() throws IOException {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         frame = new JFrame("CTLG");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
@@ -258,11 +264,12 @@ public class CatalogViewer {
     }
     //Add item screen
     public void addItem() {
-        JPanel addPanel = new JPanel(new GridLayout(10, 2));
+        JPanel addPanel = new JPanel(new GridLayout(11, 2));
 
         JTextField name = new JTextField(20);
         JTextField brand = new JTextField(20);
         JTextField color = new JTextField(20);
+        JTextField link = new JTextField(20);
         //JCombobox used for limited selections
         String[] categories = {"Shirt", "Sweater", "Pants", "Skirts"};
         JComboBox<String> categoriesList = new JComboBox<>(categories);
@@ -311,10 +318,13 @@ public class CatalogViewer {
                     itemPrice,
                     material.getText(),
                     styleList.getSelectedItem().toString(),
-                    fitList.getSelectedItem().toString()
+                    fitList.getSelectedItem().toString(),
+                    link.getText().toString()
             );
             //save image to data/img
             clothingItemList.add(clothing);
+            //call to write new csv
+            writecsv(clothingItemList);
             int newId = clothingItemList.size();
             String imagePath = "data/img/" + newId + ".png";
             //save image immediately (initially would save after closing application)
@@ -347,6 +357,9 @@ public class CatalogViewer {
         addPanel.add(styleList);
         addPanel.add(new JLabel("Fit:"));
         addPanel.add(fitList);
+        addPanel.add(new JLabel("Link:"));
+        addPanel.add(link);
+
         addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
         addPanel.add(addButton);
 
@@ -376,11 +389,14 @@ public class CatalogViewer {
                 if (confirm == JOptionPane.YES_OPTION) {
                     clothingItemList.remove(itemToDelete); // Remove from the list
 
+
                     // delete the associated image file
-                    File imageFile = new File("data/img/" + itemToDelete.getId() + ".jpg");
+                    File imageFile = new File("data/img/" + itemToDelete.getId() + ".png");
                     if (imageFile.exists()) {
                         imageFile.delete();
                     }
+                    writecsv(clothingItemList);
+
 
                     updateImagePanel(clothingItemList); // Refresh the UI
                 }
@@ -570,11 +586,159 @@ public class CatalogViewer {
         //show most details can add more if want
         JPanel detailsPanel = new JPanel(new GridLayout(0, 1));
         detailsPanel.add(new JLabel("Name: " + item.getName()));
+        detailsPanel.add(new JLabel("ID: " + item.getId()));
         detailsPanel.add(new JLabel("Brand: " + item.getBrand()));
         detailsPanel.add(new JLabel("Price: $" + item.getPrice()));
         detailsPanel.add(new JLabel("Contains Material: " + item.getMaterial()));
         detailsPanel.add(new JLabel("Fit: " + item.getFit()));
         dialog.add(detailsPanel);
+        //create button to allow user to edit
+        JButton editButton = new JButton("Edit");
+        editButton.addActionListener(new ActionListener() {
+            //call the edit function and send the current item
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editSelectedItem(item);
+            }
+        });
+
+
+        // add to bottom
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(editButton);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
         dialog.setVisible(true);
     }
+
+    //when clicked, creates a prompt that allows user to edit current item
+    private void editSelectedItem(ClothingItem selectedItem) {
+        JDialog editDialog = new JDialog(frame, "Edit Clothing Item", true);
+        editDialog.setLayout(new GridLayout(0, 2));
+
+        //fields to write with current values in already
+        JTextField nameField = new JTextField(selectedItem.getName(), 20);
+        JTextField brandField = new JTextField(selectedItem.getBrand(), 20);
+        JTextField colorField = new JTextField(selectedItem.getColor(), 20);
+        JTextField linkField = new JTextField(selectedItem.getlink(), 20);
+
+        // categories
+        String[] categories = {"Shirt", "Sweater", "Pants", "Skirts"};
+        JComboBox<String> categoriesList = new JComboBox<>(categories);
+        categoriesList.setSelectedItem(selectedItem.getCategory());
+
+        // price
+        NumberFormat currencyFormat = NumberFormat.getNumberInstance();
+        currencyFormat.setGroupingUsed(true);
+        JFormattedTextField priceField = new JFormattedTextField(new NumberFormatter(currencyFormat));
+        priceField.setColumns(10);
+        priceField.setValue(selectedItem.getPrice());
+
+        JTextField materialField = new JTextField(selectedItem.getMaterial(), 20);
+
+        // styles
+        String[] styles = {"Casual", "Formal", "Loungewear", "Sport"};
+        JComboBox<String> styleList = new JComboBox<>(styles);
+        styleList.setSelectedItem(selectedItem.getStyle());
+
+        // fits
+        String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
+        JComboBox<String> fitList = new JComboBox<>(fits);
+        fitList.setSelectedItem(selectedItem.getFit());
+
+        // image upload
+        JButton uploadImageButton = new JButton("Upload Image");
+        JLabel imagePathLabel = new JLabel("No Image Selected");
+        final File[] selectedFile = {null};
+        uploadImageButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(editDialog);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                selectedFile[0] = fileChooser.getSelectedFile();
+                imagePathLabel.setText(selectedFile[0].getName());
+            }
+        });
+
+        // labels
+        editDialog.add(new JLabel("Name:"));
+        editDialog.add(nameField);
+        editDialog.add(new JLabel("Brand:"));
+        editDialog.add(brandField);
+        editDialog.add(new JLabel("Color:"));
+        editDialog.add(colorField);
+        editDialog.add(new JLabel("Category:"));
+        editDialog.add(categoriesList);
+        editDialog.add(new JLabel("Price (CAD):"));
+        editDialog.add(priceField);
+        editDialog.add(new JLabel("Material:"));
+        editDialog.add(materialField);
+        editDialog.add(new JLabel("Style:"));
+        editDialog.add(styleList);
+        editDialog.add(new JLabel("Fit:"));
+        editDialog.add(fitList);
+        editDialog.add(new JLabel("Link:"));
+        editDialog.add(linkField);
+        editDialog.add(new JLabel("Image:"));
+        editDialog.add(uploadImageButton);
+        editDialog.add(imagePathLabel);
+
+        // save button
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // new values
+                selectedItem.setName(nameField.getText());
+                selectedItem.setBrand(brandField.getText());
+                selectedItem.setColor(colorField.getText());
+                selectedItem.setCategory((String) categoriesList.getSelectedItem());
+                selectedItem.setPrice(Double.parseDouble(priceField.getText().replace(",", "")));
+                selectedItem.setMaterial(materialField.getText());
+                selectedItem.setStyle((String) styleList.getSelectedItem());
+                selectedItem.setFit((String) fitList.getSelectedItem());
+                selectedItem.setLink(linkField.getText());
+
+                //replace image
+                if (selectedFile[0] != null) {
+                    try {
+                        String imagePath = "data/img/" + selectedItem.getId() + ".png";
+                        File destination = new File(imagePath);
+                        Files.copy(selectedFile[0].toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                        destination.setReadable(true, false);
+                        destination.setWritable(true, false);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }}
+
+                //rewrite csv with changes
+                writecsv(clothingItemList);
+                //close dialog
+                editDialog.dispose();
+            }
+        });
+
+        editDialog.add(saveButton);
+        editDialog.pack();
+        editDialog.setLocationRelativeTo(frame);
+        editDialog.setVisible(true);
+    }
+
+//given a list of clothing items rewrite the csv at data/CatalogData.csv
+    private void writecsv(List<ClothingItem> items) {
+        String filePath = "data/CatalogData.csv";
+        try (FileWriter writer = new FileWriter(filePath)) {
+            // header
+            writer.write("ID,Product Name,Brand,Color,Category,Price (CAD),Material,Style,Fit,Link\n");
+
+            // write each clothing item
+            for (ClothingItem item : items) {
+                writer.write(item.toString() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }

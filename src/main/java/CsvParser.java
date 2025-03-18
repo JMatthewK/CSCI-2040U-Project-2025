@@ -24,8 +24,9 @@ public class CsvParser {
                 String material = attributes[6];
                 String style = attributes[7];
                 String fit = attributes[8];
+                String link = attributes[9];
 
-                ClothingItem item = new ClothingItem(id, name, brand, color, category, price, material, style, fit);
+                ClothingItem item = new ClothingItem(id, name, brand, color, category, price, material, style, fit,link);
                 clothingItems.add(item);
             }
         }
