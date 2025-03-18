@@ -51,7 +51,7 @@ public class CatalogViewer {
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
         sidebar.setBackground(Color.WHITE);
-        sidebar.setPreferredSize(new Dimension(150, frame.getHeight()));
+        sidebar.setPreferredSize(new Dimension(150, 0));
 
         // Creates a cardLayout and cardPanel allowing me to switch panels
         cardLayout = new CardLayout();
@@ -69,6 +69,7 @@ public class CatalogViewer {
 
         // add item button
         JButton addItemButton = new JButton("Add New Item");
+        addItemButton.setPreferredSize(new Dimension(150, 30));
         addItemButton.addActionListener(e -> {
             addItem();
         });
@@ -93,18 +94,21 @@ public class CatalogViewer {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
-        buttonPanel.add(openCatalogButton);
+        // Add buttons to sidebar
         sidebar.add(loginButton);
         sidebar.add(addItemButton);
         sidebar.add(backButton);
-        buttonPanel.add(exitButton);
+        sidebar.add(exitButton);
+        sidebar.add(openCatalogButton);
 
         // add the mainMenu panel to the cardPanels
         cardPanel.add(buttonPanel, "mainMenu");
 
-        // add the sidebar and catalog panel to the mainmenupanel
+        // add the sidebar and catalog panel to the Main panel
         mainMenuPanel.add(cardPanel, BorderLayout.CENTER);
         mainMenuPanel.add(sidebar, BorderLayout.WEST);
+
+        startGUI(clothingItemList);
 
         frame.getContentPane().add(mainMenuPanel);
         frame.setVisible(true);
