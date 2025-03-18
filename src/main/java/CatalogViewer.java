@@ -23,6 +23,8 @@ public class CatalogViewer {
     private List<ClothingItem> clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
     private JFrame frame;
     private JPanel imagePanel;
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
     private Set<String> selectedColors = new HashSet<>();
     private Set<String> selectedCategories = new HashSet<>();
     private Set<String> selectedMaterials = new HashSet<>();
@@ -38,17 +40,29 @@ public class CatalogViewer {
     public CatalogViewer(List<ClothingItem> clothingItemList) throws IOException {
         this.clothingItemList = clothingItemList;
     }
+
     // main menu
     public void startMainMenu() {
         // Create a main menu panel
-        frame.getContentPane().removeAll();
         JPanel mainMenuPanel = new JPanel();
         mainMenuPanel.setLayout(new BorderLayout());
 
+        // Create Sidebar
+        JPanel sidebar = new JPanel();
+        sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
+        sidebar.setBackground(Color.WHITE);
+        sidebar.setPreferredSize(new Dimension(150, frame.getHeight()));
+
+        // Creates a cardLayout and cardPanel allowing me to switch panels
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+        frame.getContentPane().add(cardPanel);
+
         // Label for title
-        JLabel titleLabel = new JLabel("CLTG.", JLabel.CENTER);
+        JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
         mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
+
         //Menu is a simple button panel for now
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
@@ -56,21 +70,22 @@ public class CatalogViewer {
         // add item button
         JButton addItemButton = new JButton("Add New Item");
         addItemButton.addActionListener(e -> {
-            frame.getContentPane().removeAll();
             addItem();
         });
 
         // login button
         JButton loginButton = new JButton("login");
         loginButton.addActionListener(e -> {
-            frame.getContentPane().removeAll();
             login();
         });
-        
+
+        // add back button
+        JButton backButton = new JButton("Back to Main Menu");
+        backButton.addActionListener(e -> cardLayout.show(cardPanel, "mainMenu")); // Back Button
+
         //display catalog button
         JButton openCatalogButton = new JButton("View Catalogue");
         openCatalogButton.addActionListener(e -> {
-            frame.getContentPane().removeAll();
             startGUI(clothingItemList);
         });
 
@@ -79,21 +94,57 @@ public class CatalogViewer {
         exitButton.addActionListener(e -> System.exit(0));
 
         buttonPanel.add(openCatalogButton);
-        buttonPanel.add(loginButton);
-        buttonPanel.add(addItemButton);
+        sidebar.add(loginButton);
+        sidebar.add(addItemButton);
+        sidebar.add(backButton);
         buttonPanel.add(exitButton);
 
-        // add the button panel to the main menu
-        mainMenuPanel.add(buttonPanel, BorderLayout.CENTER);
+        // add the mainMenu panel to the cardPanels
+        cardPanel.add(buttonPanel, "mainMenu");
+
+        // add the sidebar and catalog panel to the mainmenupanel
+        mainMenuPanel.add(cardPanel, BorderLayout.CENTER);
+        mainMenuPanel.add(sidebar, BorderLayout.WEST);
+
         frame.getContentPane().add(mainMenuPanel);
         frame.setVisible(true);
+
+
+    }
+
+    // method to display the catalog in the same window
+    public void startGUI(List<ClothingItem> clothingItemList) {
+        JPanel catalogPanel = new JPanel();
+        catalogPanel.setLayout(new BorderLayout());
+
+        JPanel filterPanel = createFilterPanel();
+        catalogPanel.add(filterPanel, BorderLayout.NORTH);
+
+        imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
+        updateImagePanel(clothingItemList);
+        JScrollPane scrollPane = new JScrollPane(imagePanel);
+        catalogPanel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel bottomPanel = new JPanel(new FlowLayout());
+
+        JButton deleteButton = new JButton("Delete Item by ID");
+        deleteButton.addActionListener(e -> deleteItemById());
+
+        bottomPanel.add(deleteButton);
+
+        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
+        cardPanel.add(catalogPanel, "catalogPanel");
+        cardLayout.show(cardPanel, "catalogPanel");
+
+        frame.revalidate();
+        frame.repaint();
     }
 
     //Login screen
     public void login() {
         // Login window
         JFrame frame = new JFrame("Login System");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300,200);
         frame.setLayout(new GridLayout(3, 2, 10, 10));
 
@@ -207,7 +258,6 @@ public class CatalogViewer {
     }
     //Add item screen
     public void addItem() {
-        frame.getContentPane().removeAll();
         JPanel addPanel = new JPanel(new GridLayout(10, 2));
 
         JTextField name = new JTextField(20);
@@ -240,6 +290,7 @@ public class CatalogViewer {
                 imagePathLabel.setText(selectedFile[0].getName());
             }
         });
+
         //Add button converts all entries into strings (double for price), and adds it to clothingitem list
         JButton addButton = new JButton("Add Item");
         addButton.addActionListener(e -> {
@@ -279,6 +330,7 @@ public class CatalogViewer {
             //display new catalog with added item
             startGUI(clothingItemList);
         });
+
         addPanel.add(new JLabel("Name:"));
         addPanel.add(name);
         addPanel.add(new JLabel("Brand:"));
@@ -298,11 +350,14 @@ public class CatalogViewer {
         addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
         addPanel.add(addButton);
 
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(addPanel);
+
+        cardPanel.add(addPanel, "addPanel");
+        cardLayout.show(cardPanel, "addPanel");
+
         frame.revalidate();
         frame.repaint();
     }
+
     //Delete item
     private void deleteItemById() {
         String inputId = JOptionPane.showInputDialog(frame,
@@ -345,38 +400,6 @@ public class CatalogViewer {
         return null; // Return null if not found
     }
 
-    // method to display the catalog in the same window
-    public void startGUI(List<ClothingItem> clothingItemList) {
-        frame.getContentPane().removeAll();
-        JPanel catalogPanel = new JPanel();
-        catalogPanel.setLayout(new BorderLayout());
-
-        JPanel filterPanel = createFilterPanel();
-        catalogPanel.add(filterPanel, BorderLayout.NORTH);
-
-        imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
-        updateImagePanel(clothingItemList);
-        JScrollPane scrollPane = new JScrollPane(imagePanel);
-        catalogPanel.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel bottomPanel = new JPanel(new FlowLayout());
-
-        JButton deleteButton = new JButton("Delete Item by ID");
-        deleteButton.addActionListener(e -> deleteItemById());
-
-        JButton backButton = new JButton("Back to Main Menu");
-        backButton.addActionListener(e -> startMainMenu()); // Back Button
-
-        bottomPanel.add(deleteButton);
-        bottomPanel.add(backButton); // Added Back Button
-
-        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(catalogPanel);
-        frame.revalidate();
-        frame.repaint();
-    }
 
     //add every filter button to panel
     private JPanel createFilterPanel() {
