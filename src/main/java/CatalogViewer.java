@@ -34,17 +34,13 @@ public class CatalogViewer {
     private Set<String> selectedFits = new HashSet<>();
 
     public CatalogViewer() throws IOException {
-<<<<<<< HEAD
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        frame = new JFrame("CTLG");
-=======
         frame = new JFrame("CTLG.");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
->>>>>>> Russell-UI
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(screenSize.width, screenSize.height); // Set size of application to size of screen
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Automaticaly maximize screen
@@ -72,11 +68,7 @@ public class CatalogViewer {
 
         // Label for title
         JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
-<<<<<<< HEAD
         titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
-=======
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
->>>>>>> Russell-UI
         mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
 
         //Menu is a simple button panel for now
@@ -109,16 +101,10 @@ public class CatalogViewer {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
-<<<<<<< HEAD
         buttonPanel.add(openCatalogButton);
         sidebar.add(loginButton);
         sidebar.add(addItemButton);
         sidebar.add(backButton);
-=======
-        // buttonPanel.add(openCatalogButton);
-        buttonPanel.add(loginButton);
-        // buttonPanel.add(addItemButton);
->>>>>>> Russell-UI
         buttonPanel.add(exitButton);
 
         // add the mainMenu panel to the cardPanels
@@ -165,19 +151,10 @@ public class CatalogViewer {
     // Login screen
     public void login() {
         // Login window
-<<<<<<< HEAD
         JFrame frame = new JFrame("Login System");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300,200);
         frame.setLayout(new GridLayout(3, 2, 10, 10));
-=======
-        JFrame frame = new JFrame("Login");
-        frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        frame.setSize(400,300);
-        frame.setLayout(new GridLayout(4, 3, 10, 10));
-        frame.setResizable(false);
->>>>>>> Russell-UI
 
         // GUI Components
         JLabel userLabel = new JLabel("Username:");
@@ -444,12 +421,6 @@ public class CatalogViewer {
             startGUI(clothingItemList);
         });
 
-<<<<<<< HEAD
-=======
-        JButton backButton = new JButton("Back to Main Menu");
-        backButton.addActionListener(e -> startMainMenu()); // Back Button
-
->>>>>>> Russell-UI
         addPanel.add(new JLabel("Name:"));
         addPanel.add(name);
         addPanel.add(new JLabel("Brand:"));
@@ -471,7 +442,6 @@ public class CatalogViewer {
 
         addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
         addPanel.add(addButton);
-        addPanel.add(backButton);
 
 
         cardPanel.add(addPanel, "addPanel");
@@ -525,43 +495,6 @@ public class CatalogViewer {
         }
         return null; // Return null if not found
     }
-
-<<<<<<< HEAD
-=======
-    // method to display the catalog in the same window
-    public void startGUI(List<ClothingItem> clothingItemList) {
-        frame.getContentPane().removeAll();
-        JPanel catalogPanel = new JPanel();
-        catalogPanel.setLayout(new BorderLayout());
-
-        JPanel filterPanel = createFilterPanel();
-        catalogPanel.add(filterPanel, BorderLayout.NORTH);
-
-        imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
-        updateImagePanel(clothingItemList);
-        JScrollPane scrollPane = new JScrollPane(imagePanel);
-        catalogPanel.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel bottomPanel = new JPanel(new FlowLayout());
-
-        JButton deleteButton = new JButton("Delete Item by ID");
-        deleteButton.addActionListener(e -> deleteItemById());
-
-        JButton backButton = new JButton("Back to Main Menu");
-        backButton.addActionListener(e -> startMainMenu()); // Back Button
-
-        bottomPanel.add(deleteButton);
-        bottomPanel.add(backButton);
-
-        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
-
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(catalogPanel);
-        frame.revalidate();
-        frame.repaint();
-    }
->>>>>>> Russell-UI
-
     //add every filter button to panel
     private JPanel createFilterPanel() {
         JPanel filterPanel = new JPanel(new GridLayout(5, 1));
