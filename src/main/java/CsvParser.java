@@ -36,4 +36,25 @@ public class CsvParser {
         return clothingItems;
     }
 
+    // Parse through the account database (accounts.csv)
+    public List<Account> parseAccount(String file) throws IOException {
+        List<Account> accountList = new ArrayList<>();
+        BufferedReader accReader = new BufferedReader(new FileReader(file));
+        String line;
+
+        accReader.readLine();
+
+        while((line = accReader.readLine()) != null){
+            String[] accounts = line.split(",");
+            String username = accounts[0];
+            String password = accounts[1];
+
+            Account account = new Account(username, password);
+            accountList.add(account);
+        }
+
+        accReader.close();
+
+        return accountList;
+    }
 }

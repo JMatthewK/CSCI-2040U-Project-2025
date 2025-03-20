@@ -17,9 +17,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import com.opencsv.CSVWriter;
 
 public class CatalogViewer {
-    //parse csv at beginning instead of parsing it multiple times (takes longer to load)
+    // Parse the CSV file at beginning as opposed to parsing it multiple times (for quicker load times)
     CsvParser csvParser = new CsvParser();
     private List<ClothingItem> clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
     private JFrame frame;
@@ -33,15 +34,20 @@ public class CatalogViewer {
     private Set<String> selectedFits = new HashSet<>();
 
     public CatalogViewer() throws IOException {
+<<<<<<< HEAD
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
         frame = new JFrame("CTLG");
+=======
+        frame = new JFrame("CTLG.");
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+>>>>>>> Russell-UI
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);
+        frame.setSize(screenSize.width, screenSize.height); // Set size of application to size of screen
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Automaticaly maximize screen
     }
     public CatalogViewer(List<ClothingItem> clothingItemList) throws IOException {
         this.clothingItemList = clothingItemList;
@@ -66,7 +72,11 @@ public class CatalogViewer {
 
         // Label for title
         JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
+<<<<<<< HEAD
         titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
+=======
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+>>>>>>> Russell-UI
         mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
 
         //Menu is a simple button panel for now
@@ -80,7 +90,7 @@ public class CatalogViewer {
         });
 
         // login button
-        JButton loginButton = new JButton("login");
+        JButton loginButton = new JButton("Login");
         loginButton.addActionListener(e -> {
             login();
         });
@@ -99,10 +109,16 @@ public class CatalogViewer {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
+<<<<<<< HEAD
         buttonPanel.add(openCatalogButton);
         sidebar.add(loginButton);
         sidebar.add(addItemButton);
         sidebar.add(backButton);
+=======
+        // buttonPanel.add(openCatalogButton);
+        buttonPanel.add(loginButton);
+        // buttonPanel.add(addItemButton);
+>>>>>>> Russell-UI
         buttonPanel.add(exitButton);
 
         // add the mainMenu panel to the cardPanels
@@ -146,34 +162,42 @@ public class CatalogViewer {
         frame.repaint();
     }
 
-    //Login screen
+    // Login screen
     public void login() {
         // Login window
+<<<<<<< HEAD
         JFrame frame = new JFrame("Login System");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300,200);
         frame.setLayout(new GridLayout(3, 2, 10, 10));
+=======
+        JFrame frame = new JFrame("Login");
+        frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setSize(400,300);
+        frame.setLayout(new GridLayout(4, 3, 10, 10));
+        frame.setResizable(false);
+>>>>>>> Russell-UI
 
         // GUI Components
         JLabel userLabel = new JLabel("Username:");
         JTextField userField = new JTextField(15);
+        Rectangle r = new Rectangle(75,50);
+        userField.setBounds(r);
 
         JLabel passLabel = new JLabel("Password:");
         JPasswordField passField = new JPasswordField(15);
+        passField.setBounds(r);
 
         JButton loginButton = new JButton("Login");
         JLabel resultLabel = new JLabel("");
+        JButton registerButton = new JButton("Register Account");
+        registerButton.addActionListener(e -> {
+            frame.dispose();
+            register();
+        });
 
-        // User creds (hashed)
-        String adminUsername = "admin";
-        String adminPassword = hashPassword("adminpass");
-        System.out.println(adminPassword);
-
-        String userUsername = "user";
-        String userPassword = hashPassword("userpass");
-        System.out.println(userPassword);
-
-        // Button repsonse and override for action of button
+        // Button response and override for action of button
         loginButton.addActionListener(new ActionListener() {
             // User input
             @Override
@@ -182,24 +206,31 @@ public class CatalogViewer {
                 String password = new String(passField.getPassword());
                 String input = hashPassword(password);
 
-                // Comparing creds
-                if (username.equals(adminUsername) && input.equals(adminPassword)) {
-                    resultLabel.setText("Admin access granted!");
-                    resultLabel.setForeground(Color.BLUE);
-                    frame.setVisible(false);
-                    frame.dispose();
-                    startGUI(clothingItemList);
-                    // openAdminCatalog();
-                } else if (username.equals(userUsername) && input.equals(userPassword)) {
-                    resultLabel.setText("User access granted!");
-                    resultLabel.setForeground(Color.GREEN);
-                    frame.setVisible(false);
-                    frame.dispose();
-                    startGUI(clothingItemList);
-                    // openUserCatalog();
-                } else {
-                    resultLabel.setText("Invalid credentials.");
-                    resultLabel.setForeground(Color.RED);
+                List<Account> accounts = null;
+                
+                try {
+                    accounts = csvParser.parseAccount("data/accounts.csv");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                for(int i = 0; i <= accounts.size(); i++) {
+                    if (username.equals(accounts.get(i).getUsername()) && input.equals(hashPassword(accounts.get(i).getPassword()))) {
+                        resultLabel.setText("Access granted!");
+                        resultLabel.setForeground(Color.BLUE);
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                        frame.setVisible(false);
+                        frame.dispose();
+                        startGUI(clothingItemList);
+                    }
+                    else {
+                        resultLabel.setText("Invalid credentials.");
+                        resultLabel.setForeground(Color.RED);
+                    }
                 }
             }
         });
@@ -211,8 +242,80 @@ public class CatalogViewer {
         frame.add(passField);
         frame.add(loginButton);
         frame.add(resultLabel);
-
+        frame.add(registerButton);
         frame.setVisible(true);
+
+    }
+
+    // Register a new account (new account gets added to a CSV account database)
+    public void register() {
+        JFrame frame = new JFrame("Register Account");
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
+        frame.setSize(400,300);
+        frame.setLayout(new GridLayout(4, 3, 10, 10));
+        frame.setResizable(false);
+
+        // GUI Components
+        JLabel newUserLabel = new JLabel("Username:");
+        JTextField newUserField = new JTextField(15);
+        Rectangle r = new Rectangle(75,50);
+        newUserField.setBounds(r);
+
+        JLabel newPassLabel = new JLabel("Password:");
+        JPasswordField newPassField = new JPasswordField(15);
+        newPassField.setBounds(r);
+
+        JButton registerButton = new JButton("Register Account");
+        JLabel resultLabel = new JLabel("");
+
+        frame.add(newUserLabel);
+        frame.add(newUserField);
+        frame.add(newPassLabel);
+        frame.add(newPassField);
+        frame.add(registerButton);
+        frame.add(resultLabel);
+        frame.setVisible(true);
+
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = newUserField.getText();
+                String password = new String(newPassField.getPassword());
+                
+                CSVWriter writer = null;
+                try {
+                     writer = new CSVWriter(new FileWriter("data/accounts.csv", true),
+                                                                        CSVWriter.DEFAULT_SEPARATOR,
+                                                                        CSVWriter.NO_QUOTE_CHARACTER,
+                                                                        CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                                                                        CSVWriter.DEFAULT_LINE_END);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                String[] accString = {username,password};
+                writer.writeNext(accString);
+
+                try {
+                    writer.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                resultLabel.setText("Account created successfully!");
+                resultLabel.setForeground(Color.GREEN);
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+
+                frame.setVisible(false);
+                frame.dispose();
+                login();
+            }
+        });
 
     }
 
@@ -241,7 +344,7 @@ public class CatalogViewer {
         }
     }
 
-    // TODO: add catalogs for user and admin to seperately login to
+    // TODO: Add catalogs for users vs. admins
 
     private static void openAdminCatalog() {
         JOptionPane.showMessageDialog(null, "Welcome, Admin! You have full access.");
@@ -341,6 +444,12 @@ public class CatalogViewer {
             startGUI(clothingItemList);
         });
 
+<<<<<<< HEAD
+=======
+        JButton backButton = new JButton("Back to Main Menu");
+        backButton.addActionListener(e -> startMainMenu()); // Back Button
+
+>>>>>>> Russell-UI
         addPanel.add(new JLabel("Name:"));
         addPanel.add(name);
         addPanel.add(new JLabel("Brand:"));
@@ -362,6 +471,7 @@ public class CatalogViewer {
 
         addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
         addPanel.add(addButton);
+        addPanel.add(backButton);
 
 
         cardPanel.add(addPanel, "addPanel");
@@ -416,6 +526,41 @@ public class CatalogViewer {
         return null; // Return null if not found
     }
 
+<<<<<<< HEAD
+=======
+    // method to display the catalog in the same window
+    public void startGUI(List<ClothingItem> clothingItemList) {
+        frame.getContentPane().removeAll();
+        JPanel catalogPanel = new JPanel();
+        catalogPanel.setLayout(new BorderLayout());
+
+        JPanel filterPanel = createFilterPanel();
+        catalogPanel.add(filterPanel, BorderLayout.NORTH);
+
+        imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
+        updateImagePanel(clothingItemList);
+        JScrollPane scrollPane = new JScrollPane(imagePanel);
+        catalogPanel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel bottomPanel = new JPanel(new FlowLayout());
+
+        JButton deleteButton = new JButton("Delete Item by ID");
+        deleteButton.addActionListener(e -> deleteItemById());
+
+        JButton backButton = new JButton("Back to Main Menu");
+        backButton.addActionListener(e -> startMainMenu()); // Back Button
+
+        bottomPanel.add(deleteButton);
+        bottomPanel.add(backButton);
+
+        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(catalogPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
+>>>>>>> Russell-UI
 
     //add every filter button to panel
     private JPanel createFilterPanel() {
@@ -425,7 +570,7 @@ public class CatalogViewer {
         JPanel colorPanel = createFilterButtons("Color", colors);
         filterPanel.add(colorPanel);
 
-        String[] categories = {"Shirts", "Shorts", "Pants", "Sweaters"};
+        String[] categories = {"Shirts", "Shorts", "Pants", "Sweaters", "Skirts"};
         JPanel categoryPanel = createFilterButtons("Category", categories);
         filterPanel.add(categoryPanel);
 
@@ -580,11 +725,12 @@ public class CatalogViewer {
     private void showItemDetails(ClothingItem item) {
         //create new box to show information
         JDialog dialog = new JDialog(frame, "Item Details", true);
-        dialog.setSize(400, 300);
+        dialog.setSize(350, 325);
         dialog.setLocationRelativeTo(frame);
 
         //show most details can add more if want
         JPanel detailsPanel = new JPanel(new GridLayout(0, 1));
+        detailsPanel.add(new JLabel("ID: " + item.getId()));
         detailsPanel.add(new JLabel("Name: " + item.getName()));
         detailsPanel.add(new JLabel("ID: " + item.getId()));
         detailsPanel.add(new JLabel("Brand: " + item.getBrand()));
