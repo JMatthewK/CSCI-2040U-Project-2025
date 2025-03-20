@@ -32,6 +32,7 @@ public class CatalogViewer {
     private Set<String> selectedMaterials = new HashSet<>();
     private Set<String> selectedStyles = new HashSet<>();
     private Set<String> selectedFits = new HashSet<>();
+    private JPanel sidebar;
 
     public CatalogViewer() throws IOException {
         try {
@@ -56,7 +57,7 @@ public class CatalogViewer {
         mainMenuPanel.setLayout(new BorderLayout());
 
         // Create Sidebar
-        JPanel sidebar = new JPanel();
+        sidebar = new JPanel();
         sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
         sidebar.setBackground(Color.WHITE);
         sidebar.setPreferredSize(new Dimension(150, frame.getHeight()));
@@ -125,8 +126,32 @@ public class CatalogViewer {
         JPanel catalogPanel = new JPanel();
         catalogPanel.setLayout(new BorderLayout());
 
-        JPanel filterPanel = createFilterPanel();
-        catalogPanel.add(filterPanel, BorderLayout.NORTH);
+        JPanel searchPanel = new JPanel(new FlowLayout());
+        JTextField searchField = new JTextField(20);
+        JButton searchButton = new JButton("Search");
+
+        searchButton.addActionListener(e -> {
+            String query = searchField.getText().toLowerCase();
+            List<ClothingItem> filteredList = new ArrayList<>();
+            for (ClothingItem item : clothingItemList) {
+                if (item.getName().toLowerCase().contains(query) ||
+                        item.getBrand().toLowerCase().contains(query) ||
+                        item.getCategory().toLowerCase().contains(query)) {
+                    filteredList.add(item);
+                }
+            }
+            updateImagePanel(filteredList);
+        });
+
+        searchPanel.add(new JLabel("Search: "));
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+        catalogPanel.add(searchPanel, BorderLayout.NORTH);
+
+        if (sidebar != null) {
+            sidebar.add(new JLabel("Filters:"));
+            sidebar.add(createFilterPanel());
+        }
 
         imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
         updateImagePanel(clothingItemList);
@@ -134,7 +159,6 @@ public class CatalogViewer {
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel(new FlowLayout());
-
         JButton deleteButton = new JButton("Delete Item by ID");
         deleteButton.addActionListener(e -> deleteItemById());
 
