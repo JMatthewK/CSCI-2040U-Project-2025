@@ -5,7 +5,7 @@
 ### Team Members:
 Matthew Kassapian, Russell Manalo, Adrian Fudge, Mavrick Egan, Isabella Smith
 
-**Summary**: “CTLG.” is a clothing catalog application with access to a database of clothing from different brands. A user will be able to add or delete items from the catalogue, search for items, and apply various filters. This functionality ensures a tailored and efficient shopping experience, helping users discover clothing that matches their preferences and needs
+**Summary**: “CTLG.” is a clothing catalogue application with access to a database of clothing from different brands. A user will be able to add or delete items from the catalogue, search for items, and apply various filters. This functionality ensures a tailored and efficient shopping experience, helping users discover clothing that matches their preferences and needs
 
 Fashion and clothing has a big presence in culture, social media and in the market meaning that it will possess a large amount of users. Some key characteristics of our domain include:
 1. Brands: A curated selection of both well-known and emerging clothing brands.
@@ -24,16 +24,16 @@ Fashion and clothing has a big presence in culture, social media and in the mark
 
 ### Team Agreements and Elicitation Documents
 **Project Roles:**
-Project Manager: Isabella Smith
-Technical Manager: Adrian Fudge
-Front-End Lead: Matthew Kassapian
-Back-End Lead: Mavrick Egan
-Software Quality: Russell Manalo
-Developers: All
+- Project Manager: Isabella Smith
+- Technical Manager: Adrian Fudge
+- Front-End Lead: Matthew Kassapian
+- Back-End Lead: Mavrick Egan
+- Software Quality: Russell Manalo
+- Developers: All
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 To get the source code, run the following command:
 
@@ -41,21 +41,27 @@ To get the source code, run the following command:
 git clone https://github.com/JMatthewK/CSCI-2040U-Project-2025
 cd https://github.com/JMatthewK/CSCI-2040U-Project-2025
 ```
-### 2.Compile and run
+### 2. Compile and run
+
+Compile the program:
+
 ```bash
 Javac CatalogApp.java
 ```
-Run the program
+
+Finally, run the program:
+
 ```bash
 java CatalogApp
 ```
+
 ### 3. Usage
-Once launched the ui will display available clothing items,
-#### Add an item
-CLick on the add item button
-fill out details
-upload an image
-click submit to add the tiem
-#### filter items
-use the buttons to filter items by category 
-the display will update based on selection
+
+Once the program launches, the UI will display:
+
+#### Features
+
+- View the full catalogue
+- Add, delete and edit clothing items from the catalogue
+- Filter items by various tags, and a search bar to find items by their name
+- Make an account and save your favourite items
