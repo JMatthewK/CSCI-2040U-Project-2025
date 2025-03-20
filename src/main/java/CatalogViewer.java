@@ -681,7 +681,7 @@ public class CatalogViewer {
     //shows the information about the image they clicked on
     private void showItemDetails(ClothingItem item) {
         //create new box to show information
-        JDialog dialog = new JDialog(frame, "Item Details", true);
+        JDialog dialog = new JDialog(frame, "Item Details");
         dialog.setSize(350, 325);
         dialog.setLocationRelativeTo(frame);
 
@@ -697,6 +697,17 @@ public class CatalogViewer {
         dialog.add(detailsPanel);
         //create button to allow user to edit
         JButton editButton = new JButton("Edit");
+        //favourite button
+        JButton addfavouriteButton = new JButton("Add to Favourite");
+
+        addfavouriteButton.addActionListener(new ActionListener() {
+            //call favourite function
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addfavourite();
+            }
+        });
+
         editButton.addActionListener(new ActionListener() {
             //call the edit function and send the current item
             @Override
@@ -708,11 +719,22 @@ public class CatalogViewer {
 
         // add to bottom
         JPanel buttonPanel = new JPanel();
+
         buttonPanel.add(editButton);
+        buttonPanel.add(addfavouriteButton);
         dialog.add(buttonPanel, BorderLayout.SOUTH);
         dialog.setVisible(true);
     }
 
+    public void addfavourite() {
+        JDialog dialog = new JDialog(frame, "Favourite popup");
+        JLabel l = new JLabel("Current function doesn't work");
+        dialog.add(l);
+        dialog.setSize(200, 100);
+        dialog.setLocationRelativeTo(frame);
+        dialog.setVisible(true);
+        return;
+    }
     //when clicked, creates a prompt that allows user to edit current item
     private void editSelectedItem(ClothingItem selectedItem) {
         JDialog editDialog = new JDialog(frame, "Edit Clothing Item", true);
