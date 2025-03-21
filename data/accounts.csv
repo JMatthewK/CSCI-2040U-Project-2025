@@ -1,0 +1,5 @@
+Username,Password, isAdmin
+user,userpass,false
+admin,adminpass,true
+newaccount,password123,false
+newaccount2,new,false
