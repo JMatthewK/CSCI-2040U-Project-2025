@@ -48,8 +48,13 @@ public class CsvParser {
             String[] accounts = line.split(",");
             String username = accounts[0];
             String password = accounts[1];
+            String adminStatus = accounts[2];
+            boolean isAdmin = false;
+            if(adminStatus.equals("true")){
+                isAdmin = true;
+            }
 
-            Account account = new Account(username, password);
+            Account account = new Account(username, password, isAdmin);
             accountList.add(account);
         }
 
