@@ -29,7 +29,7 @@ public class CatalogViewer {
     private CardLayout sideCardLayout;
     private JPanel mainCardPanel;
     private JPanel sideCardPanel;
-    private static JPanel homePagePanel;
+    private JPanel homePagePanel;
 
     // Define buttons used in the class
     private JButton loginButton;
@@ -79,7 +79,7 @@ public class CatalogViewer {
     public void startMainMenu() {
         // Create a main menu panel
         JPanel mainPanel = new JPanel(new BorderLayout());
-
+        homePagePanel = new JPanel();
         JPanel mainMenuPanel = new JPanel(new BorderLayout());
 
         // Create Sidebar panel
@@ -120,14 +120,14 @@ public class CatalogViewer {
         // add homePage button
         JButton homepageButton = new JButton("HomePage");
         homepageButton.addActionListener(e -> {
-            mainCardLayout.show(mainCardPanel, "mainMenu");
+            mainCardLayout.show(mainCardPanel, "homepage");
             sideCardLayout.show(sideCardPanel, "sidebar");
         });
 
         // add homePage2 button for the other sidebar
         JButton homepageButton2 = new JButton("HomePage");
         homepageButton2.addActionListener(e -> {
-            mainCardLayout.show(mainCardPanel, "mainMenu");
+            mainCardLayout.show(mainCardPanel, "homepage");
             sideCardLayout.show(sideCardPanel, "sidebar");
         });
 
@@ -149,11 +149,11 @@ public class CatalogViewer {
         // add the buttons to the sidebar
         sidebar.add(homepageButton);
 
-        // add the mainMenu panel to the mainCardPanels
-        mainCardPanel.add(homePagePanel, "mainMenu");
+        // add the homepage panel to the mainCardPanels
+        mainCardPanel.add(homePagePanel, "homepage");
 
         // add the sidebar and catalog panel to the mainmenupanel
-        mainCardPanel.add(mainMenuPanel, BorderLayout.CENTER);
+        mainCardPanel.add(mainMenuPanel, "mainMenu");
         sideCardPanel.add(sidebar, "sidebar");
 
         mainPanel.add(sideCardPanel, BorderLayout.WEST);
@@ -179,6 +179,9 @@ public class CatalogViewer {
         // Show the main sidebar at first
         sideCardLayout.show(sideCardPanel, "sidebar");
 
+        // Show homepage first
+        mainCardLayout.show(mainCardPanel, "homepage");
+
         // Add the mainPanel to the frame
         frame.getContentPane().add(mainPanel);
 
@@ -190,7 +193,10 @@ public class CatalogViewer {
 
     public void updateUI(){
         if(isLoggedIn){
-
+            homePagePanel.remove(loginButton);
+            homePagePanel.revalidate();
+            homePagePanel.repaint();
+            System.out.println("LOGIN DONE");
         }
         if(isAdmin){
 
@@ -313,9 +319,9 @@ public class CatalogViewer {
                         resultLabel.setText("Invalid credentials.");
                         resultLabel.setForeground(Color.RED);
                     }
-                    // Run update UI to check for changes
-                    updateUI();
                 }
+                // Run update UI to check for changes
+                updateUI();
             }
         });
 
