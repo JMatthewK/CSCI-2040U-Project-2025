@@ -1,5 +1,5 @@
-Username,Password
-user,userpass
-admin,adminpass
-newaccount,password123
-newaccount2,new
+Username,Password, isAdmin
+user,userpass,false
+admin,adminpass,true
+newaccount,password123,false
+newaccount2,new,false
