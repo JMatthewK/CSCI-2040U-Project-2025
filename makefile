@@ -36,3 +36,7 @@ run: all
 # Clean compiled files
 clean:
 	rm -rf $(OUT_DIR)/*.class
+#TO RUN PROJECT ENTER THE FOLLOWING COMMANDS
+#make clean
+#make
+#make run
