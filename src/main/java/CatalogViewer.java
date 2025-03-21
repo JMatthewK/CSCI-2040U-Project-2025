@@ -517,7 +517,7 @@ public class CatalogViewer {
             //save image to data/img
             clothingItemList.add(clothing);
             //call to write new csv
-            writecsv(clothingItemList);
+            writecsv(clothingItemList,"data/CatalogData.csv");
             int newId = clothingItemList.size();
             String imagePath = "data/img/" + newId + ".png";
             //save image immediately (initially would save after closing application)
@@ -588,7 +588,7 @@ public class CatalogViewer {
                     if (imageFile.exists()) {
                         imageFile.delete();
                     }
-                    writecsv(clothingItemList);
+                    writecsv(clothingItemList,"data/CatalogData.csv");
 
 
                     updateImagePanel(clothingItemList); // Refresh the UI
@@ -928,7 +928,7 @@ public class CatalogViewer {
                     }}
 
                 //rewrite csv with changes
-                writecsv(clothingItemList);
+                writecsv(clothingItemList,"data/CatalogData.csv");
                 //close dialog
                 editDialog.dispose();
             }
@@ -941,8 +941,7 @@ public class CatalogViewer {
     }
 
 //given a list of clothing items rewrite the csv at data/CatalogData.csv
-    private void writecsv(List<ClothingItem> items) {
-        String filePath = "data/CatalogData.csv";
+    public void writecsv(List<ClothingItem> items,String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
             // header
             writer.write("ID,Product Name,Brand,Color,Category,Price (CAD),Material,Style,Fit,Link\n");
