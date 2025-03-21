@@ -233,11 +233,6 @@ public class CatalogViewer {
         searchPanel.add(searchButton);
         catalogPanel.add(searchPanel, BorderLayout.NORTH);
 
-        if (sidebar != null) {
-            sidebar.add(new JLabel("Filters:"));
-            sidebar.add(createFilterPanel());
-        }
-
         imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
         updateImagePanel(clothingItemList);
         JScrollPane scrollPane = new JScrollPane(imagePanel);
