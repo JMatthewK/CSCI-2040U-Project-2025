@@ -1,8 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.Flow;
+
 import com.opencsv.CSVWriter;
 
 public class CatalogViewer {
@@ -29,7 +33,7 @@ public class CatalogViewer {
     private CardLayout sideCardLayout;
     private JPanel mainCardPanel;
     private JPanel sideCardPanel;
-    private JPanel homePagePanel;
+    private JPanel mainMenu;
 
     // Define buttons used in the class
     private JButton loginButton;
@@ -40,7 +44,6 @@ public class CatalogViewer {
     private Set<String> selectedMaterials = new HashSet<>();
     private Set<String> selectedStyles = new HashSet<>();
     private Set<String> selectedFits = new HashSet<>();
-    private JPanel sidebar;
 
     // Variable to track login details
     private boolean isLoggedIn = false;
@@ -76,14 +79,16 @@ public class CatalogViewer {
     }
 
     // main menu
-    public void startMainMenu() {
+    public void startMainMenu() throws IOException {
         // Create a main menu panel
         JPanel mainPanel = new JPanel(new BorderLayout());
-        homePagePanel = new JPanel();
-        JPanel mainMenuPanel = new JPanel(new BorderLayout());
+        JPanel homePage = new JPanel(new BorderLayout());
+
+        // Create mainMenu that displays "view catalog" "login" "exit"
+        mainMenu = new JPanel();
 
         // Create Sidebar panel
-        sidebar = new JPanel();
+        JPanel sidebar = new JPanel();
         sidebar.setLayout(new FlowLayout());
         sidebar.setBackground(Color.WHITE);
         sidebar.setPreferredSize(new Dimension(150, frame.getHeight()));
@@ -94,16 +99,35 @@ public class CatalogViewer {
 
         sideCardLayout = new CardLayout();
         sideCardPanel = new JPanel(sideCardLayout);
+        sideCardPanel.setPreferredSize(new Dimension(150, frame.getHeight()));
 
-
-        // Label for title
+        // Create title and logo panel and put it on header
+        JPanel titlePanel = new JPanel(new FlowLayout());
+        BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
+        Image scaledLogo = logoImage.getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        ImageIcon logoIcon = new ImageIcon(scaledLogo);
+        JLabel logoLabel = new JLabel(logoIcon);
         JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
-        mainMenuPanel.add(titleLabel, BorderLayout.NORTH);
+        // Add logo and title to the title panel
+        titlePanel.add(logoLabel);
+        titlePanel.add(titleLabel);
+
+        // Make header and navigation buttons
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        JPanel navigationPanel = new JPanel();
+        FlowLayout navigationLayout = new FlowLayout();
+        navigationPanel.setSize(150, headerPanel.getHeight());
+        navigationLayout.setHgap(10);
+        navigationPanel.setLayout(navigationLayout);
+
+        headerPanel.add(titlePanel, BorderLayout.WEST);
+        headerPanel.add(navigationPanel, BorderLayout.EAST);
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
 
         //Menu is a simple button panel for now
-        JPanel homePagePanel = new JPanel();
-        homePagePanel.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
+        JPanel mainMenu = new JPanel();
+        mainMenu.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
 
         // add item button
         JButton addItemButton = new JButton("Add New Item");
@@ -141,34 +165,35 @@ public class CatalogViewer {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
-        // Add the mainMenu buttons
-        homePagePanel.add(openCatalogButton);
-        homePagePanel.add(loginButton);
-        homePagePanel.add(exitButton);
-
-        // add the buttons to the sidebar
-        sidebar.add(homepageButton);
+        // Add navigation buttons
+        navigationPanel.add(openCatalogButton);
+        navigationPanel.add(loginButton);
+        navigationPanel.add(exitButton);
+        navigationPanel.add(homepageButton);
 
         // add the homepage panel to the mainCardPanels
-        mainCardPanel.add(homePagePanel, "homepage");
+        mainCardPanel.add(mainMenu, "homepage");
 
-        // add the sidebar and catalog panel to the mainmenupanel
-        mainCardPanel.add(mainMenuPanel, "mainMenu");
+        // add the sidebar and catalog panel to the homePage
+        mainCardPanel.add(homePage, "mainMenu");
         sideCardPanel.add(sidebar, "sidebar");
 
         mainPanel.add(sideCardPanel, BorderLayout.WEST);
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
 
 
+        // CREATE PANEL WHEN FILTERING IMAGES
         // Create filter panel
         JPanel sideFilterPanel = new JPanel();
         sideFilterPanel.setLayout(new BoxLayout(sideFilterPanel, BoxLayout.Y_AXIS));
+
         // Add the menu buttons to the filter panel at the top
         JPanel menuButtonPanel = new JPanel(new FlowLayout());
         menuButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         menuButtonPanel.add(addItemButton);
         menuButtonPanel.add(homepageButton2);
         sideFilterPanel.add(menuButtonPanel);
+
         // Add the actual filtering buttons
         sideFilterPanel.add(new JLabel("Filter"));
         sideFilterPanel.add(createFilterPanel());
@@ -176,6 +201,8 @@ public class CatalogViewer {
         // add the filter panel to the sidebar
         sideCardPanel.add(sideFilterPanel, "sideFilterPanel");
 
+
+        // The sidebar should first be the one for the mainmenu
         // Show the main sidebar at first
         sideCardLayout.show(sideCardPanel, "sidebar");
 
@@ -193,9 +220,9 @@ public class CatalogViewer {
 
     public void updateUI(){
         if(isLoggedIn){
-            homePagePanel.remove(loginButton);
-            homePagePanel.revalidate();
-            homePagePanel.repaint();
+            mainMenu.remove(loginButton);
+            mainMenu.revalidate();
+            mainMenu.repaint();
             System.out.println("LOGIN DONE");
         }
         if(isAdmin){
@@ -807,9 +834,9 @@ public class CatalogViewer {
 
 
         // add to bottom
-        homePagePanel = new JPanel();
-        homePagePanel.add(editButton);
-        dialog.add(homePagePanel, BorderLayout.SOUTH);
+        mainMenu = new JPanel();
+        mainMenu.add(editButton);
+        dialog.add(mainMenu, BorderLayout.SOUTH);
         JPanel buttonPanel = new JPanel();
 
         buttonPanel.add(editButton);
