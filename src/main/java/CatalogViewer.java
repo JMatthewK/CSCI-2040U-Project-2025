@@ -104,7 +104,7 @@ public class CatalogViewer {
         // Create title and logo panel and put it on header
         JPanel titlePanel = new JPanel(new FlowLayout());
         BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
-        Image scaledLogo = logoImage.getScaledInstance(24, 24, Image.SCALE_SMOOTH);
+        Image scaledLogo = logoImage.getScaledInstance(60, 24, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(scaledLogo);
         JLabel logoLabel = new JLabel(logoIcon);
         JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
