@@ -178,7 +178,6 @@ public class CatalogViewer {
         mainCardPanel.add(homePage, "mainMenu");
         sideCardPanel.add(sidebar, "sidebar");
 
-        mainPanel.add(sideCardPanel, BorderLayout.WEST);
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
 
 
@@ -234,6 +233,7 @@ public class CatalogViewer {
     public void startGUI(List<ClothingItem> clothingItemList) {
         JPanel catalogPanel = new JPanel();
         catalogPanel.setLayout(new BorderLayout());
+        catalogPanel.add(sideCardPanel, BorderLayout.WEST);
 
         // Show the filter buttons on the sidebar
         sideCardLayout.show(sideCardPanel, "sideFilterPanel");
