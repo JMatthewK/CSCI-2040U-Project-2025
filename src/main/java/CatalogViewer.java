@@ -104,14 +104,11 @@ public class CatalogViewer {
         // Create title and logo panel and put it on header
         JPanel titlePanel = new JPanel(new FlowLayout());
         BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
-        Image scaledLogo = logoImage.getScaledInstance(60, 24, Image.SCALE_SMOOTH);
+        Image scaledLogo = logoImage.getScaledInstance(70, 40, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(scaledLogo);
         JLabel logoLabel = new JLabel(logoIcon);
-        JLabel titleLabel = new JLabel("CTLG.", JLabel.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.ITALIC, 24));
         // Add logo and title to the title panel
         titlePanel.add(logoLabel);
-        titlePanel.add(titleLabel);
 
         // Make header and navigation buttons
         JPanel headerPanel = new JPanel(new BorderLayout());
@@ -165,11 +162,22 @@ public class CatalogViewer {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
+        // Favourites List
+        // Favourite Page Panel
+        JPanel favouritesPanel = new JPanel(new BorderLayout());
+        JLabel favouritesLabel = new JLabel("Favourites");
+        favouritesPanel.add(favouritesLabel);
+        mainCardPanel.add(favouritesPanel, "favouritesPanel");
+
+        JButton favouritesButton = new JButton("Favourites List");
+        favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favouritesPanel");});
+
         // Add navigation buttons
         navigationPanel.add(openCatalogButton);
+        navigationPanel.add(favouritesButton);
+        navigationPanel.add(homepageButton);
         navigationPanel.add(loginButton);
         navigationPanel.add(exitButton);
-        navigationPanel.add(homepageButton);
 
         // add the homepage panel to the mainCardPanels
         mainCardPanel.add(mainMenu, "homepage");
