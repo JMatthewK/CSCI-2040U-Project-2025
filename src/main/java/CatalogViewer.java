@@ -34,6 +34,8 @@ public class CatalogViewer {
     private JPanel mainCardPanel;
     private JPanel sideCardPanel;
     private JPanel mainMenu;
+    private JPanel catalogPanel = new JPanel(new BorderLayout());
+    private JPanel bottomPanel = new JPanel(new FlowLayout());
 
     // Define buttons used in the class
     private JButton loginButton;
@@ -126,11 +128,6 @@ public class CatalogViewer {
         JPanel mainMenu = new JPanel();
         mainMenu.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
 
-        // add item button
-        JButton addItemButton = new JButton("Add New Item");
-        addItemButton.addActionListener(e -> {
-            addItem();
-        });
 
         // login button
         loginButton = new JButton("Login");
@@ -188,6 +185,19 @@ public class CatalogViewer {
 
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
 
+        // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
+        JButton deleteButton = new JButton("Delete Item by ID");
+        deleteButton.addActionListener(e -> deleteItemById());
+
+        bottomPanel.add(deleteButton);
+
+        // add item button
+        JButton addItemButton = new JButton("Add New Item");
+        addItemButton.addActionListener(e -> {
+            addItem();
+        });
+        bottomPanel.add(addItemButton);
+
 
         // CREATE PANEL WHEN FILTERING IMAGES
         // Create filter panel
@@ -197,8 +207,6 @@ public class CatalogViewer {
         // Add the menu buttons to the filter panel at the top
         JPanel menuButtonPanel = new JPanel(new FlowLayout());
         menuButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-        menuButtonPanel.add(addItemButton);
-        menuButtonPanel.add(homepageButton2);
         sideFilterPanel.add(menuButtonPanel);
 
         // Add the actual filtering buttons
@@ -231,6 +239,10 @@ public class CatalogViewer {
             mainMenu.revalidate();
             mainMenu.repaint();
             System.out.println("LOGIN DONE");
+
+            catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
+            catalogPanel.revalidate();
+            catalogPanel.repaint();
         }
         if(isAdmin){
 
@@ -239,8 +251,6 @@ public class CatalogViewer {
 
     // method to display the catalog in the same window
     public void startGUI(List<ClothingItem> clothingItemList) {
-        JPanel catalogPanel = new JPanel();
-        catalogPanel.setLayout(new BorderLayout());
         catalogPanel.add(sideCardPanel, BorderLayout.WEST);
 
         // Show the filter buttons on the sidebar
@@ -273,13 +283,6 @@ public class CatalogViewer {
         JScrollPane scrollPane = new JScrollPane(imagePanel);
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
 
-        JPanel bottomPanel = new JPanel(new FlowLayout());
-        JButton deleteButton = new JButton("Delete Item by ID");
-        deleteButton.addActionListener(e -> deleteItemById());
-
-        bottomPanel.add(deleteButton);
-
-        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
         mainCardPanel.add(catalogPanel, "catalogPanel");
 
         // Run update UI to check for changes before showing frame
