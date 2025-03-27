@@ -32,9 +32,15 @@
             <artifactId>opencsv</artifactId>
             <version>4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
+            <!-- Compiler Plugin (already in your file) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -44,7 +50,30 @@
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- Shade Plugin to Package a Runnable JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>CatalogApp</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
 
 </project>
