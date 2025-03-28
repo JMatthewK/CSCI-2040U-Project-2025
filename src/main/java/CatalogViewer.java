@@ -39,9 +39,13 @@ public class CatalogViewer {
     private JPanel catalogPanel = new JPanel(new BorderLayout());
     private JPanel bottomPanel = new JPanel(new FlowLayout());
     private JPanel navigationPanel = new JPanel();
+    private JPanel mainMenuOptions = new JPanel(new GridLayout(4,1));
+    private JPanel menuButtonPanel = new JPanel(new FlowLayout());
+    private JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
 
     // Define buttons used in the class
     private JButton loginButton;
+    private JButton logoutButton;
 
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
@@ -132,8 +136,6 @@ public class CatalogViewer {
         mainMenu.setLayout(new BorderLayout()); // 2 buttons, 1 column
 
         // Craete the MainMenu
-        JPanel mainMenuOptions = new JPanel(new GridLayout(4,1));
-
         // Create an empty label to create a gap in the first row
         JLabel emptyLabel = new JLabel("");
         mainMenuOptions.add(emptyLabel);
@@ -146,7 +148,6 @@ public class CatalogViewer {
         mainMenuOptions.add(mainMenuLogoLabel);
 
         // Make the buttons to control the users login status and add it to our mainmenu options
-        JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
         JButton guestButton = new JButton("Continue as Guest");
 
         // login button
@@ -211,6 +212,14 @@ public class CatalogViewer {
         navigationPanel.add(homepageButton);
         navigationPanel.add(exitButton);
 
+        // Logout button will logout
+        logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> {
+            isLoggedIn = false;
+            userStatus = 0;
+            updateUI();
+        });
+
         // add the homepage panel to the mainCardPanels
         mainCardPanel.add(mainMenu, "homepage");
 
@@ -238,7 +247,6 @@ public class CatalogViewer {
         sideFilterPanel.setLayout(new BoxLayout(sideFilterPanel, BoxLayout.Y_AXIS));
 
         // Add the menu buttons to the filter panel at the top
-        JPanel menuButtonPanel = new JPanel(new FlowLayout());
         menuButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         sideFilterPanel.add(menuButtonPanel);
 
@@ -268,13 +276,27 @@ public class CatalogViewer {
 
     public void updateUI(){
         if(isLoggedIn){
-            mainMenu.revalidate();
-            mainMenu.repaint();
+            navigationPanel.add(logoutButton);
+            navigationPanel.revalidate();
+            navigationPanel.repaint();
+
+            mainMenuOptions.remove(mainMenuButtonsPanel);
+            mainMenuOptions.revalidate();
+            mainMenuOptions.repaint();
             System.out.println("LOGIN DONE");
 
             catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
             catalogPanel.revalidate();
             catalogPanel.repaint();
+        }
+        else{
+            navigationPanel.remove(logoutButton);
+            navigationPanel.revalidate();
+            navigationPanel.repaint();
+
+            mainMenuOptions.add(mainMenuButtonsPanel);
+            mainMenuOptions.revalidate();
+            mainMenuOptions.repaint();
         }
     }
 
