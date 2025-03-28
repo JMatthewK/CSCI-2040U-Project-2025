@@ -39,7 +39,7 @@ To get the source code, run the following command:
 
 ```bash
 git clone https://github.com/JMatthewK/CSCI-2040U-Project-2025
-cd https://github.com/JMatthewK/CSCI-2040U-Project-2025
+cd CSCI-2040U-Project-2025
 ```
 ### 2. Compile and run
 
