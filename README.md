@@ -40,24 +40,27 @@ To get the source code, run the following command:
 ```bash
 git clone https://github.com/JMatthewK/CSCI-2040U-Project-2025
 cd CSCI-2040U-Project-2025
+
 ```
 ### 2. Compile and run
 
 Compile the program:
 
 ```bash
-Javac CatalogApp.java
+mvn clean install
 ```
 
 Finally, run the program:
 
 ```bash
-java CatalogApp
+java -jar target/FinalProject-1.0.jar
 ```
 
 ### 3. Usage
 
 Once the program launches, the UI will display:
+![screenshot](homepage.png)
+![screenshot](catalog.png)
 
 #### Features
 
