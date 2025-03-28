@@ -22,6 +22,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.Flow;
 
 import com.opencsv.CSVWriter;
+import com.formdev.flatlaf.FlatLightLaf;
 
 public class CatalogViewer {
     // Parse the CSV file at beginning as opposed to parsing it multiple times (for quicker load times)
@@ -57,7 +58,7 @@ public class CatalogViewer {
 
     public CatalogViewer() throws IOException {
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,7 +67,7 @@ public class CatalogViewer {
 
         // Give the frame a logo
         // Load logo image
-        ImageIcon icon = new ImageIcon("data/icon.png"); // Replace with your image path
+        ImageIcon icon = new ImageIcon("data/newIcon.png"); // Replace with your image path
         frame.setIconImage(icon.getImage());
 
         // Set the screensize, and exit condition
@@ -253,12 +254,20 @@ public class CatalogViewer {
     public void startGUI(List<ClothingItem> clothingItemList) {
         catalogPanel.add(sideCardPanel, BorderLayout.WEST);
 
-        // Show the filter buttons on the sidebar
+        // Sidebar filter buttons
         sideCardLayout.show(sideCardPanel, "sideFilterPanel");
 
-        JPanel searchPanel = new JPanel(new FlowLayout());
-        JTextField searchField = new JTextField(20);
-        JButton searchButton = new JButton("Search");
+        // 💡 Search Bar - More modern look
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JTextField searchField = new JTextField(25);
+        JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
+
+        // 🔹 Modern UI tweaks for search field & button
+        searchField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        searchButton.setBackground(new Color(50, 150, 250));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
         searchButton.addActionListener(e -> {
             String query = searchField.getText().toLowerCase();
@@ -278,21 +287,37 @@ public class CatalogViewer {
         searchPanel.add(searchButton);
         catalogPanel.add(searchPanel, BorderLayout.NORTH);
 
-        imagePanel = new JPanel(new GridLayout(0, 5, 10, 10));
+        // 📌 Image Panel - Spacious layout
+        imagePanel = new JPanel(new GridLayout(0, 4, 20, 20)); // 4 columns, 20px padding
+        imagePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Padding around items
         updateImagePanel(clothingItemList);
+
+        // Scroll Pane to handle overflow
         JScrollPane scrollPane = new JScrollPane(imagePanel);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
 
+        // Bottom panel with delete button
+        JPanel bottomPanel = new JPanel(new FlowLayout());
+        JButton deleteButton = new JButton("🗑 Delete Item by ID");
+        deleteButton.setBackground(Color.RED);
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setFocusPainted(false);
+        deleteButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+        deleteButton.addActionListener(e -> deleteItemById());
+        bottomPanel.add(deleteButton);
+
+        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
         mainCardPanel.add(catalogPanel, "catalogPanel");
 
-        // Run update UI to check for changes before showing frame
         updateUI();
-
         mainCardLayout.show(mainCardPanel, "catalogPanel");
 
         frame.revalidate();
         frame.repaint();
     }
+
 
     // Login screen
     public void login() {
@@ -648,30 +673,102 @@ public class CatalogViewer {
     }
     //add every filter button to panel
     private JPanel createFilterPanel() {
-        JPanel filterPanel = new JPanel(new GridLayout(5, 1));
+        JPanel filterPanel = new JPanel();
+        filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
 
+        // Color selection panel (using colored buttons instead of text)
+        JPanel colorPanel = new JPanel();
+        colorPanel.setBorder(BorderFactory.createTitledBorder("Color"));
         String[] colors = {"Blue", "Grey", "Brown", "Green", "Beige", "Pink", "Red", "Orange", "Purple"};
-        JPanel colorPanel = createFilterButtons("Color", colors);
+
+        for (String color : colors) {
+            JButton colorButton = new JButton();
+            colorButton.setPreferredSize(new Dimension(30, 30));
+            colorButton.setBackground(getColorFromName(color)); // Converts text to actual color
+            colorButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+            colorButton.addActionListener(e -> {
+                updateSelectedFilters("Color", color);
+                colorButton.setBorder(selectedColors.contains(color) ?
+                        BorderFactory.createLineBorder(Color.WHITE, 3) :
+                        BorderFactory.createLineBorder(Color.BLACK));
+            });
+
+            colorPanel.add(colorButton);
+        }
         filterPanel.add(colorPanel);
 
-        String[] categories = {"Shirts", "Shorts", "Pants", "Sweaters", "Skirts"};
-        JPanel categoryPanel = createFilterButtons("Category", categories);
+        // Category dropdown
+        String[] categories = {"All", "Shirts", "Shorts", "Pants", "Sweaters", "Skirts"};
+        JComboBox<String> categoryDropdown = new JComboBox<>(categories);
+        categoryDropdown.addActionListener(e -> updateSelectedFilters("Category", (String) categoryDropdown.getSelectedItem()));
+        JPanel categoryPanel = wrapInPanel("Category", categoryDropdown);
         filterPanel.add(categoryPanel);
 
+        // Material checkboxes
         String[] materials = {"Cotton", "Polyester", "Nylon"};
-        JPanel materialPanel = createFilterButtons("Material", materials);
+        JPanel materialPanel = createCheckboxPanel("Material", materials);
         filterPanel.add(materialPanel);
 
+        // Style checkboxes
         String[] styles = {"Formal", "Casual", "Sport", "Loungewear"};
-        JPanel stylePanel = createFilterButtons("Style", styles);
+        JPanel stylePanel = createCheckboxPanel("Style", styles);
         filterPanel.add(stylePanel);
 
+        // Fit dropdown
         String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
-        JPanel fitPanel = createFilterButtons("Fit", fits);
+        JComboBox<String> fitDropdown = new JComboBox<>(fits);
+        fitDropdown.addActionListener(e -> updateSelectedFilters("Fit", (String) fitDropdown.getSelectedItem()));
+        JPanel fitPanel = wrapInPanel("Fit", fitDropdown);
         filterPanel.add(fitPanel);
 
         return filterPanel;
     }
+
+    /** Converts color names to actual Color objects */
+    private Color getColorFromName(String color) {
+        switch (color.toLowerCase()) {
+            case "blue": return Color.BLUE;
+            case "grey": return Color.GRAY;
+            case "brown": return new Color(139, 69, 19); // Brown
+            case "green": return Color.GREEN;
+            case "beige": return new Color(245, 245, 220); // Beige
+            case "pink": return Color.PINK;
+            case "red": return Color.RED;
+            case "orange": return Color.ORANGE;
+            case "purple": return new Color(128, 0, 128); // Purple
+            default: return Color.BLACK;
+        }
+    }
+
+    /** Creates a panel with checkboxes for multiple selection */
+    private JPanel createCheckboxPanel(String filterType, String[] options) {
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createTitledBorder(filterType));
+
+        for (String option : options) {
+            JCheckBox checkBox = new JCheckBox(option);
+            checkBox.addItemListener(e -> {
+                if (checkBox.isSelected()) {
+                    updateSelectedFilters(filterType, option);
+                } else {
+                    selectedMaterials.remove(option);
+                    applyFilters();
+                }
+            });
+            panel.add(checkBox);
+        }
+        return panel;
+    }
+
+    /** Wraps a dropdown in a titled panel */
+    private JPanel wrapInPanel(String title, JComponent component) {
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createTitledBorder(title));
+        panel.add(component);
+        return panel;
+    }
+
 
     // create button for current filtertype
     private JPanel createFilterButtons(String filterType, String[] options) {
@@ -772,37 +869,45 @@ public class CatalogViewer {
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaledImg);
 
-            JLabel imageLabel = new JLabel(icon);
-            imageLabel.setToolTipText(item.getName() + " - Click for more info");
+            // Image label
+            JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
+            imageLabel.setToolTipText("Click for more details on " + item.getName());
+            imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+            // Panel for each clothing item (card-like structure)
+            JPanel itemPanel = new JPanel();
+            itemPanel.setLayout(new BorderLayout());
+            itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
+            itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
+            itemPanel.setBackground(Color.WHITE);
+
+            // Item name label
+            JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
+            nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+            nameLabel.setForeground(Color.DARK_GRAY);
+
+            // Mouse effect (border highlight)
             imageLabel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
-                        // Left-click: Show item details
                         showItemDetails(item);
-                    } else if (SwingUtilities.isRightMouseButton(e)) {
-                        // Right-click: Ask for delete confirmation
-                        int confirm = JOptionPane.showConfirmDialog(
-                                frame,
-                                "Are you sure you want to delete " + item.getName() + "?",
-                                "Confirm Delete",
-                                JOptionPane.YES_NO_OPTION
-                        );
-
-                        if (confirm == JOptionPane.YES_OPTION) {
-                            deleteItem(item);
-                        }
                     }
                 }
             });
 
-            imagePanel.add(imageLabel);
+            // Add components to the item panel
+            itemPanel.add(imageLabel, BorderLayout.CENTER);
+            itemPanel.add(nameLabel, BorderLayout.SOUTH);
+
+            // Add the item panel to the main image panel
+            imagePanel.add(itemPanel);
         }
 
         imagePanel.revalidate();
         imagePanel.repaint();
     }
+
 
 
     //shows the information about the image they clicked on
@@ -816,7 +921,6 @@ public class CatalogViewer {
         JPanel detailsPanel = new JPanel(new GridLayout(0, 1));
         detailsPanel.add(new JLabel("ID: " + item.getId()));
         detailsPanel.add(new JLabel("Name: " + item.getName()));
-        detailsPanel.add(new JLabel("ID: " + item.getId()));
         detailsPanel.add(new JLabel("Brand: " + item.getBrand()));
         detailsPanel.add(new JLabel("Price: $" + item.getPrice()));
         detailsPanel.add(new JLabel("Contains Material: " + item.getMaterial()));
@@ -842,6 +946,20 @@ public class CatalogViewer {
                 editSelectedItem(item);
             }
         });
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.addActionListener(e -> {
+                    int confirm = JOptionPane.showConfirmDialog(
+                            dialog,
+                            "Are you sure you want to delete " + item.getName() + "?",
+                            "Confirm Delete",
+                            JOptionPane.YES_NO_OPTION
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        deleteItem(item);
+                        dialog.dispose(); // Close the details window
+                    }
+                });
 
 
         // add to bottom
@@ -852,6 +970,7 @@ public class CatalogViewer {
 
         buttonPanel.add(editButton);
         buttonPanel.add(addfavouriteButton);
+        buttonPanel.add(deleteButton);
         dialog.add(buttonPanel, BorderLayout.SOUTH);
         dialog.setVisible(true);
     }
