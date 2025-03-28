@@ -40,6 +40,9 @@ To get the source code, run the following command:
 ```bash
 git clone https://github.com/JMatthewK/CSCI-2040U-Project-2025
 cd CSCI-2040U-Project-2025
+mvn clean install
+java -jar target/FinalProject-1.0.jar
+
 ```
 ### 2. Compile and run
 
