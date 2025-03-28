@@ -46,6 +46,11 @@ public class CatalogViewer {
     // Define buttons used in the class
     private JButton loginButton;
     private JButton logoutButton;
+    private JButton deleteButton;
+    private JButton openCatalogButton;
+    private JButton favouritesButton;
+    private JButton exitButton;
+    private JButton homepageButton;
 
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
@@ -173,7 +178,7 @@ public class CatalogViewer {
 
 
         // add homePage button
-        JButton homepageButton = new JButton("HomePage");
+        homepageButton = new JButton("HomePage");
         homepageButton.addActionListener(e -> {
             mainCardLayout.show(mainCardPanel, "homepage");
             sideCardLayout.show(sideCardPanel, "sidebar");
@@ -187,13 +192,13 @@ public class CatalogViewer {
         });
 
         //display catalog button
-        JButton openCatalogButton = new JButton("View Catalogue");
+        openCatalogButton = new JButton("View Catalogue");
         openCatalogButton.addActionListener(e -> {
             startGUI(clothingItemList);
         });
 
         // exit the application button
-        JButton exitButton = new JButton("Exit");
+        exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> System.exit(0));
 
         // Favourites List
@@ -203,12 +208,10 @@ public class CatalogViewer {
         favouritesPanel.add(favouritesLabel);
         mainCardPanel.add(favouritesPanel, "favouritesPanel");
 
-        JButton favouritesButton = new JButton("Favourites List");
+        favouritesButton = new JButton("Favourites List");
         favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favouritesPanel");});
 
         // Add navigation buttons
-        navigationPanel.add(openCatalogButton);
-        navigationPanel.add(favouritesButton);
         navigationPanel.add(homepageButton);
         navigationPanel.add(exitButton);
 
@@ -217,6 +220,7 @@ public class CatalogViewer {
         logoutButton.addActionListener(e -> {
             isLoggedIn = false;
             userStatus = 0;
+            mainCardLayout.show(mainCardPanel, "homepage");
             updateUI();
         });
 
@@ -228,7 +232,13 @@ public class CatalogViewer {
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
 
         // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
-        JButton deleteButton = new JButton("Delete Item by ID");
+        // Bottom panel with delete button
+        deleteButton = new JButton("🗑 Delete Item by ID");
+        deleteButton.setBackground(Color.RED);
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setFocusPainted(false);
+        deleteButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
         deleteButton.addActionListener(e -> deleteItemById());
 
         bottomPanel.add(deleteButton);
@@ -276,27 +286,52 @@ public class CatalogViewer {
 
     public void updateUI(){
         if(isLoggedIn){
+            // Edit top right
+            // add catalog if they're logged in someway
+            navigationPanel.removeAll();
+            navigationPanel.add(openCatalogButton);
+            // only add favourites button if they're a registered user
+            if(userStatus >= 1){
+                navigationPanel.add(favouritesButton);
+            }
+            navigationPanel.add(homepageButton);
+            navigationPanel.add(exitButton);
             navigationPanel.add(logoutButton);
             navigationPanel.revalidate();
             navigationPanel.repaint();
 
+            // edit the buttons in the mainmenu
             mainMenuOptions.remove(mainMenuButtonsPanel);
             mainMenuOptions.revalidate();
             mainMenuOptions.repaint();
             System.out.println("LOGIN DONE");
 
-            catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
-            catalogPanel.revalidate();
-            catalogPanel.repaint();
+
+
+            if(userStatus == 2){
+                // Only let user see bottom panel if they're an admin
+                catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
+                catalogPanel.revalidate();
+                catalogPanel.repaint();
+            }
         }
         else{
-            navigationPanel.remove(logoutButton);
+            // Edit top right
+            // add catalog if they're logged in someway
+            navigationPanel.removeAll();
+            navigationPanel.add(homepageButton);
+            navigationPanel.add(exitButton);
             navigationPanel.revalidate();
             navigationPanel.repaint();
 
             mainMenuOptions.add(mainMenuButtonsPanel);
             mainMenuOptions.revalidate();
             mainMenuOptions.repaint();
+
+            // Only let user see bottom panel if they're an admin
+            catalogPanel.remove(bottomPanel);
+            catalogPanel.revalidate();
+            catalogPanel.repaint();
         }
     }
 
@@ -347,18 +382,6 @@ public class CatalogViewer {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Bottom panel with delete button
-        JPanel bottomPanel = new JPanel(new FlowLayout());
-        JButton deleteButton = new JButton("🗑 Delete Item by ID");
-        deleteButton.setBackground(Color.RED);
-        deleteButton.setForeground(Color.WHITE);
-        deleteButton.setFocusPainted(false);
-        deleteButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-
-        deleteButton.addActionListener(e -> deleteItemById());
-        bottomPanel.add(deleteButton);
-
-        catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
         mainCardPanel.add(catalogPanel, "catalogPanel");
 
         updateUI();
@@ -416,6 +439,11 @@ public class CatalogViewer {
                         if(accounts.get(i).isAdmin()){
                             // Set isAdmin to true
                             userStatus = 2;
+                            System.out.println("User is Admin");
+                        }
+                        else{
+                            userStatus = 1;
+                            System.out.println("User is not Admin");
                         }
                         isLoggedIn = true;
                         resultLabel.setText("Access granted!");
@@ -976,6 +1004,7 @@ public class CatalogViewer {
         detailsPanel.add(new JLabel("Contains Material: " + item.getMaterial()));
         detailsPanel.add(new JLabel("Fit: " + item.getFit()));
         dialog.add(detailsPanel);
+
         //create button to allow user to edit
         JButton editButton = new JButton("Edit");
         //favourite button
@@ -1018,9 +1047,13 @@ public class CatalogViewer {
         dialog.add(mainMenu, BorderLayout.SOUTH);
         JPanel buttonPanel = new JPanel();
 
-        buttonPanel.add(editButton);
-        buttonPanel.add(addfavouriteButton);
-        buttonPanel.add(deleteButton);
+        if(userStatus >= 1){
+            buttonPanel.add(addfavouriteButton);
+        }
+        if(userStatus == 2){
+            buttonPanel.add(editButton);
+            buttonPanel.add(deleteButton);
+        }
         dialog.add(buttonPanel, BorderLayout.SOUTH);
         dialog.setVisible(true);
     }
