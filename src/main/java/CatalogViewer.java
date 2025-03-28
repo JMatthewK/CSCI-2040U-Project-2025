@@ -524,7 +524,7 @@ public class CatalogViewer {
                     e1.printStackTrace();
                 }
 
-                String[] accString = {username,password};
+                String[] accString = {username,password, "false"};
                 writer.writeNext(accString);
 
                 try {
@@ -617,7 +617,7 @@ public class CatalogViewer {
         String[] styles = {"Casual", "Formal", "Loungewear", "Sport"};
         JComboBox<String> styleList = new JComboBox<>(styles);
 
-        String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
+        String[] fits = {"All", "Standard", "Loose", "Slim", "Oversized"};
         JComboBox<String> fitList = new JComboBox<>(fits);
         //Upload image using jfilechooser
         JButton uploadImageButton = new JButton("Upload Image");
@@ -794,7 +794,7 @@ public class CatalogViewer {
         filterPanel.add(stylePanel);
 
         // Fit dropdown
-        String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
+        String[] fits = {"All", "Standard", "Loose", "Slim", "Oversized"};
         JComboBox<String> fitDropdown = new JComboBox<>(fits);
         fitDropdown.addActionListener(e -> updateSelectedFilters("Fit", (String) fitDropdown.getSelectedItem()));
         JPanel fitPanel = wrapInPanel("Fit", fitDropdown);
@@ -877,7 +877,16 @@ public class CatalogViewer {
                 selectedCategories.clear();
                 if (selectedCategories.contains(filterValue)) {
                     selectedCategories.remove(filterValue);
-                } else {
+                }
+                else if(filterValue.equals("All")){
+                    selectedCategories.add(filterValue);
+                    // ADD ALL CATEGORIES TO THE FILTER IF ALL
+                    String[] categories = {"All", "Shirts", "Shorts", "Pants", "Sweaters", "Skirts"};
+                    for(int i = 1; i < categories.length; i++){
+                        selectedCategories.add(categories[i]);
+                    }
+                }
+                else {
                     selectedCategories.add(filterValue);
                 }
                 break;
@@ -899,7 +908,14 @@ public class CatalogViewer {
                 selectedFits.clear();
                 if (selectedFits.contains(filterValue)) {
                     selectedFits.remove(filterValue);
-                } else {
+                }
+                else if(filterValue.equals("All")){
+                    String[] fits = {"All", "Standard", "Loose", "Slim", "Oversized"};
+                    for(int i = 1; i < fits.length; i++){
+                        selectedFits.add(fits[i]);
+                    }
+                }
+                else {
                     selectedFits.add(filterValue);
                 }
                 break;
@@ -1100,7 +1116,7 @@ public class CatalogViewer {
         styleList.setSelectedItem(selectedItem.getStyle());
 
         // fits
-        String[] fits = {"Standard", "Loose", "Slim", "Oversized"};
+        String[] fits = {"All", "Standard", "Loose", "Slim", "Oversized"};
         JComboBox<String> fitList = new JComboBox<>(fits);
         fitList.setSelectedItem(selectedItem.getFit());
 
