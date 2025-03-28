@@ -874,6 +874,7 @@ public class CatalogViewer {
                 }
                 break;
             case "Category":
+                selectedCategories.clear();
                 if (selectedCategories.contains(filterValue)) {
                     selectedCategories.remove(filterValue);
                 } else {
@@ -895,6 +896,7 @@ public class CatalogViewer {
                 }
                 break;
             case "Fit":
+                selectedFits.clear();
                 if (selectedFits.contains(filterValue)) {
                     selectedFits.remove(filterValue);
                 } else {
