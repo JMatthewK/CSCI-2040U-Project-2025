@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -37,9 +38,14 @@ public class CatalogViewer {
     private JPanel mainMenu;
     private JPanel catalogPanel = new JPanel(new BorderLayout());
     private JPanel bottomPanel = new JPanel(new FlowLayout());
+    private JPanel navigationPanel = new JPanel();
+    private JPanel mainMenuOptions = new JPanel(new GridLayout(4,1));
+    private JPanel menuButtonPanel = new JPanel(new FlowLayout());
+    private JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
 
     // Define buttons used in the class
     private JButton loginButton;
+    private JButton logoutButton;
 
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
@@ -50,7 +56,8 @@ public class CatalogViewer {
 
     // Variable to track login details
     private boolean isLoggedIn = false;
-    private boolean isAdmin = false;
+    // 0 for guest, 1 for registered User, 2 for admin
+    private int userStatus = 0;
 
 
     // account list
@@ -85,7 +92,6 @@ public class CatalogViewer {
     public void startMainMenu() throws IOException {
         // Create a main menu panel
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JPanel homePage = new JPanel(new BorderLayout());
 
         // Create mainMenu that displays "view catalog" "login" "exit"
         mainMenu = new JPanel();
@@ -109,13 +115,13 @@ public class CatalogViewer {
         BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
         Image scaledLogo = logoImage.getScaledInstance(70, 40, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(scaledLogo);
-        JLabel logoLabel = new JLabel(logoIcon);
+        JLabel headerLogoLabel = new JLabel(logoIcon);
         // Add logo and title to the title panel
-        titlePanel.add(logoLabel);
+        titlePanel.add(headerLogoLabel);
 
         // Make header and navigation buttons
         JPanel headerPanel = new JPanel(new BorderLayout());
-        JPanel navigationPanel = new JPanel();
+        navigationPanel = new JPanel();
         FlowLayout navigationLayout = new FlowLayout();
         navigationPanel.setSize(150, headerPanel.getHeight());
         navigationLayout.setHgap(10);
@@ -125,16 +131,46 @@ public class CatalogViewer {
         headerPanel.add(navigationPanel, BorderLayout.EAST);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
-        //Menu is a simple button panel for now
+        // MainMenu asks us if we want to continue as guest, or login/create account
         JPanel mainMenu = new JPanel();
-        mainMenu.setLayout(new GridLayout(4, 1)); // 2 buttons, 1 column
+        mainMenu.setLayout(new BorderLayout()); // 2 buttons, 1 column
 
+        // Craete the MainMenu
+        // Create an empty label to create a gap in the first row
+        JLabel emptyLabel = new JLabel("");
+        mainMenuOptions.add(emptyLabel);
+
+        // Make a new logo and add it to the mainMenuOptions
+        Image mainMenuScaledLogo = logoImage.getScaledInstance(400, 200, Image.SCALE_SMOOTH);
+        ImageIcon mainMenuLogoIcon = new ImageIcon(mainMenuScaledLogo);
+        JLabel mainMenuLogoLabel = new JLabel(mainMenuLogoIcon);
+
+        mainMenuOptions.add(mainMenuLogoLabel);
+
+        // Make the buttons to control the users login status and add it to our mainmenu options
+        JButton guestButton = new JButton("Continue as Guest");
 
         // login button
         loginButton = new JButton("Login");
         loginButton.addActionListener(e -> {
             login();
         });
+
+        mainMenuButtonsPanel.add(loginButton);
+
+        guestButton.addActionListener(e -> {
+            userStatus = 0;
+            isLoggedIn = true;
+            updateUI();
+        });
+
+        mainMenuButtonsPanel.add(guestButton);
+
+        mainMenuOptions.add(mainMenuButtonsPanel);
+
+        // Add these options to our mainMenu
+        mainMenu.add(mainMenuOptions, BorderLayout.CENTER);
+
 
         // add homePage button
         JButton homepageButton = new JButton("HomePage");
@@ -174,14 +210,19 @@ public class CatalogViewer {
         navigationPanel.add(openCatalogButton);
         navigationPanel.add(favouritesButton);
         navigationPanel.add(homepageButton);
-        navigationPanel.add(loginButton);
         navigationPanel.add(exitButton);
+
+        // Logout button will logout
+        logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> {
+            isLoggedIn = false;
+            userStatus = 0;
+            updateUI();
+        });
 
         // add the homepage panel to the mainCardPanels
         mainCardPanel.add(mainMenu, "homepage");
 
-        // add the sidebar and catalog panel to the homePage
-        mainCardPanel.add(homePage, "mainMenu");
         sideCardPanel.add(sidebar, "sidebar");
 
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
@@ -206,7 +247,6 @@ public class CatalogViewer {
         sideFilterPanel.setLayout(new BoxLayout(sideFilterPanel, BoxLayout.Y_AXIS));
 
         // Add the menu buttons to the filter panel at the top
-        JPanel menuButtonPanel = new JPanel(new FlowLayout());
         menuButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         sideFilterPanel.add(menuButtonPanel);
 
@@ -236,17 +276,27 @@ public class CatalogViewer {
 
     public void updateUI(){
         if(isLoggedIn){
-            mainMenu.remove(loginButton);
-            mainMenu.revalidate();
-            mainMenu.repaint();
+            navigationPanel.add(logoutButton);
+            navigationPanel.revalidate();
+            navigationPanel.repaint();
+
+            mainMenuOptions.remove(mainMenuButtonsPanel);
+            mainMenuOptions.revalidate();
+            mainMenuOptions.repaint();
             System.out.println("LOGIN DONE");
 
             catalogPanel.add(bottomPanel, BorderLayout.SOUTH);
             catalogPanel.revalidate();
             catalogPanel.repaint();
         }
-        if(isAdmin){
+        else{
+            navigationPanel.remove(logoutButton);
+            navigationPanel.revalidate();
+            navigationPanel.repaint();
 
+            mainMenuOptions.add(mainMenuButtonsPanel);
+            mainMenuOptions.revalidate();
+            mainMenuOptions.repaint();
         }
     }
 
@@ -365,7 +415,7 @@ public class CatalogViewer {
                     if (username.equals(accounts.get(i).getUsername()) && input.equals(hashPassword(accounts.get(i).getPassword()))) {
                         if(accounts.get(i).isAdmin()){
                             // Set isAdmin to true
-                            isAdmin = true;
+                            userStatus = 2;
                         }
                         isLoggedIn = true;
                         resultLabel.setText("Access granted!");
