@@ -64,6 +64,8 @@ public class CatalogViewer {
     // 0 for guest, 1 for registered User, 2 for admin
     private int userStatus = 0;
 
+    private String currentuser;
+
 
     // account list
     private List<Account> accounts = null;
@@ -446,6 +448,7 @@ public class CatalogViewer {
                             System.out.println("User is not Admin");
                         }
                         isLoggedIn = true;
+                        currentuser = accounts.get(i).getUsername();
                         resultLabel.setText("Access granted!");
                         resultLabel.setForeground(Color.BLUE);
                         try {
@@ -1032,7 +1035,7 @@ public class CatalogViewer {
             //call favourite function
             @Override
             public void actionPerformed(ActionEvent e) {
-                addfavourite();
+                writeFavourite(item);
             }
         });
 
@@ -1076,15 +1079,7 @@ public class CatalogViewer {
         dialog.setVisible(true);
     }
 
-    public void addfavourite() {
-        JDialog dialog = new JDialog(frame, "Favourite popup");
-        JLabel l = new JLabel("Current function doesn't work");
-        dialog.add(l);
-        dialog.setSize(200, 100);
-        dialog.setLocationRelativeTo(frame);
-        dialog.setVisible(true);
-        return;
-    }
+
     //when clicked, creates a prompt that allows user to edit current item
     private void editSelectedItem(ClothingItem selectedItem) {
         JDialog editDialog = new JDialog(frame, "Edit Clothing Item", true);
@@ -1213,6 +1208,67 @@ public class CatalogViewer {
             e.printStackTrace();
         }
 
+    }
+    public List<ClothingItem> getFavourites() {
+        List<ClothingItem> favoriteItems = new ArrayList<>();
+        //empty if no user
+        if (currentuser == null || currentuser.isEmpty()) {
+            return favoriteItems;
+        }
+        File favoritesFile = new File("data/favorites/" + currentuser + "_favorites.csv");
+        //if doesnt exist empty
+        if (!favoritesFile.exists()) {
+            return favoriteItems;
+        }
+        try {
+            //get all favourites of the user
+            List<String> favoriteIds = Files.readAllLines(favoritesFile.toPath());
+            //get each line
+            for (String idStr : favoriteIds) {
+                //get the current id
+                int id = Integer.parseInt(idStr.trim());
+                ClothingItem item = findItemById(id);
+                //if item doesn't exist already add it
+                if (item != null) {
+                    favoriteItems.add(item);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return favoriteItems;
+    }
+
+    public void writeFavourite(ClothingItem item) {
+        // favourites just in case
+        File favoritesDir = new File("data/favorites");
+        if (!favoritesDir.exists()) {
+            favoritesDir.mkdirs();
+        }
+        //file for user
+        File favoritesFile = new File("data/favorites/" + currentuser + "_favorites.csv");
+
+        try {
+            // Check if already exist in the file
+            if (favoritesFile.exists()) {
+                List<String> existingFavorites = Files.readAllLines(favoritesFile.toPath());
+                if (existingFavorites.contains(String.valueOf(item.getId()))) {
+                    JOptionPane.showMessageDialog(frame, "item is already in your favorites");
+                    return;
+                }
+            }
+
+            // write the new item to csv if doesn't exist
+            FileWriter writer = new FileWriter(favoritesFile, true);
+            writer.append(String.valueOf(item.getId())).append("\n");
+            writer.close();
+
+            JOptionPane.showMessageDialog(frame, "item added to favorites");
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(frame, "Error favoriting");
+        }
     }
 
 
