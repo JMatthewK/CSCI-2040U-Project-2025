@@ -58,6 +58,8 @@ public class CatalogViewer {
     Font headerFont = new Font(fontChoice, Font.BOLD, 18);
     Font buttonFont = new Font(fontChoice, Font.BOLD, 12);
 
+    Color mainColor = new Color(0xfaebd7);;
+
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
     private Set<String> selectedCategories = new HashSet<>();
@@ -112,7 +114,6 @@ public class CatalogViewer {
         // Create Sidebar panel
         JPanel sidebar = new JPanel();
         sidebar.setLayout(new FlowLayout());
-        sidebar.setBackground(Color.WHITE);
         sidebar.setPreferredSize(new Dimension(150, frame.getHeight()));
 
         // Creates a cardLayout and mainCardPanel allowing me to switch panels for both sidebar and main section
@@ -125,6 +126,7 @@ public class CatalogViewer {
 
         // Create title and logo panel and put it on header
         JPanel titlePanel = new JPanel(new FlowLayout());
+        setPanelColors(titlePanel, mainColor, mainColor);
         BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
         Image scaledLogo = logoImage.getScaledInstance(70, 40, Image.SCALE_SMOOTH);
         ImageIcon logoIcon = new ImageIcon(scaledLogo);
@@ -134,7 +136,9 @@ public class CatalogViewer {
 
         // Make header and navigation buttons
         JPanel headerPanel = new JPanel(new BorderLayout());
+        setPanelColors(headerPanel, mainColor, mainColor);
         navigationPanel = new JPanel();
+        setPanelColors(navigationPanel, mainColor, mainColor);
         FlowLayout navigationLayout = new FlowLayout();
         navigationPanel.setSize(150, headerPanel.getHeight());
         navigationLayout.setHgap(10);
@@ -146,6 +150,8 @@ public class CatalogViewer {
 
         // MainMenu asks us if we want to continue as guest, or login/create account
         JPanel mainMenu = new JPanel();
+        setPanelColors(mainMenu, mainColor, mainColor);
+        setPanelColors(mainMenuOptions, mainColor, mainColor);
         mainMenu.setLayout(new BorderLayout()); // 2 buttons, 1 column
 
         // Craete the MainMenu
@@ -178,7 +184,7 @@ public class CatalogViewer {
         });
 
         mainMenuButtonsPanel.add(guestButton);
-
+        setPanelColors(mainMenuButtonsPanel, mainColor, mainColor);
         mainMenuOptions.add(mainMenuButtonsPanel);
 
         // Add these options to our mainMenu
@@ -262,6 +268,7 @@ public class CatalogViewer {
         // CREATE PANEL WHEN FILTERING IMAGES
         // Create filter panel
         JPanel sideFilterPanel = new JPanel();
+        setPanelColors(sideFilterPanel, mainColor, mainColor);
         sideFilterPanel.setLayout(new BoxLayout(sideFilterPanel, BoxLayout.Y_AXIS));
 
         // Add the menu buttons to the filter panel at the top
@@ -269,7 +276,7 @@ public class CatalogViewer {
         sideFilterPanel.add(menuButtonPanel);
 
         // Add the actual filtering buttons
-        sideFilterPanel.add(new JLabel("Filter"));
+        sideFilterPanel.add(createHeaderLabel("Filter"));
         sideFilterPanel.add(createFilterPanel());
 
         // add the filter panel to the sidebar
@@ -296,6 +303,11 @@ public class CatalogViewer {
         JLabel headerLabel = new JLabel(title);
         headerLabel.setFont(headerFont);
         return headerLabel;
+    }
+
+    private void setPanelColors(JPanel panel, Color backgroundColor, Color foregroundColor) {
+        panel.setBackground(backgroundColor);
+        panel.setForeground(foregroundColor);
     }
 
     public void updateUI(){
@@ -358,6 +370,7 @@ public class CatalogViewer {
 
         // 💡 Search Bar - More modern look
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
         JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
 
@@ -389,11 +402,13 @@ public class CatalogViewer {
         // 📌 Image Panel - Spacious layout
         imagePanel = new JPanel(new GridLayout(0, 4, 20, 20)); // 4 columns, 20px padding
         imagePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Padding around items
+        setPanelColors(imagePanel, mainColor, mainColor);
         updateImagePanel(clothingItemList);
 
         // Scroll Pane to handle overflow
         JScrollPane scrollPane = new JScrollPane(imagePanel);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        setPanelColors(catalogPanel, mainColor, mainColor);
         catalogPanel.add(scrollPane, BorderLayout.CENTER);
 
         mainCardPanel.add(catalogPanel, "catalogPanel");
@@ -766,10 +781,12 @@ public class CatalogViewer {
     //add every filter button to panel
     private JPanel createFilterPanel() {
         JPanel filterPanel = new JPanel();
+        setPanelColors(filterPanel,mainColor,mainColor);
         filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
 
         // Color selection panel (using colored buttons instead of text)
         JPanel colorPanel = new JPanel();
+        setPanelColors(colorPanel, mainColor, mainColor);
         colorPanel.setBorder(BorderFactory.createTitledBorder("Color"));
         String[] colors = {"Blue", "Grey", "Brown", "Green", "Beige", "Pink", "Red", "Orange", "Purple"};
 
@@ -795,6 +812,7 @@ public class CatalogViewer {
         JComboBox<String> categoryDropdown = new JComboBox<>(categories);
         categoryDropdown.addActionListener(e -> updateSelectedFilters("Category", (String) categoryDropdown.getSelectedItem()));
         JPanel categoryPanel = wrapInPanel("Category", categoryDropdown);
+        setPanelColors(categoryPanel, mainColor, mainColor);
         filterPanel.add(categoryPanel);
 
         // Material checkboxes
@@ -836,6 +854,7 @@ public class CatalogViewer {
     /** Creates a panel with checkboxes for multiple selection */
     private JPanel createCheckboxPanel(String filterType, String[] options) {
         JPanel panel = new JPanel();
+        setPanelColors(panel, mainColor, mainColor);
         panel.setBorder(BorderFactory.createTitledBorder(filterType));
 
         for (String option : options) {
@@ -856,6 +875,7 @@ public class CatalogViewer {
     /** Wraps a dropdown in a titled panel */
     private JPanel wrapInPanel(String title, JComponent component) {
         JPanel panel = new JPanel();
+        setPanelColors(panel, mainColor, mainColor);
         panel.setBorder(BorderFactory.createTitledBorder(title));
         panel.add(component);
         return panel;
@@ -865,6 +885,7 @@ public class CatalogViewer {
     // create button for current filtertype
     private JPanel createFilterButtons(String filterType, String[] options) {
         JPanel panel = new JPanel();
+        setPanelColors(panel, mainColor, mainColor);
         //for each option create a button
         for (String option : options) {
             JToggleButton button = new JToggleButton(option);
@@ -989,7 +1010,6 @@ public class CatalogViewer {
             itemPanel.setLayout(new BorderLayout());
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
-            itemPanel.setBackground(Color.WHITE);
 
             // Item name label
             JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
