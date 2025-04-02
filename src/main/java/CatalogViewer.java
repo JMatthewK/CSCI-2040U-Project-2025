@@ -52,6 +52,12 @@ public class CatalogViewer {
     private JButton exitButton;
     private JButton homepageButton;
 
+    // Define font used
+    String fontChoice = "Segoe UI";
+    Font textFont = new Font(fontChoice, Font.PLAIN, 12);
+    Font headerFont = new Font(fontChoice, Font.BOLD, 18);
+    Font buttonFont = new Font(fontChoice, Font.BOLD, 12);
+
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
     private Set<String> selectedCategories = new HashSet<>();
@@ -205,13 +211,13 @@ public class CatalogViewer {
 
         // Favourites List
         // Favourite Page Panel
-        JPanel favouritesPanel = new JPanel(new BorderLayout());
-        JLabel favouritesLabel = new JLabel("Favourites");
-        favouritesPanel.add(favouritesLabel);
-        mainCardPanel.add(favouritesPanel, "favouritesPanel");
+        JPanel favoritesPanel = new JPanel(new BorderLayout());
+        JLabel favoritesLabel = createHeaderLabel("Favorites List");
+        favoritesPanel.add(favoritesLabel, BorderLayout.NORTH);
+        mainCardPanel.add(favoritesPanel, "favoritesPanel");
 
-        favouritesButton = new JButton("Favourites List");
-        favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favouritesPanel");});
+        favouritesButton = new JButton("Favorites List");
+        favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favoritesPanel");});
 
         // Add navigation buttons
         navigationPanel.add(homepageButton);
@@ -284,6 +290,12 @@ public class CatalogViewer {
         frame.setVisible(true);
 
 
+    }
+
+    private JLabel createHeaderLabel(String title){
+        JLabel headerLabel = new JLabel(title);
+        headerLabel.setFont(headerFont);
+        return headerLabel;
     }
 
     public void updateUI(){
@@ -392,7 +404,6 @@ public class CatalogViewer {
         frame.revalidate();
         frame.repaint();
     }
-
 
     // Login screen
     public void login() {
