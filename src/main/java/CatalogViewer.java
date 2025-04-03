@@ -54,9 +54,12 @@ public class CatalogViewer {
 
     // Define font used
     String fontChoice = "Segoe UI";
-    Font textFont = new Font(fontChoice, Font.PLAIN, 12);
-    Font headerFont = new Font(fontChoice, Font.BOLD, 18);
-    Font buttonFont = new Font(fontChoice, Font.BOLD, 12);
+    String fontPath = "src/resources/fonts/ArchivoBlack-Regular.ttf";
+    Font archivoBlackFont = loadCustomFont(fontPath, 12f);
+
+    Font textFont = archivoBlackFont.deriveFont(Font.PLAIN, 12);
+    Font headerFont = archivoBlackFont.deriveFont(Font.BOLD, 18);
+    Font buttonFont = archivoBlackFont.deriveFont(Font.PLAIN, 12);
 
     Color mainColor = new Color(0xfaebd7);;
 
@@ -168,9 +171,11 @@ public class CatalogViewer {
 
         // Make the buttons to control the users login status and add it to our mainmenu options
         JButton guestButton = new JButton("Continue as Guest");
+        customizeButton(guestButton);
 
         // login button
         loginButton = new JButton("Login");
+        customizeButton(loginButton);
         loginButton.addActionListener(e -> {
             login();
         });
@@ -193,6 +198,7 @@ public class CatalogViewer {
 
         // add homePage button
         homepageButton = new JButton("HomePage");
+        customizeButton(homepageButton);
         homepageButton.addActionListener(e -> {
             mainCardLayout.show(mainCardPanel, "homepage");
             sideCardLayout.show(sideCardPanel, "sidebar");
@@ -200,6 +206,7 @@ public class CatalogViewer {
 
         // add homePage2 button for the other sidebar
         JButton homepageButton2 = new JButton("HomePage");
+        customizeButton(homepageButton2);
         homepageButton2.addActionListener(e -> {
             mainCardLayout.show(mainCardPanel, "homepage");
             sideCardLayout.show(sideCardPanel, "sidebar");
@@ -207,12 +214,14 @@ public class CatalogViewer {
 
         //display catalog button
         openCatalogButton = new JButton("View Catalogue");
+        customizeButton(openCatalogButton);
         openCatalogButton.addActionListener(e -> {
             startGUI(clothingItemList);
         });
 
         // exit the application button
         exitButton = new JButton("Exit");
+        customizeButton(exitButton);
         exitButton.addActionListener(e -> System.exit(0));
 
         // Favourites List
@@ -223,6 +232,7 @@ public class CatalogViewer {
         mainCardPanel.add(favoritesPanel, "favoritesPanel");
 
         favouritesButton = new JButton("Favorites List");
+        customizeButton(favouritesButton);
         favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favoritesPanel");});
 
         // Add navigation buttons
@@ -231,6 +241,7 @@ public class CatalogViewer {
 
         // Logout button will logout
         logoutButton = new JButton("Logout");
+        customizeButton(logoutButton);
         logoutButton.addActionListener(e -> {
             isLoggedIn = false;
             userStatus = 0;
@@ -248,10 +259,7 @@ public class CatalogViewer {
         // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
         // Bottom panel with delete button
         deleteButton = new JButton("🗑 Delete Item by ID");
-        deleteButton.setBackground(Color.RED);
-        deleteButton.setForeground(Color.WHITE);
-        deleteButton.setFocusPainted(false);
-        deleteButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        customizeButton(deleteButton);
 
         deleteButton.addActionListener(e -> deleteItemById());
 
@@ -259,6 +267,7 @@ public class CatalogViewer {
 
         // add item button
         JButton addItemButton = new JButton("Add New Item");
+        customizeButton(addItemButton);
         addItemButton.addActionListener(e -> {
             addItem();
         });
@@ -299,10 +308,38 @@ public class CatalogViewer {
 
     }
 
+    /**
+     * Customize buttons and JLABELS
+     */
+
+    private static Font loadCustomFont(String fontPath, float size) {
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+            return font.deriveFont(size); // Resize font
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            return new Font("Serif", Font.PLAIN, 12); // Fallback font
+        }
+    }
+
+    public void customizeButton(JButton button) {
+        button.setBackground(Color.RED);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setFont(buttonFont);
+        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+    }
+
     private JLabel createHeaderLabel(String title){
         JLabel headerLabel = new JLabel(title);
         headerLabel.setFont(headerFont);
         return headerLabel;
+    }
+
+    private JLabel createTextLabel(String text){
+        JLabel textLabel = new JLabel(text);
+        textLabel.setFont(textFont);
+        return textLabel;
     }
 
     private void setPanelColors(JPanel panel, Color backgroundColor, Color foregroundColor) {
@@ -373,6 +410,7 @@ public class CatalogViewer {
         setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
         JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
+        customizeButton(searchButton);
 
         // 🔹 Modern UI tweaks for search field & button
         searchField.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -420,6 +458,8 @@ public class CatalogViewer {
         frame.repaint();
     }
 
+
+
     // Login screen
     public void login() {
         // Login window
@@ -446,8 +486,10 @@ public class CatalogViewer {
         passField.setBounds(r);
 
         JButton loginButton = new JButton("Login");
+        customizeButton(loginButton);
         JLabel resultLabel = new JLabel("");
         JButton registerButton = new JButton("Register Account");
+        customizeButton(registerButton);
         registerButton.addActionListener(e -> {
             frame.dispose();
             register();
@@ -527,6 +569,7 @@ public class CatalogViewer {
         newPassField.setBounds(r);
 
         JButton registerButton = new JButton("Register Account");
+        customizeButton(registerButton);
         JLabel resultLabel = new JLabel("");
 
         frame.add(newUserLabel);
@@ -650,6 +693,7 @@ public class CatalogViewer {
         JComboBox<String> fitList = new JComboBox<>(fits);
         //Upload image using jfilechooser
         JButton uploadImageButton = new JButton("Upload Image");
+        customizeButton(uploadImageButton);
         JLabel imagePathLabel = new JLabel("No Image Selected");
         final File[] selectedFile = {null};
         uploadImageButton.addActionListener(e -> {
@@ -663,6 +707,7 @@ public class CatalogViewer {
 
         //Add button converts all entries into strings (double for price), and adds it to clothingitem list
         JButton addButton = new JButton("Add Item");
+        customizeButton(addButton);
         addButton.addActionListener(e -> {
             double itemPrice;
             try {
@@ -792,6 +837,7 @@ public class CatalogViewer {
 
         for (String color : colors) {
             JButton colorButton = new JButton();
+            customizeButton(colorButton);
             colorButton.setPreferredSize(new Dimension(30, 30));
             colorButton.setBackground(getColorFromName(color)); // Converts text to actual color
             colorButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -1059,8 +1105,10 @@ public class CatalogViewer {
 
         //create button to allow user to edit
         JButton editButton = new JButton("Edit");
+        customizeButton(editButton);
         //favourite button
         JButton addfavouriteButton = new JButton("Add to Favourite");
+        customizeButton(addfavouriteButton);
 
         addfavouriteButton.addActionListener(new ActionListener() {
             //call favourite function
@@ -1078,6 +1126,7 @@ public class CatalogViewer {
             }
         });
         JButton deleteButton = new JButton("Delete");
+        customizeButton(deleteButton);
         deleteButton.addActionListener(e -> {
                     int confirm = JOptionPane.showConfirmDialog(
                             dialog,
@@ -1148,6 +1197,7 @@ public class CatalogViewer {
 
         // image upload
         JButton uploadImageButton = new JButton("Upload Image");
+        customizeButton(uploadImageButton);
         JLabel imagePathLabel = new JLabel("No Image Selected");
         final File[] selectedFile = {null};
         uploadImageButton.addActionListener(e -> {
@@ -1184,6 +1234,7 @@ public class CatalogViewer {
 
         // save button
         JButton saveButton = new JButton("Save");
+        customizeButton(saveButton);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
