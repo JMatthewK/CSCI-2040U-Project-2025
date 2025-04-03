@@ -584,6 +584,7 @@ public class CatalogViewer {
             public void actionPerformed(ActionEvent e) {
                 String username = newUserField.getText();
                 String password = new String(newPassField.getPassword());
+                boolean userTaken = false;
                 
                 CSVWriter writer = null;
                 try {
@@ -596,27 +597,42 @@ public class CatalogViewer {
                     e1.printStackTrace();
                 }
 
-                String[] accString = {username,password, "false"};
-                writer.writeNext(accString);
-
                 try {
-                    writer.close();
+                    accounts = csvParser.parseAccount("data/accounts.csv");
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
-                resultLabel.setText("Account created successfully!");
-                resultLabel.setForeground(Color.GREEN);
-
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
+                
+                for(int i = 0; i < accounts.size(); i++) {
+                    if (username.equals(accounts.get(i).getUsername())) {
+                        resultLabel.setText("Username taken.");
+                        resultLabel.setForeground(Color.RED);
+                        userTaken = true;
+                    }
                 }
 
-                frame.setVisible(false);
-                frame.dispose();
-                login();
+                if (userTaken != true) {
+                    String[] accString = {username,password,"false"};
+                    writer.writeNext(accString);
+                    try {
+                        writer.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+    
+                    resultLabel.setText("Account created successfully!");
+                    resultLabel.setForeground(Color.GREEN);
+    
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+    
+                    frame.setVisible(false);
+                    frame.dispose();
+                    login();
+                }
             }
         });
 
