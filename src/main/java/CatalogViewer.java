@@ -282,6 +282,7 @@ public class CatalogViewer {
 
         // Add the menu buttons to the filter panel at the top
         menuButtonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        menuButtonPanel.setBackground(mainColor);
         sideFilterPanel.add(menuButtonPanel);
 
         // Add the actual filtering buttons
@@ -1366,6 +1367,14 @@ public class CatalogViewer {
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(frame, "Error favoriting");
+        }
+    }
+    //looks cool
+    public void deleteFavourite(ClothingItem item) {
+        List<ClothingItem> currentfavourites = getFavourites();
+        currentfavourites.remove(findItemById(item.getId()));
+        for (ClothingItem currentitem: currentfavourites) {
+            writeFavourite(currentitem);
         }
     }
 
