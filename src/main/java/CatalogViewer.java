@@ -227,6 +227,11 @@ public class CatalogViewer {
         openCatalogButton = new JButton("View Catalogue");
         customizeButton(openCatalogButton);
         openCatalogButton.addActionListener(e -> {
+            try {
+                clothingItemList = csvParser.parseCsv("data/CatalogData.csv");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             startGUI(clothingItemList);
         });
 
@@ -865,20 +870,18 @@ public class CatalogViewer {
             clothingItemList.add(clothing);
             //call to write new csv
             writecsv(clothingItemList);
-            int newId = clothingItemList.size();
-            String imagePath = "data/img/" + newId + ".png";
-            //save image immediately (initially would save after closing application)
             try {
-                File destination = new File(imagePath);
+                File destination = new File("data/img/" + clothing.getId() + ".png");
                 Files.copy(selectedFile[0].toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
                 destination.setReadable(true, false);
                 destination.setWritable(true, false);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            //display new catalog with added item
-            startGUI(clothingItemList);
+
+            // Refresh the catalog view
+            updateImagePanel(clothingItemList);
+            mainCardLayout.show(mainCardPanel, "catalogPanel");
         });
 
         addPanel.add(createTextLabel("*Name:"));
@@ -911,41 +914,7 @@ public class CatalogViewer {
         frame.repaint();
     }
 
-    //Delete item -> NO LONGER USED
-    private void deleteItemById() {
-        String inputId = JOptionPane.showInputDialog(frame,
-                "Enter the ID of the item to delete:");
 
-        if (inputId != null && !inputId.isEmpty()) {
-            int itemId = Integer.parseInt(inputId); // Convert input to integer
-            ClothingItem itemToDelete = findItemById(itemId);
-
-            if (itemToDelete != null) {
-                // Confirm deletion
-                int confirm = JOptionPane.showConfirmDialog(frame,
-                        "Are you sure you want to delete " + itemToDelete.getName() + "?",
-                        "Confirm Delete", JOptionPane.YES_NO_OPTION);
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    clothingItemList.remove(itemToDelete); // Remove from the list
-
-
-                    // delete the associated image file
-                    File imageFile = new File("data/img/" + itemToDelete.getId() + ".png");
-                    if (imageFile.exists()) {
-                        imageFile.delete();
-                    }
-                    writecsv(clothingItemList);
-
-
-                    updateImagePanel(clothingItemList); // Refresh the UI
-                }
-            } else {
-                JOptionPane.showMessageDialog(frame,
-                        "Item with ID " + itemId + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
     //Quick helper method
     private ClothingItem findItemById(int id) {
         for (ClothingItem item : clothingItemList) {
