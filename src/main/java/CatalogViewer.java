@@ -1127,7 +1127,6 @@ public class CatalogViewer {
             imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             // Panel for each clothing item (card-like structure)
-            JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BorderLayout());
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
