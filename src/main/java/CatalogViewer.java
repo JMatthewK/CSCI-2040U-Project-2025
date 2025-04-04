@@ -1191,7 +1191,7 @@ public class CatalogViewer {
         imagePanel.removeAll();
         buttonPanel.removeAll(); // Remove any existing buttons so they’re not added again
         bottomPanel.remove(buttonPanel); // Remove the panel from the layout (safe even if not present)
-// Add toggle delete button only if admin
+        // Add toggle delete button only if admin
         if (userStatus == 2) {
             buttonPanel.add(toggleDeleteButton);
             bottomPanel.add(buttonPanel);
@@ -1334,6 +1334,7 @@ public class CatalogViewer {
         mainMenu.add(editButton);
         dialog.add(mainMenu, BorderLayout.SOUTH);
         JPanel buttonPanel = new JPanel();
+        setPanelColors(buttonPanel, mainColor, mainColor);
 
         if(userStatus >= 1){
             buttonPanel.add(addfavouriteButton);
