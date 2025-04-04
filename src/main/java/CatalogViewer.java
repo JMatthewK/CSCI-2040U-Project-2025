@@ -1334,7 +1334,6 @@ public class CatalogViewer {
         mainMenu.add(editButton);
         dialog.add(mainMenu, BorderLayout.SOUTH);
         JPanel buttonPanel = new JPanel();
-        setPanelColors(buttonPanel, mainColor, mainColor);
 
         if(userStatus >= 1){
             buttonPanel.add(addfavouriteButton);
