@@ -234,6 +234,7 @@ public class CatalogViewer {
 // Replace the favorites panel creation with:
         JPanel favoritesPanel = new JPanel();
         favoritesPanel.setLayout(new BoxLayout(favoritesPanel, BoxLayout.Y_AXIS));
+        setPanelColors(favoritesPanel, mainColor, mainColor);
 
 // Create header
         JLabel favoritesLabel = createHeaderLabel("Your Favorites");
@@ -256,6 +257,7 @@ public class CatalogViewer {
         favoritesScrollPane.setBorder(BorderFactory.createEmptyBorder());
         favoritesScrollPane.getVerticalScrollBar().setUnitIncrement(10);
         favoritesScrollPane.setPreferredSize(new Dimension(600, 300));
+        favoritesScrollPane.setBackground(mainColor);
 
 // Add a wrapper panel for the scroll pane to expand properly
         JPanel scrollPaneWrapper = new JPanel(new BorderLayout());
@@ -276,13 +278,6 @@ public class CatalogViewer {
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
         buttonPanel.add(createToggleRemoveButton());
         favoritesPanel.add(buttonPanel);
-
-        setPanelColors(favoritesPanel, mainColor, mainColor);
-        setPanelColors(searchWrapper, mainColor, mainColor);
-        setPanelColors(buttonPanel, mainColor, mainColor);
-        setPanelColors(scrollPaneWrapper, mainColor, mainColor);
-        setPanelColors(favoritesItemsPanel, mainColor, mainColor);
-        favoritesScrollPane.getViewport().setBackground(mainColor);
 
 // Update the favoritesButton action listener
         favouritesButton = new JButton("Favorites");
@@ -317,13 +312,6 @@ public class CatalogViewer {
         mainPanel.add(mainCardPanel, BorderLayout.CENTER);
 
         // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
-        // Bottom panel with delete button
-        deleteButton = new JButton("Delete Item by ID");
-        customizeButton(deleteButton);
-
-        deleteButton.addActionListener(e -> deleteItemById());
-
-        bottomPanel.add(deleteButton);
 
         // add item button
         JButton addItemButton = new JButton("Add New Item");
@@ -470,7 +458,7 @@ public class CatalogViewer {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
-        JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
+        JButton searchButton = new JButton("Search"); // Add an icon for style
         customizeButton(searchButton);
 
         // 🔹 Modern UI tweaks for search field & button
@@ -498,7 +486,6 @@ public class CatalogViewer {
         searchPanel.add(searchButton);
         catalogPanel.add(searchPanel, BorderLayout.NORTH);
 
-        // 📌 Image Panel - Spacious layout
         imagePanel = new JPanel(new GridLayout(0, 4, 20, 20)); // 4 columns, 20px padding
         imagePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Padding around items
         setPanelColors(imagePanel, mainColor, mainColor);
@@ -858,7 +845,7 @@ public class CatalogViewer {
         frame.repaint();
     }
 
-    //Delete item
+    //Delete item -> NO LONGER USED
     private void deleteItemById() {
         String inputId = JOptionPane.showInputDialog(frame,
                 "Enter the ID of the item to delete:");
@@ -1114,21 +1101,38 @@ public class CatalogViewer {
         //update the new list
         updateImagePanel(filteredItems);
     }
-
+    private boolean showDeleteButtons = false; // Track delete button visibility
+    private JButton createToggleDeleteButton() {
+        JButton toggleDeleteButton = new JButton("Delete Multiple");
+        toggleDeleteButton.addActionListener(e -> {
+            showDeleteButtons = !showDeleteButtons;
+            updateImagePanel(clothingItemList); // Refresh the UI to show/hide buttons
+        });
+        customizeButton(toggleDeleteButton);
+        return toggleDeleteButton;
+    }
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
-        
+
+        // Add the toggle delete button at the top if user is admin
+        if (userStatus == 2) {
+            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            buttonPanel.add(createToggleDeleteButton());
+            bottomPanel.add(buttonPanel);
+        }
+
         for (ClothingItem item : items) {
             ImageIcon icon = item.getImage();
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaledImg);
-           
+
             JPanel itemPanel = new JPanel();
             itemPanel.setLayout(new BorderLayout());
             Color defaultColor = itemPanel.getBackground();
             Color hoverColor = new Color(173, 216, 230); // Light Blue
+
             // Image label
             JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
             imageLabel.setToolTipText("Click for more details on " + item.getName());
@@ -1168,6 +1172,24 @@ public class CatalogViewer {
                     }
                 }
             });
+
+            // Add delete button if in delete mode and user is admin
+            if (showDeleteButtons && userStatus == 2) {
+                JButton deleteButton = new JButton("Delete");
+                customizeButton(deleteButton);
+                deleteButton.addActionListener(e -> {
+                    int confirm = JOptionPane.showConfirmDialog(
+                            frame,
+                            "Are you sure you want to delete " + item.getName() + "?",
+                            "Confirm Delete",
+                            JOptionPane.YES_NO_OPTION
+                    );
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        deleteItem(item);
+                    }
+                });
+                itemPanel.add(deleteButton, BorderLayout.NORTH);
+            }
 
             // Add components to the item panel
             itemPanel.add(imageLabel, BorderLayout.CENTER);
@@ -1525,8 +1547,7 @@ public class CatalogViewer {
     private boolean showRemoveButtons = false; // Track remove button visibility
 
     private JButton createToggleRemoveButton() {
-        JButton toggleRemoveButton = new JButton("Remove From Favorites");
-        customizeButton(toggleRemoveButton);
+        JButton toggleRemoveButton = new JButton("Remove from favorites");
         toggleRemoveButton.addActionListener(e -> {
             showRemoveButtons = !showRemoveButtons;
             updateFavoritesDisplay(getFavourites()); // Refresh the UI to show/hide buttons
