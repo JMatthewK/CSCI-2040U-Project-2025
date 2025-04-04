@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -58,16 +59,23 @@ public class CatalogViewer {
     private JButton toggleDeleteButton;
 
 
-    // Define font used
-    String fontChoice = "Segoe UI";
+    // Define font used, Custom Font
     String fontPath = "src/resources/fonts/ArchivoBlack-Regular.ttf";
     Font archivoBlackFont = loadCustomFont(fontPath, 12f);
 
     Font textFont = archivoBlackFont.deriveFont(Font.PLAIN, 12);
-    Font headerFont = archivoBlackFont.deriveFont(Font.BOLD, 18);
+    Font headerFont = archivoBlackFont.deriveFont(Font.PLAIN, 18);
     Font buttonFont = archivoBlackFont.deriveFont(Font.PLAIN, 12);
 
-    Color mainColor = new Color(0xfaebd7);;
+    Color mainColor = new Color(0xfaebd7);
+    Color logoColor = new Color(0xe04c2c);
+    Color searchButtonColor = new Color(0x61B5D9);
+    Color accentColor = new Color(0xE4A08E);
+
+    BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
+    Image scaledLogo = logoImage.getScaledInstance(70, 40, Image.SCALE_SMOOTH);
+    ImageIcon logoIcon = new ImageIcon(scaledLogo);
+    JLabel headerLogoLabel = new JLabel(logoIcon);
 
     // Set of different filters to help search for specific clothes
     private Set<String> selectedColors = new HashSet<>();
@@ -137,10 +145,6 @@ public class CatalogViewer {
         // Create title and logo panel and put it on header
         JPanel titlePanel = new JPanel(new FlowLayout());
         setPanelColors(titlePanel, mainColor, mainColor);
-        BufferedImage logoImage = ImageIO.read(new File("data/icon.png"));
-        Image scaledLogo = logoImage.getScaledInstance(70, 40, Image.SCALE_SMOOTH);
-        ImageIcon logoIcon = new ImageIcon(scaledLogo);
-        JLabel headerLogoLabel = new JLabel(logoIcon);
         // Add logo and title to the title panel
         titlePanel.add(headerLogoLabel);
 
@@ -324,6 +328,8 @@ public class CatalogViewer {
 
         // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
 
+        setPanelColors(bottomPanel,mainColor,mainColor);
+
         // add item button
         JButton addItemButton = new JButton("Add New Item");
         customizeButton(addItemButton);
@@ -345,7 +351,10 @@ public class CatalogViewer {
         sideFilterPanel.add(menuButtonPanel);
 
         // Add the actual filtering buttons
-        sideFilterPanel.add(createHeaderLabel("Filter"));
+        JLabel filterHeaderLabel = createHeaderLabel("Filter");
+        filterHeaderLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        filterHeaderLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        sideFilterPanel.add(filterHeaderLabel);
         sideFilterPanel.add(createFilterPanel());
 
         // add the filter panel to the sidebar
@@ -378,13 +387,12 @@ public class CatalogViewer {
             return font.deriveFont(size); // Resize font
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
-            return new Font("Serif", Font.PLAIN, 12); // Fallback font
+            return new Font("Segoe UI", Font.PLAIN, 12); // Fallback font
         }
     }
 
     public void customizeButton(JButton button) {
-        Color buttonColor = new Color(0xdb4a2b);
-        button.setBackground(buttonColor);
+        button.setBackground(logoColor);
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(buttonFont);
@@ -394,6 +402,7 @@ public class CatalogViewer {
     private JLabel createHeaderLabel(String title){
         JLabel headerLabel = new JLabel(title);
         headerLabel.setFont(headerFont);
+        headerLabel.setForeground(logoColor);
         return headerLabel;
     }
 
@@ -470,8 +479,9 @@ public class CatalogViewer {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
-        JButton searchButton = new JButton("Search"); // Add an icon for style
+        JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
         customizeButton(searchButton);
+        searchButton.setBackground(searchButtonColor);
 
         // 🔹 Modern UI tweaks for search field & button
         searchField.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -493,11 +503,13 @@ public class CatalogViewer {
             updateImagePanel(filteredList);
         });
 
-        searchPanel.add(new JLabel("Search: "));
+        JLabel searchLabel = createHeaderLabel("Search: ");
+        searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
         catalogPanel.add(searchPanel, BorderLayout.NORTH);
 
+        // 📌 Image Panel - Spacious layout
         imagePanel = new JPanel(new GridLayout(0, 4, 20, 20)); // 4 columns, 20px padding
         imagePanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Padding around items
         setPanelColors(imagePanel, mainColor, mainColor);
@@ -524,10 +536,17 @@ public class CatalogViewer {
     public void login() {
         // Login window
         JFrame frame = new JFrame("Login System");
-        JPanel loginPanel = new JPanel(new GridLayout(4,2, 10, 10));
+        JPanel loginPanel = new JPanel(new GridLayout(6,1, 0, 0));
+        setPanelColors(loginPanel, mainColor, mainColor);
+        JPanel usernamePanel = new JPanel(new GridLayout(2,1));
+        setPanelColors(usernamePanel, mainColor, mainColor);
+        JPanel passwordPanel = new JPanel(new GridLayout(2,1));
+        setPanelColors(passwordPanel, mainColor, mainColor);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(300,200);
+        frame.setSize(400,600);
+        frame.setLocationRelativeTo(null);
         frame.add(loginPanel);
+        frame.setResizable(false);
         // check accounts
         try {
             accounts = csvParser.parseAccount("data/accounts.csv");
@@ -536,14 +555,12 @@ public class CatalogViewer {
         }
 
         // GUI Components
-        JLabel userLabel = new JLabel("Username:");
-        userLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        JLabel userLabel = createTextLabel("Username:");
         JTextField userField = new JTextField(15);
         Rectangle r = new Rectangle(75,50);
         userField.setBounds(r);
 
-        JLabel passLabel = new JLabel("Password:");
-        passLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        JLabel passLabel = createTextLabel("Password:");
         JPasswordField passField = new JPasswordField(15);
         passField.setBounds(r);
 
@@ -591,7 +608,7 @@ public class CatalogViewer {
                     }
                     else {
                         resultLabel.setText("Invalid credentials.");
-                        resultLabel.setForeground(Color.RED);
+                        resultLabel.setForeground(logoColor);
                     }
                 }
                 // Run update UI to check for changes
@@ -600,13 +617,28 @@ public class CatalogViewer {
         });
 
         // Adding the components to the frame and display
-        loginPanel.add(userLabel);
-        loginPanel.add(userField);
-        loginPanel.add(passLabel);
-        loginPanel.add(passField);
-        loginPanel.add(loginButton);
-        loginPanel.add(resultLabel);
-        loginPanel.add(registerButton);
+        usernamePanel.add(userLabel);
+        usernamePanel.add(userField);
+        passwordPanel.add(passLabel);
+        passwordPanel.add(passField);
+
+        JPanel loginButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        setPanelColors(loginButtonPanel, mainColor, mainColor);
+        loginButtonPanel.add(loginButton);
+        loginButtonPanel.add(resultLabel);
+
+        JPanel signupPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        setPanelColors(signupPanel, mainColor, mainColor);
+        signupPanel.add(registerButton);
+
+        loginPanel.add(headerLogoLabel);
+        loginPanel.add(usernamePanel);
+        loginPanel.add(passwordPanel);
+        loginPanel.add(loginButtonPanel);
+        loginPanel.add(createTextLabel("Don't have an account? Sign up here:"));
+        loginPanel.add(signupPanel);
+
+
         frame.setVisible(true);
 
     }
@@ -616,17 +648,16 @@ public class CatalogViewer {
         JFrame frame = new JFrame("Register Account");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
-        frame.setSize(400,300);
-        frame.setLayout(new GridLayout(4, 3, 10, 10));
+        frame.setSize(400,600);
         frame.setResizable(false);
 
         // GUI Components
-        JLabel newUserLabel = new JLabel("Username:");
+        JLabel newUserLabel = createTextLabel("Username:");
         JTextField newUserField = new JTextField(15);
         Rectangle r = new Rectangle(75,50);
         newUserField.setBounds(r);
 
-        JLabel newPassLabel = new JLabel("Password:");
+        JLabel newPassLabel = createTextLabel("Password:");
         JPasswordField newPassField = new JPasswordField(15);
         newPassField.setBounds(r);
 
@@ -634,12 +665,28 @@ public class CatalogViewer {
         customizeButton(registerButton);
         JLabel resultLabel = new JLabel("");
 
-        frame.add(newUserLabel);
-        frame.add(newUserField);
-        frame.add(newPassLabel);
-        frame.add(newPassField);
-        frame.add(registerButton);
-        frame.add(resultLabel);
+        JPanel registerPanel = new JPanel(new GridLayout(5,1));
+        JPanel usernamePanel = new JPanel(new GridLayout(2,1));
+        JPanel passwordPanel = new JPanel(new GridLayout(2,1));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        setPanelColors(registerPanel, mainColor, mainColor);
+        setPanelColors(usernamePanel, mainColor, mainColor);
+        setPanelColors(passwordPanel, mainColor, mainColor);
+        setPanelColors(buttonPanel, mainColor, mainColor);
+
+        usernamePanel.add(newUserLabel);
+        usernamePanel.add(newUserField);
+        passwordPanel.add(newPassLabel);
+        passwordPanel.add(newPassField);
+        buttonPanel.add(registerButton);
+        buttonPanel.add(resultLabel);
+
+        registerPanel.add(headerLogoLabel);
+        registerPanel.add(usernamePanel);
+        registerPanel.add(passwordPanel);
+        registerPanel.add(buttonPanel);
+
+        frame.add(registerPanel);
         frame.setVisible(true);
 
         registerButton.addActionListener(new ActionListener() {
@@ -647,7 +694,7 @@ public class CatalogViewer {
                 String username = newUserField.getText();
                 String password = new String(newPassField.getPassword());
                 boolean userTaken = false;
-                
+
                 CSVWriter writer = null;
                 try {
                      writer = new CSVWriter(new FileWriter("data/accounts.csv", true),
@@ -664,11 +711,11 @@ public class CatalogViewer {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                
+
                 for(int i = 0; i < accounts.size(); i++) {
                     if (username.equals(accounts.get(i).getUsername())) {
                         resultLabel.setText("Username taken.");
-                        resultLabel.setForeground(Color.RED);
+                        resultLabel.setForeground(logoColor);
                         userTaken = true;
                     }
                 }
@@ -681,16 +728,16 @@ public class CatalogViewer {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-    
+
                     resultLabel.setText("Account created successfully!");
                     resultLabel.setForeground(Color.GREEN);
-    
+
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
-    
+
                     frame.setVisible(false);
                     frame.dispose();
                     login();
@@ -772,7 +819,7 @@ public class CatalogViewer {
         //Upload image using jfilechooser
         JButton uploadImageButton = new JButton("Upload Image");
         customizeButton(uploadImageButton);
-        JLabel imagePathLabel = new JLabel("No Image Selected");
+        JLabel imagePathLabel = createTextLabel("No Image Selected");
         final File[] selectedFile = {null};
         uploadImageButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -834,23 +881,23 @@ public class CatalogViewer {
             startGUI(clothingItemList);
         });
 
-        addPanel.add(new JLabel("*Name:"));
+        addPanel.add(createTextLabel("*Name:"));
         addPanel.add(name);
-        addPanel.add(new JLabel("Brand:"));
+        addPanel.add(createTextLabel("Brand:"));
         addPanel.add(brand);
-        addPanel.add(new JLabel("Color:"));
+        addPanel.add(createTextLabel("Color:"));
         addPanel.add(color);
-        addPanel.add(new JLabel("Category:"));
+        addPanel.add(createTextLabel("Category:"));
         addPanel.add(categoriesList);
-        addPanel.add(new JLabel("*Price:"));
+        addPanel.add(createTextLabel("*Price:"));
         addPanel.add(price);
-        addPanel.add(new JLabel("Material:"));
+        addPanel.add(createTextLabel("Material:"));
         addPanel.add(material);
-        addPanel.add(new JLabel("Style:"));
+        addPanel.add(createTextLabel("Style:"));
         addPanel.add(styleList);
-        addPanel.add(new JLabel("Fit:"));
+        addPanel.add(createTextLabel("Fit:"));
         addPanel.add(fitList);
-        addPanel.add(new JLabel("Link:"));
+        addPanel.add(createTextLabel("Link:"));
         addPanel.add(link);
 
         addPanel.add(uploadImageButton); addPanel.add(imagePathLabel);
@@ -917,7 +964,9 @@ public class CatalogViewer {
         // Color selection panel (using colored buttons instead of text)
         JPanel colorPanel = new JPanel();
         setPanelColors(colorPanel, mainColor, mainColor);
-        colorPanel.setBorder(BorderFactory.createTitledBorder("Color"));
+        TitledBorder border = BorderFactory.createTitledBorder("Color");
+        border.setTitleFont(textFont);
+        border.setTitleColor(logoColor);
         String[] colors = {"Blue", "Grey", "Brown", "Green", "Beige", "Pink", "Red", "Orange", "Purple"};
 
         for (String color : colors) {
@@ -975,7 +1024,7 @@ public class CatalogViewer {
             case "green": return Color.GREEN;
             case "beige": return new Color(245, 245, 220); // Beige
             case "pink": return Color.PINK;
-            case "red": return Color.RED;
+            case "red": return logoColor;
             case "orange": return Color.ORANGE;
             case "purple": return new Color(128, 0, 128); // Purple
             default: return Color.BLACK;
@@ -986,7 +1035,10 @@ public class CatalogViewer {
     private JPanel createCheckboxPanel(String filterType, String[] options) {
         JPanel panel = new JPanel();
         setPanelColors(panel, mainColor, mainColor);
-        panel.setBorder(BorderFactory.createTitledBorder(filterType));
+        TitledBorder border = BorderFactory.createTitledBorder(filterType);
+        border.setTitleFont(textFont);
+        border.setTitleColor(logoColor);
+        panel.setBorder(border);
 
         for (String option : options) {
             JCheckBox checkBox = new JCheckBox(option);
@@ -1007,7 +1059,10 @@ public class CatalogViewer {
     private JPanel wrapInPanel(String title, JComponent component) {
         JPanel panel = new JPanel();
         setPanelColors(panel, mainColor, mainColor);
-        panel.setBorder(BorderFactory.createTitledBorder(title));
+        TitledBorder border = BorderFactory.createTitledBorder(title);
+        border.setTitleFont(textFont);
+        border.setTitleColor(logoColor);
+        panel.setBorder(border);
         panel.add(component);
         return panel;
     }
@@ -1159,13 +1214,14 @@ public class CatalogViewer {
             imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             // Panel for each clothing item (card-like structure)
+            itemPanel = new JPanel();
             itemPanel.setLayout(new BorderLayout());
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
 
             // Item name label
-            JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
-            nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+            JLabel nameLabel = createTextLabel(item.getName());
+            nameLabel.setHorizontalAlignment(JLabel.CENTER);
             nameLabel.setForeground(Color.DARK_GRAY);
 
             // Mouse effect (border highlight)
@@ -1173,7 +1229,8 @@ public class CatalogViewer {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (SwingUtilities.isLeftMouseButton(e)) {
-                        showItemDetails(item);
+                        ImageIcon icon = new ImageIcon(scaledImg);
+                        showItemDetails(item, icon);
                     }
                 }
             });
@@ -1211,20 +1268,26 @@ public class CatalogViewer {
 
 
     //shows the information about the image they clicked on
-    private void showItemDetails(ClothingItem item) {
+    private void showItemDetails(ClothingItem item, ImageIcon icon) {
         //create new box to show information
         JDialog dialog = new JDialog(frame, "Item Details", true);
-        dialog.setSize(350, 325);
+        dialog.setSize(500, 500);
         dialog.setLocationRelativeTo(frame);
 
         //show most details can add more if want
-        JPanel detailsPanel = new JPanel(new GridLayout(0, 1));
-        detailsPanel.add(new JLabel("ID: " + item.getId()));
-        detailsPanel.add(new JLabel("Name: " + item.getName()));
-        detailsPanel.add(new JLabel("Brand: " + item.getBrand()));
-        detailsPanel.add(new JLabel("Price: $" + item.getPrice()));
-        detailsPanel.add(new JLabel("Contains Material: " + item.getMaterial()));
-        detailsPanel.add(new JLabel("Fit: " + item.getFit()));
+        JPanel detailsPanel = new JPanel(new BorderLayout());
+        JPanel informationPanel = new JPanel(new GridLayout(0, 1, 0, 0));
+        JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
+        detailsPanel.add(imageLabel, BorderLayout.NORTH);
+        setPanelColors(detailsPanel, mainColor, mainColor);
+        informationPanel.add(createTextLabel("ID: " + item.getId()));
+        informationPanel.add(createTextLabel("Name: " + item.getName()));
+        informationPanel.add(createTextLabel("Brand: " + item.getBrand()));
+        informationPanel.add(createTextLabel("Price: $" + item.getPrice()));
+        informationPanel.add(createTextLabel("Contains Material: " + item.getMaterial()));
+        informationPanel.add(createTextLabel("Fit: " + item.getFit()));
+        setPanelColors(informationPanel, mainColor, mainColor);
+        detailsPanel.add(informationPanel, BorderLayout.CENTER);
         dialog.add(detailsPanel);
 
         //create button to allow user to edit
@@ -1271,6 +1334,7 @@ public class CatalogViewer {
         mainMenu.add(editButton);
         dialog.add(mainMenu, BorderLayout.SOUTH);
         JPanel buttonPanel = new JPanel();
+        setPanelColors(buttonPanel, mainColor, mainColor);
 
         if(userStatus >= 1){
             buttonPanel.add(addfavouriteButton);
@@ -1322,7 +1386,7 @@ public class CatalogViewer {
         // image upload
         JButton uploadImageButton = new JButton("Upload Image");
         customizeButton(uploadImageButton);
-        JLabel imagePathLabel = new JLabel("No Image Selected");
+        JLabel imagePathLabel = createTextLabel("No Image Selected");
         final File[] selectedFile = {null};
         uploadImageButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -1334,25 +1398,25 @@ public class CatalogViewer {
         });
 
         // labels
-        editDialog.add(new JLabel("Name:"));
+        editDialog.add(createTextLabel("Name:"));
         editDialog.add(nameField);
-        editDialog.add(new JLabel("Brand:"));
+        editDialog.add(createTextLabel("Brand:"));
         editDialog.add(brandField);
-        editDialog.add(new JLabel("Color:"));
+        editDialog.add(createTextLabel("Color:"));
         editDialog.add(colorField);
-        editDialog.add(new JLabel("Category:"));
+        editDialog.add(createTextLabel("Category:"));
         editDialog.add(categoriesList);
-        editDialog.add(new JLabel("Price (CAD):"));
+        editDialog.add(createTextLabel("Price (CAD):"));
         editDialog.add(priceField);
-        editDialog.add(new JLabel("Material:"));
+        editDialog.add(createTextLabel("Material:"));
         editDialog.add(materialField);
-        editDialog.add(new JLabel("Style:"));
+        editDialog.add(createTextLabel("Style:"));
         editDialog.add(styleList);
-        editDialog.add(new JLabel("Fit:"));
+        editDialog.add(createTextLabel("Fit:"));
         editDialog.add(fitList);
-        editDialog.add(new JLabel("Link:"));
+        editDialog.add(createTextLabel("Link:"));
         editDialog.add(linkField);
-        editDialog.add(new JLabel("Image:"));
+        editDialog.add(createTextLabel("Image:"));
         editDialog.add(uploadImageButton);
         editDialog.add(imagePathLabel);
 
