@@ -55,6 +55,8 @@ public class CatalogViewer {
     private JButton favouritesButton;
     private JButton exitButton;
     private JButton homepageButton;
+    private JButton toggleDeleteButton;
+
 
     // Define font used
     String fontChoice = "Segoe UI";
@@ -104,6 +106,7 @@ public class CatalogViewer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(screenSize.width, screenSize.height); // Set size of application to size of screen
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Automaticaly maximize screen
+        initializeToggleDeleteButton();
     }
 
     public CatalogViewer(List<ClothingItem> clothingItemList) throws IOException {
@@ -1118,15 +1121,16 @@ public class CatalogViewer {
         updateImagePanel(filteredItems);
     }
     private boolean showDeleteButtons = false; // Track delete button visibility
-    private JButton createToggleDeleteButton() {
-        JButton toggleDeleteButton = new JButton("Delete Multiple");
+    private void initializeToggleDeleteButton() {
+        toggleDeleteButton = new JButton("Delete Multiple");
         toggleDeleteButton.addActionListener(e -> {
             showDeleteButtons = !showDeleteButtons;
-            updateImagePanel(clothingItemList); // Refresh the UI to show/hide buttons
+            toggleDeleteButton.setSelected(showDeleteButtons); // Maintain button state
+            updateImagePanel(clothingItemList); // Refresh UI
         });
         customizeButton(toggleDeleteButton);
-        return toggleDeleteButton;
     }
+
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
@@ -1134,7 +1138,7 @@ public class CatalogViewer {
         bottomPanel.remove(buttonPanel); // Remove the panel from the layout (safe even if not present)
 // Add toggle delete button only if admin
         if (userStatus == 2) {
-            buttonPanel.add(createToggleDeleteButton());
+            buttonPanel.add(toggleDeleteButton);
             bottomPanel.add(buttonPanel);
         }
 
