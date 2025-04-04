@@ -788,9 +788,16 @@ public class CatalogViewer {
             try {
                 itemPrice = Double.parseDouble(price.getText().replaceAll(",", ""));
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "Invalid price format!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Try again with a price", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
+            if (name.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Try Again With a name ", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int size = clothingItemList.size()+1;
+            JOptionPane.showMessageDialog(frame, "Adding Item with ID Number: "+size, "Success", JOptionPane.INFORMATION_MESSAGE);
 
             ClothingItem clothing = new ClothingItem(
                     clothingItemList.size() + 1,
@@ -824,7 +831,7 @@ public class CatalogViewer {
             startGUI(clothingItemList);
         });
 
-        addPanel.add(new JLabel("Name:"));
+        addPanel.add(new JLabel("*Name:"));
         addPanel.add(name);
         addPanel.add(new JLabel("Brand:"));
         addPanel.add(brand);
@@ -832,7 +839,7 @@ public class CatalogViewer {
         addPanel.add(color);
         addPanel.add(new JLabel("Category:"));
         addPanel.add(categoriesList);
-        addPanel.add(new JLabel("Price:"));
+        addPanel.add(new JLabel("*Price:"));
         addPanel.add(price);
         addPanel.add(new JLabel("Material:"));
         addPanel.add(material);
