@@ -484,7 +484,7 @@ public class CatalogViewer {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
-        JButton searchButton = new JButton("🔍 Search"); // Add an icon for style
+        JButton searchButton = new JButton("Search"); // Add an icon for style
         customizeButton(searchButton);
         searchButton.setBackground(searchButtonColor);
 
@@ -870,18 +870,46 @@ public class CatalogViewer {
             clothingItemList.add(clothing);
             //call to write new csv
             writecsv(clothingItemList);
-            try {
-                File destination = new File("data/img/" + clothing.getId() + ".png");
-                Files.copy(selectedFile[0].toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                destination.setReadable(true, false);
-                destination.setWritable(true, false);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            SwingWorker<Void, Void> imageSaver = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    if (selectedFile[0] != null) {
+                        String imagePath = "data/img/" + clothing.getId() + ".png";
+                        File destination = new File(imagePath);
 
-            // Refresh the catalog view
+                        // Ensure directory exists
+                        if (!destination.getParentFile().exists()) {
+                            destination.getParentFile().mkdirs();
+                        }
+
+                        // Copy the file
+                        Files.copy(selectedFile[0].toPath(), destination.toPath(),
+                                StandardCopyOption.REPLACE_EXISTING);
+
+                        // Set permissions
+                        destination.setReadable(true, false);
+                        destination.setWritable(true, false);
+
+                        // Force the image to load
+                        ImageIcon icon = new ImageIcon(imagePath);
+                        icon.getImage().flush(); // Ensure image is loaded
+                        clothing.setImage(icon);
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    // Update UI after image is saved
+                    updateImagePanel(clothingItemList);
+                }
+            };
+            imageSaver.execute();
+
+            // Show catalog immediately (will show placeholder first)
             updateImagePanel(clothingItemList);
             mainCardLayout.show(mainCardPanel, "catalogPanel");
+
         });
 
         addPanel.add(createTextLabel("*Name:"));
