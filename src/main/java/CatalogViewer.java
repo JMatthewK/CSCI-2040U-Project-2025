@@ -1638,7 +1638,7 @@ public class CatalogViewer {
         imageLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                showItemDetails(item);
+                showItemDetails(item, icon);
             }
         });
         itemPanel.addMouseListener(new MouseAdapter() {
