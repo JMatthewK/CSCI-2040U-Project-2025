@@ -1116,9 +1116,11 @@ public class CatalogViewer {
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaledImg);
+           
+            JPanel itemPanel = new JPanel();
+            itemPanel.setLayout(new BorderLayout());
             Color defaultColor = itemPanel.getBackground();
             Color hoverColor = new Color(173, 216, 230); // Light Blue
-
             // Image label
             JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
             imageLabel.setToolTipText("Click for more details on " + item.getName());
