@@ -45,7 +45,6 @@ public class CatalogViewer {
     private JPanel favoritesItemsPanel = new JPanel(new GridLayout(0, 4, 20, 20));
     private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-
     private JLabel emptyFavoritesLabel = new JLabel();
 
     // Define buttons used in the class
@@ -381,7 +380,8 @@ public class CatalogViewer {
     }
 
     public void customizeButton(JButton button) {
-        button.setBackground(Color.RED);
+        Color buttonColor = new Color(0xdb4a2b);
+        button.setBackground(buttonColor);
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(buttonFont);
@@ -534,13 +534,13 @@ public class CatalogViewer {
 
         // GUI Components
         JLabel userLabel = new JLabel("Username:");
-        userLabel.setFont(textFont);
+        userLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         JTextField userField = new JTextField(15);
         Rectangle r = new Rectangle(75,50);
         userField.setBounds(r);
 
         JLabel passLabel = new JLabel("Password:");
-        passLabel.setFont(textFont);
+        passLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         JPasswordField passField = new JPasswordField(15);
         passField.setBounds(r);
 
