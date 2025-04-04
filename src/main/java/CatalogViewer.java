@@ -330,6 +330,7 @@ public class CatalogViewer {
         addItemButton.addActionListener(e -> {
             addItem();
         });
+        bottomPanel.setBackground(mainColor);
         bottomPanel.add(addItemButton);
 
 
@@ -466,14 +467,13 @@ public class CatalogViewer {
         // Sidebar filter buttons
         sideCardLayout.show(sideCardPanel, "sideFilterPanel");
 
-        // 💡 Search Bar - More modern look
+        //  Search Bar
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         setPanelColors(searchPanel, mainColor, mainColor);
         JTextField searchField = new JTextField(25);
-        JButton searchButton = new JButton("Search"); // Add an icon for style
+        JButton searchButton = new JButton("Search");
         customizeButton(searchButton);
 
-        // 🔹 Modern UI tweaks for search field & button
         searchField.setFont(new Font("SansSerif", Font.PLAIN, 14));
         searchButton.setBackground(new Color(50, 150, 250));
         searchButton.setForeground(Color.WHITE);
@@ -492,8 +492,9 @@ public class CatalogViewer {
             }
             updateImagePanel(filteredList);
         });
-
-        searchPanel.add(new JLabel("Search: "));
+        JLabel searchLabel = new JLabel("Search:  ");
+        searchLabel.setFont(textFont);
+        searchPanel.add(searchLabel);
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
         catalogPanel.add(searchPanel, BorderLayout.NORTH);
