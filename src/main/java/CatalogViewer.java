@@ -43,6 +43,7 @@ public class CatalogViewer {
     private JPanel menuButtonPanel = new JPanel(new FlowLayout());
     private JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
     private JPanel favoritesItemsPanel = new JPanel(new GridLayout(0, 4, 20, 20));
+    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
     private JLabel emptyFavoritesLabel = new JLabel();
 
@@ -379,7 +380,8 @@ public class CatalogViewer {
     }
 
     public void customizeButton(JButton button) {
-        button.setBackground(Color.RED);
+        Color buttonColor = new Color(0xdb4a2b);
+        button.setBackground(buttonColor);
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(buttonFont);
@@ -532,13 +534,13 @@ public class CatalogViewer {
 
         // GUI Components
         JLabel userLabel = new JLabel("Username:");
-        userLabel.setFont(textFont);
+        userLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         JTextField userField = new JTextField(15);
         Rectangle r = new Rectangle(75,50);
         userField.setBounds(r);
 
         JLabel passLabel = new JLabel("Password:");
-        passLabel.setFont(textFont);
+        passLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         JPasswordField passField = new JPasswordField(15);
         passField.setBounds(r);
 
@@ -1122,9 +1124,10 @@ public class CatalogViewer {
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
 
-        // Add the toggle delete button at the top if user is admin
+        buttonPanel.removeAll(); // Remove any existing buttons so they’re not added again
+        bottomPanel.remove(buttonPanel); // Remove the panel from the layout (safe even if not present)
+
         if (userStatus == 2) {
-            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
             buttonPanel.add(createToggleDeleteButton());
             bottomPanel.add(buttonPanel);
         }
