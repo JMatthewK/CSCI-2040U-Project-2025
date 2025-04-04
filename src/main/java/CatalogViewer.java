@@ -226,14 +226,65 @@ public class CatalogViewer {
 
         // Favourites List
         // Favourite Page Panel
-        JPanel favoritesPanel = new JPanel(new BorderLayout());
-        JLabel favoritesLabel = createHeaderLabel("Favorites List");
-        favoritesPanel.add(favoritesLabel, BorderLayout.NORTH);
-        mainCardPanel.add(favoritesPanel, "favoritesPanel");
+      // Favourites List
+        // Replace the existing favoritesPanel initialization with this:
+// Replace the favorites panel creation with:
+        JPanel favoritesPanel = new JPanel();
+        favoritesPanel.setLayout(new BoxLayout(favoritesPanel, BoxLayout.Y_AXIS));
+        setPanelColors(favoritesPanel, mainColor, mainColor);
 
-        favouritesButton = new JButton("Favorites List");
-        customizeButton(favouritesButton);
-        favouritesButton.addActionListener(e -> {mainCardLayout.show(mainCardPanel, "favoritesPanel");});
+// Create header
+        JLabel favoritesLabel = createHeaderLabel("Your Favorites");
+        favoritesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        favoritesLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 10, 0));
+        favoritesPanel.add(favoritesLabel);
+
+// Add search panel inside a wrapper for spacing
+        JPanel searchWrapper = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        searchWrapper.setMaximumSize(new Dimension(600, 50)); // Restrict width
+        searchWrapper.add(createSearchPanel(true));
+        searchWrapper.setBackground(mainColor);
+        favoritesPanel.add(searchWrapper);
+
+
+// Initialize favorites items panel with proper alignment
+        favoritesItemsPanel = new JPanel(new GridLayout(0, 4, 20, 20));
+        favoritesItemsPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JScrollPane favoritesScrollPane = new JScrollPane(favoritesItemsPanel);
+        favoritesScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        favoritesScrollPane.getVerticalScrollBar().setUnitIncrement(10);
+        favoritesScrollPane.setPreferredSize(new Dimension(600, 300));
+        favoritesScrollPane.setBackground(mainColor);
+
+// Add a wrapper panel for the scroll pane to expand properly
+        JPanel scrollPaneWrapper = new JPanel(new BorderLayout());
+        scrollPaneWrapper.add(favoritesScrollPane, BorderLayout.CENTER);
+        scrollPaneWrapper.setBackground(mainColor);
+        favoritesPanel.add(scrollPaneWrapper);
+
+// Empty state message
+        emptyFavoritesLabel = new JLabel("You haven't added any favorites yet!");
+        emptyFavoritesLabel.setFont(headerFont);
+        emptyFavoritesLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        emptyFavoritesLabel.setForeground(Color.GRAY);
+        emptyFavoritesLabel.setVisible(false);
+        favoritesPanel.add(emptyFavoritesLabel);
+
+// Add toggle remove button with better spacing
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 20, 0));
+        buttonPanel.add(createToggleRemoveButton());
+        favoritesPanel.add(buttonPanel);
+
+// Update the favoritesButton action listener
+        favouritesButton = new JButton("Favorites");
+        favouritesButton.addActionListener(e -> {
+            List<ClothingItem> favorites = getFavourites();
+            updateFavoritesDisplay(favorites);
+            mainCardLayout.show(mainCardPanel, "favoritesPanel");
+            sideCardLayout.show(sideCardPanel, "sidebar"); // Show the default sidebar
+        });
+         mainCardPanel.add(favoritesPanel, "favoritesPanel");
 
         // Add navigation buttons
         navigationPanel.add(homepageButton);
@@ -1074,6 +1125,21 @@ public class CatalogViewer {
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
 
+            // Add hover effect
+            itemPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    itemPanel.setBackground(hoverColor);
+                    itemPanel.setBorder(BorderFactory.createLineBorder(new Color(50, 150, 250), 2)); // Blue border on hover
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    itemPanel.setBackground(defaultColor);
+                    itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Restore default border
+                }
+            });
+
             // Item name label
             JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
             nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -1367,6 +1433,161 @@ public class CatalogViewer {
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(frame, "Error favoriting");
+        }
+    }
+    private JPanel createSearchPanel(boolean isFavorites) {
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        searchPanel.setBackground(mainColor);
+
+        JTextField searchField = new JTextField(20);
+        searchField.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        searchField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(150, 150, 150), 1),
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        searchField.setPreferredSize(new Dimension(200, 30));
+
+        JButton searchButton = new JButton("🔍 Search");
+        searchButton.setBackground(new Color(50, 150, 250));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchButton.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+
+        searchButton.addActionListener(e -> {
+            String query = searchField.getText().toLowerCase();
+            List<ClothingItem> itemsToSearch = isFavorites ? getFavourites() : clothingItemList;
+            List<ClothingItem> filteredList = new ArrayList<>();
+
+            for (ClothingItem item : itemsToSearch) {
+                if (item.getName().toLowerCase().contains(query) ||
+                        item.getBrand().toLowerCase().contains(query) ||
+                        item.getCategory().toLowerCase().contains(query)) {
+                    filteredList.add(item);
+                }
+            }
+
+            if (isFavorites) {
+                updateFavoritesDisplay(filteredList);
+            } else {
+                updateImagePanel(filteredList);
+            }
+        });
+
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+        return searchPanel;
+    }
+
+    private void updateFavoritesDisplay(List<ClothingItem> favorites) {
+        favoritesItemsPanel.removeAll(); // Clear previous items
+
+        if (favorites == null || favorites.isEmpty()) {
+            emptyFavoritesLabel.setVisible(true);
+            favoritesItemsPanel.setVisible(false);
+        } else {
+            emptyFavoritesLabel.setVisible(false);
+            favoritesItemsPanel.setVisible(true);
+
+            for (ClothingItem item : favorites) {
+                if (item == null) continue;
+
+                ImageIcon icon = item.getImage();
+                if (icon.getIconWidth() <= 0) {
+                    icon = new ImageIcon("data/img/placeholder.png");
+                }
+
+                Image img = icon.getImage();
+                Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(scaledImg);
+
+                JPanel itemPanel = getjPanel(item, icon, showRemoveButtons); // Pass remove button visibility
+                favoritesItemsPanel.add(itemPanel);
+            }
+        }
+
+        favoritesItemsPanel.revalidate();
+        favoritesItemsPanel.repaint();
+    }
+    private boolean showRemoveButtons = false; // Track remove button visibility
+
+    private JButton createToggleRemoveButton() {
+        JButton toggleRemoveButton = new JButton("Remove from favorites");
+        toggleRemoveButton.addActionListener(e -> {
+            showRemoveButtons = !showRemoveButtons;
+            updateFavoritesDisplay(getFavourites()); // Refresh the UI to show/hide buttons
+        });
+        return toggleRemoveButton;
+    }
+
+
+    private JPanel getjPanel(ClothingItem item, ImageIcon icon, boolean showRemove) {
+        JPanel itemPanel = new JPanel(new BorderLayout());
+        itemPanel.setPreferredSize(new Dimension(180, 220));
+        itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2));
+
+        JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
+        imageLabel.setToolTipText("Click for more details on " + item.getName());
+        imageLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        imageLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showItemDetails(item);
+            }
+        });
+        itemPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                itemPanel.setBackground(new Color(173, 216, 230)); // Light Blue
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                itemPanel.setBackground(new Color(240, 240, 240)); // Back to normal
+            }
+        });
+
+
+        JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
+        nameLabel.setFont(Font.getFont(fontChoice));
+        nameLabel.setForeground(Color.BLACK);
+
+        JButton removeButton = new JButton("Remove");
+        removeButton.setVisible(showRemove); // Control visibility
+        removeButton.addActionListener(e -> removeFromFavorites(item));
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(removeButton);
+
+        itemPanel.add(imageLabel, BorderLayout.CENTER);
+        itemPanel.add(nameLabel, BorderLayout.SOUTH);
+        itemPanel.add(buttonPanel, BorderLayout.NORTH);
+        return itemPanel;
+    }
+
+
+    private void removeFromFavorites(ClothingItem item) {
+        File favoritesFile = new File("data/favorites/" + currentuser + "_favorites.csv");
+        if (favoritesFile.exists()) {
+            try {
+                List<String> lines = Files.readAllLines(favoritesFile.toPath());
+                List<String> updatedLines = new ArrayList<>();
+
+                for (String line : lines) {
+                    if (!line.trim().equals(String.valueOf(item.getId()))) {
+                        updatedLines.add(line);
+                    }
+                }
+
+                Files.write(favoritesFile.toPath(), updatedLines);
+                updateFavoritesDisplay(getFavourites()); // Refresh the display
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(frame,
+                        "Error removing from favorites",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     //looks cool
