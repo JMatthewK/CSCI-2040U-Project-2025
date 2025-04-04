@@ -318,7 +318,7 @@ public class CatalogViewer {
 
         // BUTTONS FOR ADMINS TO USE TO EDIT CATALOG
         // Bottom panel with delete button
-        deleteButton = new JButton("🗑 Delete Item by ID");
+        deleteButton = new JButton("Delete Item by ID");
         customizeButton(deleteButton);
 
         deleteButton.addActionListener(e -> deleteItemById());
@@ -538,11 +538,13 @@ public class CatalogViewer {
 
         // GUI Components
         JLabel userLabel = new JLabel("Username:");
+        userLabel.setFont(textFont);
         JTextField userField = new JTextField(15);
         Rectangle r = new Rectangle(75,50);
         userField.setBounds(r);
 
         JLabel passLabel = new JLabel("Password:");
+        passLabel.setFont(textFont);
         JPasswordField passField = new JPasswordField(15);
         passField.setBounds(r);
 
@@ -1459,7 +1461,7 @@ public class CatalogViewer {
         ));
         searchField.setPreferredSize(new Dimension(200, 30));
 
-        JButton searchButton = new JButton("🔍 Search");
+        JButton searchButton = new JButton("Search");
         searchButton.setBackground(new Color(50, 150, 250));
         searchButton.setForeground(Color.WHITE);
         searchButton.setFocusPainted(false);
@@ -1529,6 +1531,7 @@ public class CatalogViewer {
             showRemoveButtons = !showRemoveButtons;
             updateFavoritesDisplay(getFavourites()); // Refresh the UI to show/hide buttons
         });
+        customizeButton(toggleRemoveButton);
         return toggleRemoveButton;
     }
 
@@ -1561,10 +1564,11 @@ public class CatalogViewer {
 
 
         JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
-        nameLabel.setFont(Font.getFont(fontChoice));
+        nameLabel.setFont(textFont);
         nameLabel.setForeground(Color.BLACK);
 
         JButton removeButton = new JButton("Remove");
+        customizeButton(removeButton);
         removeButton.setVisible(showRemove); // Control visibility
         removeButton.addActionListener(e -> removeFromFavorites(item));
 
