@@ -43,6 +43,8 @@ public class CatalogViewer {
     private JPanel menuButtonPanel = new JPanel(new FlowLayout());
     private JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
     private JPanel favoritesItemsPanel = new JPanel(new GridLayout(0, 4, 20, 20));
+    private JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
 
     private JLabel emptyFavoritesLabel = new JLabel();
 
@@ -1121,10 +1123,10 @@ public class CatalogViewer {
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
-
-        // Add the toggle delete button at the top if user is admin
+        buttonPanel.removeAll(); // Remove any existing buttons so they’re not added again
+        bottomPanel.remove(buttonPanel); // Remove the panel from the layout (safe even if not present)
+// Add toggle delete button only if admin
         if (userStatus == 2) {
-            JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
             buttonPanel.add(createToggleDeleteButton());
             bottomPanel.add(buttonPanel);
         }
