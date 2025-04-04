@@ -1116,6 +1116,8 @@ public class CatalogViewer {
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
             icon = new ImageIcon(scaledImg);
+            Color defaultColor = itemPanel.getBackground();
+            Color hoverColor = new Color(173, 216, 230); // Light Blue
 
             // Image label
             JLabel imageLabel = new JLabel(icon, JLabel.CENTER);
@@ -1127,6 +1129,7 @@ public class CatalogViewer {
             itemPanel.setLayout(new BorderLayout());
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
+    
 
             // Add hover effect
             itemPanel.addMouseListener(new MouseAdapter() {
