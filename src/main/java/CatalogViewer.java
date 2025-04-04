@@ -279,6 +279,13 @@ public class CatalogViewer {
         buttonPanel.add(createToggleRemoveButton());
         favoritesPanel.add(buttonPanel);
 
+        setPanelColors(favoritesPanel, mainColor, mainColor);
+        setPanelColors(searchWrapper, mainColor, mainColor);
+        setPanelColors(buttonPanel, mainColor, mainColor);
+        setPanelColors(scrollPaneWrapper, mainColor, mainColor);
+        setPanelColors(favoritesItemsPanel, mainColor, mainColor);
+        favoritesScrollPane.getViewport().setBackground(mainColor);
+
 // Update the favoritesButton action listener
         favouritesButton = new JButton("Favorites");
         customizeButton(favouritesButton);
@@ -1484,6 +1491,7 @@ public class CatalogViewer {
         searchField.setPreferredSize(new Dimension(200, 30));
 
         JButton searchButton = new JButton("Search");
+        customizeButton(searchButton);
         searchButton.setBackground(new Color(50, 150, 250));
         searchButton.setForeground(Color.WHITE);
         searchButton.setFocusPainted(false);
@@ -1547,7 +1555,7 @@ public class CatalogViewer {
     private boolean showRemoveButtons = false; // Track remove button visibility
 
     private JButton createToggleRemoveButton() {
-        JButton toggleRemoveButton = new JButton("Remove from favorites");
+        JButton toggleRemoveButton = new JButton("Remove from Favorites");
         toggleRemoveButton.addActionListener(e -> {
             showRemoveButtons = !showRemoveButtons;
             updateFavoritesDisplay(getFavourites()); // Refresh the UI to show/hide buttons
@@ -1585,8 +1593,8 @@ public class CatalogViewer {
 
 
         JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
-        nameLabel.setFont(textFont);
-        nameLabel.setForeground(Color.BLACK);
+        nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        nameLabel.setForeground(Color.DARK_GRAY);
 
         JButton removeButton = new JButton("Remove");
         customizeButton(removeButton);
