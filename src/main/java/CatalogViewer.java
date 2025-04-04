@@ -234,7 +234,6 @@ public class CatalogViewer {
 // Replace the favorites panel creation with:
         JPanel favoritesPanel = new JPanel();
         favoritesPanel.setLayout(new BoxLayout(favoritesPanel, BoxLayout.Y_AXIS));
-        setPanelColors(favoritesPanel, mainColor, mainColor);
 
 // Create header
         JLabel favoritesLabel = createHeaderLabel("Your Favorites");
@@ -257,7 +256,6 @@ public class CatalogViewer {
         favoritesScrollPane.setBorder(BorderFactory.createEmptyBorder());
         favoritesScrollPane.getVerticalScrollBar().setUnitIncrement(10);
         favoritesScrollPane.setPreferredSize(new Dimension(600, 300));
-        favoritesScrollPane.setBackground(mainColor);
 
 // Add a wrapper panel for the scroll pane to expand properly
         JPanel scrollPaneWrapper = new JPanel(new BorderLayout());
@@ -279,8 +277,16 @@ public class CatalogViewer {
         buttonPanel.add(createToggleRemoveButton());
         favoritesPanel.add(buttonPanel);
 
+        setPanelColors(favoritesPanel, mainColor, mainColor);
+        setPanelColors(searchWrapper, mainColor, mainColor);
+        setPanelColors(buttonPanel, mainColor, mainColor);
+        setPanelColors(scrollPaneWrapper, mainColor, mainColor);
+        setPanelColors(favoritesItemsPanel, mainColor, mainColor);
+        favoritesScrollPane.getViewport().setBackground(mainColor);
+
 // Update the favoritesButton action listener
         favouritesButton = new JButton("Favorites");
+        customizeButton(favouritesButton);
         favouritesButton.addActionListener(e -> {
             List<ClothingItem> favorites = getFavourites();
             updateFavoritesDisplay(favorites);
@@ -1110,7 +1116,7 @@ public class CatalogViewer {
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
-
+        
         for (ClothingItem item : items) {
             ImageIcon icon = item.getImage();
             Image img = icon.getImage();
@@ -1130,7 +1136,6 @@ public class CatalogViewer {
             itemPanel.setLayout(new BorderLayout());
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
-    
 
             // Add hover effect
             itemPanel.addMouseListener(new MouseAdapter() {
@@ -1518,7 +1523,8 @@ public class CatalogViewer {
     private boolean showRemoveButtons = false; // Track remove button visibility
 
     private JButton createToggleRemoveButton() {
-        JButton toggleRemoveButton = new JButton("Remove from favorites");
+        JButton toggleRemoveButton = new JButton("Remove From Favorites");
+        customizeButton(toggleRemoveButton);
         toggleRemoveButton.addActionListener(e -> {
             showRemoveButtons = !showRemoveButtons;
             updateFavoritesDisplay(getFavourites()); // Refresh the UI to show/hide buttons
