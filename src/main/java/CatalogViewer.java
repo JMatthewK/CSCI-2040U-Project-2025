@@ -42,6 +42,9 @@ public class CatalogViewer {
     private JPanel mainMenuOptions = new JPanel(new GridLayout(4,1));
     private JPanel menuButtonPanel = new JPanel(new FlowLayout());
     private JPanel mainMenuButtonsPanel = new JPanel(new FlowLayout());
+    private JPanel favoritesItemsPanel = new JPanel(new GridLayout(0, 4, 20, 20));
+
+    private JLabel emptyFavoritesLabel = new JLabel();
 
     // Define buttons used in the class
     private JButton loginButton;
