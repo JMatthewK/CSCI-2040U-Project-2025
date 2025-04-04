@@ -1152,21 +1152,6 @@ public class CatalogViewer {
             itemPanel.setPreferredSize(new Dimension(180, 220)); // Adjust for spacing
             itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Light gray border
 
-            // Add hover effect
-            itemPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    itemPanel.setBackground(hoverColor);
-                    itemPanel.setBorder(BorderFactory.createLineBorder(new Color(50, 150, 250), 2)); // Blue border on hover
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    itemPanel.setBackground(defaultColor);
-                    itemPanel.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 2)); // Restore default border
-                }
-            });
-
             // Item name label
             JLabel nameLabel = new JLabel(item.getName(), JLabel.CENTER);
             nameLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
