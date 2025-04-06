@@ -1,4 +1,6 @@
 # CSCI-2040U-Project-2025
+![icon2](https://github.com/user-attachments/assets/79d3a456-1a4e-4ddb-8728-03fbb7b6e0e6)
+
 
 # CTLG.
 ## Project Overview
@@ -196,9 +198,43 @@ mvn test
 
 ### Data Information
 1. Catalog Data
-2. Account Data
-3. Favorites Data
-4. Images
+```csv
+ID,Product Name,Brand,Color,Category,Price (CAD),Material,Style,Fit,Link
+1,Nike Strike Men's Dri-FIT Short-Sleeve Football,Nike,Black,Shirt,55.0,Polyester,Sport,Slim,https://www.nike.com/ca/t/strike-dri-fit-short-sleeve-football-top-DFnTwg/FN2399-010
+2,Nike Primary Men's Dri-FIT Short-Sleeve Versatile Top,Nike,Black,Shirts,68.0,Polyester,Sport,Standard,https://www.nike.com/ca/t/primary-dri-fit-short-sleeve-versatile-top-2wrctV/DV9831-010
+...
+```
+| **Column**     | **Description**                           |
+|----------------|-------------------------------------------|
+| ID             | Unique identifier for the product         |
+| Product Name   | The name of the product                   |
+| Brand          | The brand of the product                  |
+| Color          | The color of the product                  |
+| Category       | The category the product belongs to       |
+| Price (CAD)    | The price of the product in CAD           |
+| Material       | The material used in the product          |
+| Style          | The style or design of the product        |
+| Fit            | The fit type (e.g., Slim, Standard)       |
+| Link           | URL to the product's page online          |
+2. Account Data <br>
+Stores user login information, admin status has to be edited in this file. <br>
+```csv
+Username,Password,isAdmin
+admin,adminpass,true
+user,userpass,false
+...
+```
+| **Column** | **Description**                     |
+|------------|-------------------------------------|
+| Username   | User’s login name                   |
+| Password   | User’s login password (plaintext)   |
+| isAdmin    | true if the user is an admin        |
+
+3. Favorites Data <br>
+The "favorites" folder contains csv files that containt he ID number of each clothing item a user has favourited.
+4. Images <br>
+In the "img" folder there are images that share the same ID number as the respective clothing item they have a picture of.
+
 
 ### Technologies Used
 - Java 17
