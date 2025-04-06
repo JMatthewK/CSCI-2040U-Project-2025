@@ -115,7 +115,7 @@ ADMIN FEATURES
 ## Developer Documentation
 
 ### Project Structure
-
+```
 CSCI-2040U-Project-2025/
 ├── .idea/                         # IntelliJ project settings
 │   └── shelf/                     # Changes
@@ -158,6 +158,7 @@ CSCI-2040U-Project-2025/
 ├── pom.xml                       # Maven build file
 ├── README.md                     
 └── .gitignore                    # Git exclusions
+```
 
 ### Testing
 To run the tests for the application, use the following command
