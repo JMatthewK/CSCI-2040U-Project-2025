@@ -4,7 +4,9 @@ import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -59,6 +61,36 @@ public class CsvParserTest {
     }
 
     @Test
+    public void testParseAccount_WithSampleData() throws IOException {
+        String fakeCsv =
+                "Username,Password,Admin\n" +
+                        "user1,pass1,false\n" +
+                        "adminUser,adminpass,true\n";
+
+        File tempFile = File.createTempFile("testAccounts", ".csv");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+            writer.write(fakeCsv);
+        }
+
+        CsvParser parser = new CsvParser();
+        List<Account> accounts = parser.parseAccount(tempFile.getAbsolutePath());
+
+        assertEquals(2, accounts.size());
+
+        Account user1 = accounts.get(0);
+        assertEquals("user1", user1.getUsername());
+        assertEquals("pass1", user1.getPassword());
+        assertFalse(user1.isAdmin());
+
+        Account admin = accounts.get(1);
+        assertEquals("adminUser", admin.getUsername());
+        assertEquals("adminpass", admin.getPassword());
+        assertTrue(admin.isAdmin());
+
+        tempFile.deleteOnExit(); // Clean up
+    }
+
+    @Test
     public void testLoadImage_PlaceholderFallback() {
         // ID 999 is assumed to have no matching image
         ClothingItem item = new ClothingItem(999, "Test", "TestBrand", "Red", "Shirts",
@@ -108,5 +140,65 @@ public class CsvParserTest {
         ImageIcon secondImage = item.getImage();
 
         assertSame(firstImage, secondImage, "Image should be the same instance after repeated loads.");
+    }
+
+    @Test
+    public void testSettersAndGetters() {
+        ClothingItem item = new ClothingItem(42, "Tee", "Uniqlo", "Blue", "Shirts",
+                19.99, "Cotton", "Casual", "Loose", "http://example.com");
+
+        item.setName("Tank Top");
+        item.setBrand("Zara");
+        item.setColor("Red");
+        item.setCategory("Tops");
+        item.setPrice(24.99);
+        item.setMaterial("Linen");
+        item.setStyle("Relaxed");
+        item.setFit("Slim");
+        item.setLink("http://zara.com/tank");
+
+        assertEquals("Tank Top", item.getName());
+        assertEquals("Zara", item.getBrand());
+        assertEquals("Red", item.getColor());
+        assertEquals("Tops", item.getCategory());
+        assertEquals(24.99, item.getPrice(), 0.001);
+        assertEquals("Linen", item.getMaterial());
+        assertEquals("Relaxed", item.getStyle());
+        assertEquals("Slim", item.getFit());
+        assertEquals("http://zara.com/tank", item.getlink());
+    }
+
+    @Test
+    public void testHideUnhide() {
+        ClothingItem item = new ClothingItem(43, "Sneakers", "Adidas", "White", "Shoes",
+                89.99, "Synthetic", "Sport", "Standard", "http://adidas.com");
+
+        assertFalse(item.getIfRemoved(), "Should not be hidden by default.");
+
+        item.hide();
+        assertTrue(item.getIfRemoved(), "Should be hidden after calling hide().");
+
+        item.unhide();
+        assertFalse(item.getIfRemoved(), "Should not be hidden after calling unhide().");
+    }
+
+    @Test
+    public void testSetImageManually() {
+        ClothingItem item = new ClothingItem(44, "Beanie", "Carhartt", "Green", "Hats",
+                29.99, "Wool", "Street", "One Size", "http://carhartt.com");
+
+        ImageIcon customImage = new ImageIcon("data/img/placeholder.png");
+        item.setImage(customImage);
+
+        assertSame(customImage, item.getImage(), "Image should match the manually set one.");
+    }
+
+    @Test
+    public void testToStringFormat() {
+        ClothingItem item = new ClothingItem(10, "Blazer", "Topman", "Navy", "Jackets",
+                120.00, "Wool", "Formal", "Tailored", "http://topman.com");
+
+        String expected = "10,Blazer,Topman,Navy,Jackets,120.0,Wool,Formal,Tailored,http://topman.com";
+        assertEquals(expected, item.toString(), "toString should return CSV-style format.");
     }
 }
