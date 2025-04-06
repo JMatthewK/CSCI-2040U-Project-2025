@@ -6,7 +6,7 @@
 Matthew Kassapian, Russell Manalo, Adrian Fudge, Mavrick Egan, Isabella Smith
 
 ## Table of Contents
-- [Summary](#Summary)
+- [Summary](#summary)
 
 **Summary**: “CTLG.” is a clothing catalogue application with access to a database of clothing from different brands. A user will be able to add or delete items from the catalogue, search for items, and apply various filters. This functionality ensures a tailored and efficient shopping experience, helping users discover clothing that matches their preferences and needs
 
