@@ -90,8 +90,8 @@ java -jar target/FinalProject-1.0.jar
 ### 3. Usage
 
 Once the program launches, the UI will display:
-![screenshot](homepage.png)
-![screenshot](catalog.png)
+![homepage](https://github.com/user-attachments/assets/e70f8244-02ce-4097-a593-f95e1721122d)
+![catalogPage](https://github.com/user-attachments/assets/0ea3d5bf-160b-472f-b1ef-9b1d61f5e78b)
 
 ## User Documentation
 
@@ -105,12 +105,12 @@ Once the program launches, the UI will display:
 ### How to Use
 1. **Launching the app.**
   a. Run the commands in the [Setup Instructions](#setup-instructions).
-2. **Logging In:** How to log into accounts.
-  a. After launching the app, select the log in button.
+2. **Logging In:** How to log into accounts. <br>
+  a. After launching the app, select the log in button. <br>
 ![Login1](https://github.com/user-attachments/assets/db5b28d9-f5ae-4a00-a51f-ee2d37a73e03)
-  b. Put in your username and password, and click "Log In"
+  b. Put in your username and password, and click "Log In" <br>
 ![Login2](https://github.com/user-attachments/assets/9f9383c0-25ae-4286-b768-daa7ee823911)
-  c. If you would like to just view with limited features, select "Continue as Guest"
+  c. If you would like to just view with limited features, select "Continue as Guest" <br>
 4. **Creating an Account: **
 5. **Browsing:** Scroll through the catalog.
 6. **Filter:** Filter catalog using the menu.
