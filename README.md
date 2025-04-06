@@ -21,6 +21,7 @@ Matthew Kassapian, Russell Manalo, Adrian Fudge, Mavrick Egan, Isabella Smith
   - [How to Use](#how-to-use)
     - [Launching the app](#launching-the-app)
     - [Logging In](#logging-in)
+    - [Creating an Account](#creating-an-account)
     - [Browsing](#browsing)
     - [Filter](#filter)
     - [Searching](#searching)
@@ -32,6 +33,7 @@ Matthew Kassapian, Russell Manalo, Adrian Fudge, Mavrick Egan, Isabella Smith
   - [Testing](#testing)
   - [Technologies Used](#technologies-used)
   - [Future Improvements](#future-improvements)
+
 
 
 ## Summary
@@ -111,13 +113,30 @@ Once the program launches, the UI will display:
   b. Put in your username and password, and click "Log In" <br>
 ![Login2](https://github.com/user-attachments/assets/9f9383c0-25ae-4286-b768-daa7ee823911)
   c. If you would like to just view with limited features, select "Continue as Guest" <br>
-4. **Creating an Account: **
-5. **Browsing:** Scroll through the catalog.
-6. **Filter:** Filter catalog using the menu.
-7. **Searching:** Search through the catalog using search bar.
-8. **Favouriting Items:** How to favourite items to your account.
-ADMIN FEATURES
-9. **Adding/Editing/Deleting Items:** How to modify items in the catalog.
+3. **Creating an Account:** Creating an user account. <br>
+  a. Select the "Register Account" button in the login screen. <br>
+![Register1](https://github.com/user-attachments/assets/bca16574-0c1a-4fbf-9db2-6307b8c318c9)
+  b. Fill in the information with a username and password to create an account. <br>
+4. **Browsing:** Scroll through the catalog. <br>
+  a. Click on the "View Catalog" button on the top right of the homepage **after logging in.** <br>
+  b. Scroll through the catalog of items to view. <br>
+  c. Click on any item to view the item details.
+5. **Filter:** Filter catalog using the menu. <br>
+  a. Use the left sidebar to select and deselect attributes to filter the catalog with. <br>
+![FilterImage](https://github.com/user-attachments/assets/d27784cb-68e7-41bb-a638-e16f0cc452e8)
+6. **Searching:** Search through the catalog using search bar. <br>
+  a. Use the search bar on the top of the catalog to type and search for items. <br>
+![Search1](https://github.com/user-attachments/assets/fe4d3da4-805b-440b-9a77-adea58e39211)
+7. **Favouriting Items:** How to favourite items to your account. <br>
+  a. Click on any item to open up the item details. <br>
+  b. If logged in as a user (guests not included) there will be a button to "Add to Favourite". <br>
+  c. View your favourites list by clicking the "Favorites" button on the top right. <br>
+ADMIN FEATURES <br>
+9. **Adding/Editing/Deleting Items:** How to modify items in the catalog. <br>
+  a. If logged in as admin, the catalog will show 2 extra buttons. The first button "Add Item" will allow you to fill out the details of an item, for it to be added to the catalog, The second button "Delete Multiple" will toggle and allow the admin to delete multiple items at once. <br>
+![AdminFeature1](https://github.com/user-attachments/assets/f23422ce-038d-41c9-b32c-a4fe30b13175)
+  b. If logged in as an admin, when viewing item details you will see 2 extra buttons. The "Edit" button will allow you to change data about that item. The "Delete" button will allow you to remove the selected item from the catalog. <br>
+  ![AdminFeature2](https://github.com/user-attachments/assets/57dd94c9-e52e-450b-87c0-adf0dc9fea45)
 
 ### Video Tutorial
 
@@ -175,8 +194,10 @@ To run the tests for the application, use the following command
 mvn test
 ```
 
-### Technologies Used
+### Data Information
 
+
+### Technologies Used
 - Java 17
 - Java Swing (UI)
 - Maven (Build Tool)
