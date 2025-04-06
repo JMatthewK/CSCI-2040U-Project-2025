@@ -1186,8 +1186,6 @@ public class CatalogViewer {
     //updates the panel of images
     private void updateImagePanel(List<ClothingItem> items) {
         imagePanel.removeAll();
-        buttonPanel.removeAll(); // Remove any existing buttons so they’re not added again
-        bottomPanel.remove(buttonPanel); // Remove the panel from the layout (safe even if not present)
         // Add toggle delete button only if admin
         if (userStatus == 2) {
             buttonPanel.add(toggleDeleteButton);
