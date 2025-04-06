@@ -86,14 +86,30 @@ public class CatalogViewer {
 
     // Variable to track login details
     private boolean isLoggedIn = false;
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+    
     // 0 for guest, 1 for registered User, 2 for admin
     private int userStatus = 0;
 
+    public int getUserStatus() {
+        return userStatus;
+    }
+
     private String currentuser;
 
+    public String getCurrentUser() {
+        return currentuser;
+    }
 
     // account list
     private List<Account> accounts = null;
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public CatalogViewer() throws IOException {
         try {
@@ -535,72 +551,56 @@ public class CatalogViewer {
         frame.repaint();
     }
 
-
-
-    // Login screen
-    public void login() {
-        // Login window
-        JFrame frame = new JFrame("Login System");
-        JPanel loginPanel = new JPanel(new GridLayout(6,1, 0, 0));
-        setPanelColors(loginPanel, mainColor, mainColor);
-        JPanel usernamePanel = new JPanel(new GridLayout(2,1));
-        setPanelColors(usernamePanel, mainColor, mainColor);
-        JPanel passwordPanel = new JPanel(new GridLayout(2,1));
-        setPanelColors(passwordPanel, mainColor, mainColor);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(400,600);
-        frame.setLocationRelativeTo(null);
-        frame.add(loginPanel);
-        frame.setResizable(false);
-        // check accounts
-        try {
-            accounts = csvParser.parseAccount("data/accounts.csv");
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-
-        // GUI Components
-        JLabel userLabel = createTextLabel("Username:");
-        JTextField userField = new JTextField(15);
-        Rectangle r = new Rectangle(75,50);
-        userField.setBounds(r);
-
-        JLabel passLabel = createTextLabel("Password:");
-        JPasswordField passField = new JPasswordField(15);
-        passField.setBounds(r);
-
-        JButton loginButton = new JButton("Login");
-        customizeButton(loginButton);
-        JLabel resultLabel = new JLabel("");
-        JButton registerButton = new JButton("Register Account");
-        customizeButton(registerButton);
-        registerButton.addActionListener(e -> {
-            frame.dispose();
-            register();
-        });
-
-        // Button response and override for action of button
-        loginButton.addActionListener(new ActionListener() {
-            // User input
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = userField.getText();
-                String password = new String(passField.getPassword());
-                String input = hashPassword(password);
-
-                for(int i = 0; i < accounts.size(); i++) {
-                    if (username.equals(accounts.get(i).getUsername()) && input.equals(hashPassword(accounts.get(i).getPassword()))) {
-                        if(accounts.get(i).isAdmin()){
-                            // Set isAdmin to true
-                            userStatus = 2;
-                            System.out.println("User is Admin");
-                        }
-                        else{
-                            userStatus = 1;
-                            System.out.println("User is not Admin");
-                        }
-                        isLoggedIn = true;
-                        currentuser = accounts.get(i).getUsername();
+        // Login screen
+        public void login() {
+            // Login window
+            JFrame frame = new JFrame("Login System");
+            JPanel loginPanel = new JPanel(new GridLayout(6,1, 0, 0));
+            setPanelColors(loginPanel, mainColor, mainColor);
+            JPanel usernamePanel = new JPanel(new GridLayout(2,1));
+            setPanelColors(usernamePanel, mainColor, mainColor);
+            JPanel passwordPanel = new JPanel(new GridLayout(2,1));
+            setPanelColors(passwordPanel, mainColor, mainColor);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(400,600);
+            frame.setLocationRelativeTo(null);
+            frame.add(loginPanel);
+            frame.setResizable(false);
+            // check accounts
+            try {
+                accounts = csvParser.parseAccount("data/accounts.csv");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+    
+            // GUI Components
+            JLabel userLabel = createTextLabel("Username:");
+            JTextField userField = new JTextField(15);
+            Rectangle r = new Rectangle(75,50);
+            userField.setBounds(r);
+    
+            JLabel passLabel = createTextLabel("Password:");
+            JPasswordField passField = new JPasswordField(15);
+            passField.setBounds(r);
+    
+            JButton loginButton = new JButton("Login");
+            customizeButton(loginButton);
+            JLabel resultLabel = new JLabel("");
+            JButton registerButton = new JButton("Register Account");
+            customizeButton(registerButton);
+            registerButton.addActionListener(e -> {
+                frame.dispose();
+                register();
+            });
+    
+            // Button response and override for action of button
+            loginButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String username = userField.getText();
+                    String password = new String(passField.getPassword());
+            
+                    if (authenticate(username, password)) {
                         resultLabel.setText("Access granted!");
                         resultLabel.setForeground(Color.BLUE);
                         try {
@@ -610,43 +610,43 @@ public class CatalogViewer {
                         }
                         frame.setVisible(false);
                         frame.dispose();
-                    }
-                    else {
+                    } else {
                         resultLabel.setText("Invalid credentials.");
                         resultLabel.setForeground(logoColor);
                     }
+            
+                    // Run update UI to check for changes
+                    updateUI();
                 }
-                // Run update UI to check for changes
-                updateUI();
-            }
-        });
-
-        // Adding the components to the frame and display
-        usernamePanel.add(userLabel);
-        usernamePanel.add(userField);
-        passwordPanel.add(passLabel);
-        passwordPanel.add(passField);
-
-        JPanel loginButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        setPanelColors(loginButtonPanel, mainColor, mainColor);
-        loginButtonPanel.add(loginButton);
-        loginButtonPanel.add(resultLabel);
-
-        JPanel signupPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        setPanelColors(signupPanel, mainColor, mainColor);
-        signupPanel.add(registerButton);
-
-        loginPanel.add(headerLogoLabel);
-        loginPanel.add(usernamePanel);
-        loginPanel.add(passwordPanel);
-        loginPanel.add(loginButtonPanel);
-        loginPanel.add(createTextLabel("Don't have an account? Sign up here:"));
-        loginPanel.add(signupPanel);
-
-
-        frame.setVisible(true);
-
-    }
+            });
+            
+    
+            // Adding the components to the frame and display
+            usernamePanel.add(userLabel);
+            usernamePanel.add(userField);
+            passwordPanel.add(passLabel);
+            passwordPanel.add(passField);
+    
+            JPanel loginButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+            setPanelColors(loginButtonPanel, mainColor, mainColor);
+            loginButtonPanel.add(loginButton);
+            loginButtonPanel.add(resultLabel);
+    
+            JPanel signupPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+            setPanelColors(signupPanel, mainColor, mainColor);
+            signupPanel.add(registerButton);
+    
+            loginPanel.add(headerLogoLabel);
+            loginPanel.add(usernamePanel);
+            loginPanel.add(passwordPanel);
+            loginPanel.add(loginButtonPanel);
+            loginPanel.add(createTextLabel("Don't have an account? Sign up here:"));
+            loginPanel.add(signupPanel);
+    
+    
+            frame.setVisible(true);
+    
+        }
 
     // Register a new account (new account gets added to a CSV account database)
     public void register() {
@@ -752,7 +752,19 @@ public class CatalogViewer {
 
     }
 
-    // Super cool security system I learned
+    public boolean authenticate(String username, String password) {
+        String hashedInput = hashPassword(password);
+        for (Account acc : accounts) {
+            if (username.equals(acc.getUsername()) && hashedInput.equals(hashPassword(acc.getPassword()))) {
+                userStatus = acc.isAdmin() ? 2 : 1;
+                currentuser = acc.getUsername();
+                isLoggedIn = true;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static String hashPassword(String password) {
         // Exception handling if SHA-256 algo isn't accessable
         try {
