@@ -195,7 +195,10 @@ mvn test
 ```
 
 ### Data Information
-
+1. Catalog Data
+2. Account Data
+3. Favorites Data
+4. Images
 
 ### Technologies Used
 - Java 17
