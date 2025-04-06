@@ -71,8 +71,8 @@ To get the source code, run the following command:
 ```bash
 git clone https://github.com/JMatthewK/CSCI-2040U-Project-2025
 cd CSCI-2040U-Project-2025
-
 ```
+
 ### 2. Compile and run
 
 Compile the program:
@@ -104,13 +104,22 @@ Once the program launches, the UI will display:
 
 ### How to Use
 1. **Launching the app.**
+  a. Run the commands in the [Setup Instructions](#setup-instructions).
 2. **Logging In:** How to log into accounts.
-3. **Browsing:** Scroll through the catalog.
-4. **Filter:** Filter catalog using the menu.
-5. **Searching:** Search through the catalog using search bar.
-6. **Favouriting Items:** How to favourite items to your account.
+  a. After launching the app, select the log in button.
+![Login1](https://github.com/user-attachments/assets/db5b28d9-f5ae-4a00-a51f-ee2d37a73e03)
+  b. Put in your username and password, and click "Log In"
+![Login2](https://github.com/user-attachments/assets/9f9383c0-25ae-4286-b768-daa7ee823911)
+  c. If you would like to just view with limited features, select "Continue as Guest"
+4. **Creating an Account: **
+5. **Browsing:** Scroll through the catalog.
+6. **Filter:** Filter catalog using the menu.
+7. **Searching:** Search through the catalog using search bar.
+8. **Favouriting Items:** How to favourite items to your account.
 ADMIN FEATURES
-7. **Adding/Editing/Deleting Items:** How to modify items in the catalog.
+9. **Adding/Editing/Deleting Items:** How to modify items in the catalog.
+
+### Video Tutorial
 
 ## Developer Documentation
 
@@ -163,7 +172,7 @@ CSCI-2040U-Project-2025/
 ### Testing
 To run the tests for the application, use the following command
 ```bash
-$ mvn test
+mvn test
 ```
 
 ### Technologies Used
